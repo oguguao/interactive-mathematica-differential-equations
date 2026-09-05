@@ -1,0 +1,283 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11487,        273]
+NotebookOptionsPosition[     11003,        256]
+NotebookOutlinePosition[     11399,        272]
+CellTagsIndexPosition[     11356,        269]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficientMatrix", ",", "initialVector", ",", "eigenvalues", ",", 
+       "eigenvectors", ",", "solution", ",", "verification", ",", 
+       "qualitativeBehavior"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"coefficientMatrix", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"realPart", ",", "rotationRate"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "rotationRate"}], ",", "realPart"}], "}"}]}], "}"}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"initialVector", "=", 
+       RowBox[{"{", 
+        RowBox[{"initialX1", ",", "initialX2"}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eigenvalues", ",", "eigenvectors"}], "}"}], "=", 
+       RowBox[{"Eigensystem", "[", "coefficientMatrix", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"solution", "[", "t_", "]"}], ":=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"MatrixExp", "[", 
+          RowBox[{"coefficientMatrix", " ", "t"}], "]"}], ".", 
+         "initialVector"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"solution", "[", "t", "]"}], ",", "t"}], "]"}], "==", 
+           RowBox[{"coefficientMatrix", ".", 
+            RowBox[{"solution", "[", "t", "]"}]}]}], ",", 
+          RowBox[{
+           RowBox[{"solution", "[", "0", "]"}], "==", "initialVector"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"qualitativeBehavior", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{"realPart", "<", "0"}], 
+         ",", "\"\<Stable spiral \[LongDash] trajectories move toward the \
+origin\>\"", ",", 
+         RowBox[{"realPart", ">", "0"}], 
+         ",", "\"\<Unstable spiral \[LongDash] trajectories move away from \
+the origin\>\"", ",", 
+         RowBox[{"realPart", "==", "0"}], 
+         ",", "\"\<Center \[LongDash] trajectories remain at constant \
+distance from the origin\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 8.2: Homogeneous Linear \
+Systems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Coefficient matrix:   \>\"", ",", 
+            RowBox[{"MatrixForm", "[", "coefficientMatrix", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Eigenvalues:   \>\"", ",", "eigenvalues"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Eigenvectors:   \>\"", ",", "eigenvectors"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Behavior:   \>\"", ",", "qualitativeBehavior"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution vector:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"solution", "[", "t", "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"ParametricPlot", "[", 
+          RowBox[{
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"solution", "[", "t", "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "8"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x1\>\"", ",", "\"\<x2\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Trajectory in the Phase Plane\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"realPart", ",", "1", ",", "\"\<Real part of eigenvalues\>\""}],
+       "}"}], ",", 
+     RowBox[{"-", "1.5"}], ",", "1.5", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rotationRate", ",", "2", ",", "\"\<Rotation rate\>\""}], "}"}],
+      ",", "0.5", ",", "4", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialX1", ",", "1", ",", "\"\<x1(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialX2", ",", "0", ",", "\"\<x2(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997480357064049*^9, 3.997480357064049*^9}},
+ CellLabel->
+  "In[148]:=",ExpressionUUID->"4597c05e-7364-9d47-8d1e-284f9e95dc5c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialX1$$ = 1, $CellContext`initialX2$$ = 
+    0, $CellContext`realPart$$ = 1, $CellContext`rotationRate$$ = 2, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`realPart$$], 1, "Real part of eigenvalues"}, -1.5, 
+      1.5, 0.25, ControlType -> Manipulator}, {{
+       Hold[$CellContext`rotationRate$$], 2, "Rotation rate"}, 0.5, 4, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialX1$$], 1, "x1(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialX2$$], 0, "x2(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    583.892578125, {132.18869306769716`, 137.92062666144716`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialX1$$ = 1, $CellContext`initialX2$$ = 
+        0, $CellContext`realPart$$ = 1, $CellContext`rotationRate$$ = 2}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficientMatrix$, $CellContext`initialVector$, \
+$CellContext`eigenvalues$, $CellContext`eigenvectors$, \
+$CellContext`solution$, $CellContext`verification$, \
+$CellContext`qualitativeBehavior$}, $CellContext`coefficientMatrix$ = \
+{{$CellContext`realPart$$, $CellContext`rotationRate$$}, \
+{-$CellContext`rotationRate$$, $CellContext`realPart$$}}; \
+$CellContext`initialVector$ = {$CellContext`initialX1$$, \
+$CellContext`initialX2$$}; {$CellContext`eigenvalues$, \
+$CellContext`eigenvectors$} = 
+         Eigensystem[$CellContext`coefficientMatrix$]; $CellContext`solution$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := FullSimplify[
+           Dot[
+            
+            MatrixExp[$CellContext`coefficientMatrix$ $CellContext`t$], \
+$CellContext`initialVector$]]; $CellContext`verification$ = FullSimplify[{D[
+              $CellContext`solution$[$CellContext`t], $CellContext`t] == 
+            Dot[$CellContext`coefficientMatrix$, 
+              $CellContext`solution$[$CellContext`t]], $CellContext`solution$[
+             0] == $CellContext`initialVector$}]; \
+$CellContext`qualitativeBehavior$ = 
+         Which[$CellContext`realPart$$ < 0, 
+           "Stable spiral \[LongDash] trajectories move toward the origin", \
+$CellContext`realPart$$ > 0, 
+           "Unstable spiral \[LongDash] trajectories move away from the \
+origin", $CellContext`realPart$$ == 0, 
+           "Center \[LongDash] trajectories remain at constant distance from \
+the origin"]; Column[{
+           Style[
+           "Interactive Mathematica Lab 8.2: Homogeneous Linear Systems", 18, 
+            Bold], 
+           Row[{"Coefficient matrix:   ", 
+             MatrixForm[$CellContext`coefficientMatrix$]}], 
+           Row[{"Eigenvalues:   ", $CellContext`eigenvalues$}], 
+           Row[{"Eigenvectors:   ", $CellContext`eigenvectors$}], 
+           Row[{"Behavior:   ", $CellContext`qualitativeBehavior$}], 
+           Row[{"Solution vector:   ", 
+             TraditionalForm[
+              $CellContext`solution$[$CellContext`t]]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           ParametricPlot[
+            Evaluate[
+             $CellContext`solution$[$CellContext`t]], {$CellContext`t, 0, 8}, 
+            PlotRange -> All, AxesLabel -> {"x1", "x2"}, GridLines -> 
+            Automatic, PlotLabel -> "Trajectory in the Phase Plane"]}]], 
+      "Specifications" :> {{{$CellContext`realPart$$, 1, 
+          "Real part of eigenvalues"}, -1.5, 1.5, 
+         0.25}, {{$CellContext`rotationRate$$, 2, "Rotation rate"}, 0.5, 4, 
+         0.5}, {{$CellContext`initialX1$$, 1, "x1(0)"}, -2, 2, 
+         0.5}, {{$CellContext`initialX2$$, 0, "x2(0)"}, -2, 2, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      626.4925781249999, {216.4495329114472, 222.1814665051972}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974803586470585`*^9},
+ CellLabel->
+  "Out[149]=",ExpressionUUID->"820d2fc7-e765-2146-ae95-07cb4c43f134"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8466ea1b-8afc-8f46-86bd-fce1badd2d19"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5359, 134, 351, "Input",ExpressionUUID->"4597c05e-7364-9d47-8d1e-284f9e95dc5c"],
+Cell[5938, 158, 5049, 95, 455, "Output",ExpressionUUID->"820d2fc7-e765-2146-ae95-07cb4c43f134"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,376 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     15158,        366]
+NotebookOptionsPosition[     14673,        349]
+NotebookOutlinePosition[     15069,        365]
+CellTagsIndexPosition[     15026,        362]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"generalSolution", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"c1", " ", 
+      RowBox[{"Cos", "[", "x", "]"}]}], "+", 
+     RowBox[{"c2", " ", 
+      RowBox[{"Sin", "[", "x", "]"}]}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "conditions", ",", "result", ",", "outcome", ",", "explanation", ",", 
+       "graphic"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"Switch", "[", 
+       RowBox[{"case", ",", "\"\<Unique\>\"", ",", 
+        RowBox[{
+         RowBox[{"conditions", "=", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"generalSolution", "[", "0", "]"}], "==", "0"}], ",", 
+            RowBox[{
+             RowBox[{"generalSolution", "[", 
+              RowBox[{"Pi", "/", "2"}], "]"}], "==", "1"}]}], "}"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"result", "=", 
+          RowBox[{"Reduce", "[", 
+           RowBox[{"conditions", ",", 
+            RowBox[{"{", 
+             RowBox[{"c1", ",", "c2"}], "}"}], ",", "Reals"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"outcome", "=", "\"\<Exactly One Solution\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "explanation", 
+          "=", "\"\<Both constants are uniquely determined.\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"graphic", "=", 
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"Sin", "[", "x", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", 
+              RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+            RowBox[{"AxesLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+            RowBox[{"PlotLabel", "->", "\"\<Unique BVP Solution\>\""}], ",", 
+            RowBox[{"Epilog", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+               RowBox[{"Point", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Pi", "/", "2"}], ",", "1"}], "}"}]}], "}"}], 
+                "]"}]}], "}"}]}]}], "]"}]}]}], ",", "\"\<Infinite\>\"", ",", 
+        RowBox[{
+         RowBox[{"conditions", "=", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"generalSolution", "[", "0", "]"}], "==", "0"}], ",", 
+            RowBox[{
+             RowBox[{"generalSolution", "[", "Pi", "]"}], "==", "0"}]}], 
+           "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"result", "=", 
+          RowBox[{"Reduce", "[", 
+           RowBox[{"conditions", ",", 
+            RowBox[{"{", 
+             RowBox[{"c1", ",", "c2"}], "}"}], ",", "Reals"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"outcome", "=", "\"\<Infinitely Many Solutions\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "explanation", "=", "\"\<One arbitrary constant remains free.\>\""}],
+          ";", "\[IndentingNewLine]", 
+         RowBox[{"graphic", "=", 
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"A", " ", 
+                RowBox[{"Sin", "[", "x", "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"A", ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "2"}], ",", 
+                   RowBox[{"-", "1"}], ",", "1", ",", "2"}], "}"}]}], "}"}]}],
+               "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", "Pi"}], "}"}], ",", 
+            RowBox[{"AxesLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+            RowBox[{
+            "PlotLabel", 
+             "->", "\"\<Several Members of the Infinite Solution \
+Family\>\""}]}], "]"}]}]}], ",", "\"\<None\>\"", ",", 
+        RowBox[{
+         RowBox[{"conditions", "=", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"generalSolution", "[", "0", "]"}], "==", "0"}], ",", 
+            RowBox[{
+             RowBox[{"generalSolution", "[", "Pi", "]"}], "==", "1"}]}], 
+           "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"result", "=", 
+          RowBox[{"Reduce", "[", 
+           RowBox[{"conditions", ",", 
+            RowBox[{"{", 
+             RowBox[{"c1", ",", "c2"}], "}"}], ",", "Reals"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"outcome", "=", "\"\<No Solution\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "explanation", 
+          "=", "\"\<The two boundary conditions are inconsistent with every \
+member of the general solution.\>\""}], ";", "\[IndentingNewLine]", 
+         RowBox[{"graphic", "=", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"Text", "[", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                
+                RowBox[{"\"\<No solution satisfies both boundary \
+conditions.\>\"", ",", "16", ",", "Bold"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}]}], "]"}], "}"}], ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"Axes", "->", "False"}]}], "]"}]}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 1.10: Boundary-Value \
+Problem Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Differential equation:   \>\"", ",", "Bold"}], 
+             "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+               RowBox[{"y", "[", "x", "]"}]}], "==", "0"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<General solution:   \>\"", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", 
+              RowBox[{
+               RowBox[{"c1", " ", 
+                RowBox[{"Cos", "[", "x", "]"}]}], "+", 
+               RowBox[{"c2", " ", 
+                RowBox[{"Sin", "[", "x", "]"}]}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Boundary Conditions\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", 
+         RowBox[{"TraditionalForm", "[", "conditions", "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Conditions on the constants:   \>\"", ",", "Bold"}],
+              "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", "result", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"outcome", ",", "16", ",", "Bold"}], "]"}], ",", 
+         "explanation", ",", "graphic"}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "case", ",", "\"\<Unique\>\"", 
+       ",", "\"\<Choose boundary conditions:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<Unique\>\"", "->", "\"\<One Solution\>\""}], ",", 
+       RowBox[{"\"\<Infinite\>\"", "->", "\"\<Infinitely Many\>\""}], ",", 
+       RowBox[{"\"\<None\>\"", "->", "\"\<No Solution\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997469945525095*^9, 3.997469945525095*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"44228437-7235-b64f-9d38-aa5792936d88"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`case$$ = "Unique", Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`case$$], "Unique", "Choose boundary conditions:"}, {
+      "Unique" -> "One Solution", "Infinite" -> "Infinitely Many", "None" -> 
+       "No Solution"}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    644.1767578125, {136.8866781605495, 142.6186117542995}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`case$$ = "Unique"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`conditions$, $CellContext`result$, \
+$CellContext`outcome$, $CellContext`explanation$, $CellContext`graphic$}, 
+        Switch[$CellContext`case$$, 
+          "Unique", $CellContext`conditions$ = {$CellContext`generalSolution[
+              0] == 0, $CellContext`generalSolution[Pi/2] == 
+             1}; $CellContext`result$ = 
+           Reduce[$CellContext`conditions$, {$CellContext`c1, \
+$CellContext`c2}, Reals]; $CellContext`outcome$ = 
+           "Exactly One Solution"; $CellContext`explanation$ = 
+           "Both constants are uniquely determined."; $CellContext`graphic$ = 
+           Plot[
+             Sin[$CellContext`x], {$CellContext`x, 0, Pi/2}, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> "Unique BVP Solution", 
+             Epilog -> {
+               PointSize[0.02], 
+               Point[{{0, 0}, {Pi/2, 1}}]}], 
+          "Infinite", $CellContext`conditions$ = \
+{$CellContext`generalSolution[0] == 0, $CellContext`generalSolution[Pi] == 
+             0}; $CellContext`result$ = 
+           Reduce[$CellContext`conditions$, {$CellContext`c1, \
+$CellContext`c2}, Reals]; $CellContext`outcome$ = 
+           "Infinitely Many Solutions"; $CellContext`explanation$ = 
+           "One arbitrary constant remains free."; $CellContext`graphic$ = 
+           Plot[
+             Evaluate[
+              
+              Table[$CellContext`A 
+               Sin[$CellContext`x], {$CellContext`A, {-2, -1, 1, 
+                2}}]], {$CellContext`x, 0, Pi}, AxesLabel -> {"x", "y"}, 
+             PlotLabel -> "Several Members of the Infinite Solution Family"], 
+          "None", $CellContext`conditions$ = {$CellContext`generalSolution[0] == 
+             0, $CellContext`generalSolution[Pi] == 1}; $CellContext`result$ = 
+           Reduce[$CellContext`conditions$, {$CellContext`c1, \
+$CellContext`c2}, Reals]; $CellContext`outcome$ = 
+           "No Solution"; $CellContext`explanation$ = 
+           "The two boundary conditions are inconsistent with every member of \
+the general solution."; $CellContext`graphic$ = Graphics[{
+              Text[
+               Style[
+               "No solution satisfies both boundary conditions.", 16, Bold], {
+               0, 0}]}, PlotRange -> {{-1, 1}, {-1, 1}}, Axes -> False]]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 1.10: Boundary-Value Problem \
+Explorer", 18, Bold], 
+           Row[{
+             Style["Differential equation:   ", Bold], 
+             TraditionalForm[
+             Derivative[
+                2][$CellContext`y][$CellContext`x] + \
+$CellContext`y[$CellContext`x] == 0]}], 
+           Row[{
+             Style["General solution:   ", Bold], 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`c1 Cos[$CellContext`x] + $CellContext`c2 Sin[$CellContext`x]]}], 
+           Style["Boundary Conditions", 14, Bold], 
+           TraditionalForm[$CellContext`conditions$], 
+           Row[{
+             Style["Conditions on the constants:   ", Bold], 
+             TraditionalForm[$CellContext`result$]}], 
+           
+           Style[$CellContext`outcome$, 16, 
+            Bold], $CellContext`explanation$, $CellContext`graphic$}]], 
+      "Specifications" :> {{{$CellContext`case$$, "Unique", 
+          "Choose boundary conditions:"}, {
+         "Unique" -> "One Solution", "Infinite" -> "Infinitely Many", "None" -> 
+          "No Solution"}, ControlType -> SetterBar}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      686.7767578124999, {179.7328695667995, 185.4648031605495}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997469948197466*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"b412261c-3387-3a4b-8de5-be7ba4e61f3a"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e4c91ca5-a6e9-9b43-a015-99b9d2aca634"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 8743, 218, 541, "Input",ExpressionUUID->"44228437-7235-b64f-9d38-aa5792936d88"],
+Cell[9322, 242, 5335, 104, 382, "Output",ExpressionUUID->"b412261c-3387-3a4b-8de5-be7ba4e61f3a"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

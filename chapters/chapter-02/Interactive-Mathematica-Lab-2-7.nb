@@ -1,0 +1,293 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11417,        283]
+NotebookOptionsPosition[     10933,        266]
+NotebookOutlinePosition[     11329,        282]
+CellTagsIndexPosition[     11286,        279]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"x", ",", "y", ",", "v", ",", "initialValue"}], "]"}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "vSolution", ",", "ySolution", ",", "equationCheck", ",", 
+       "initialCheck", ",", "zeroSolutionCheck"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"vSolution", "=", 
+       RowBox[{"x", "+", "1", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"1", "/", "initialValue"}], "-", "1"}], ")"}], " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"ySolution", "=", 
+       RowBox[{"1", "/", "vSolution"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"equationCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"ySolution", ",", "x"}], "]"}], "+", "ySolution"}], "==", 
+          RowBox[{"x", " ", 
+           RowBox[{"ySolution", "^", "2"}]}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"initialValue", ">", "0"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"initialCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"ySolution", "/.", " ", 
+            RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialValue"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"initialValue", ">", "0"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"zeroSolutionCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"0", ",", "x"}], "]"}], "+", "0"}], "==", 
+         RowBox[{"x", " ", 
+          RowBox[{"0", "^", "2"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.7: Bernoulli \
+Transformation Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Original equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+               RowBox[{"y", "[", "x", "]"}]}], "==", 
+              RowBox[{"x", " ", 
+               RowBox[{
+                RowBox[{"y", "[", "x", "]"}], "^", "2"}]}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", "\"\<Bernoulli exponent: n = 2\>\"", "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Substitution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"v", "[", "x", "]"}], "==", 
+              RowBox[{
+               RowBox[{"y", "[", "x", "]"}], "^", 
+               RowBox[{"(", 
+                RowBox[{"-", "1"}], ")"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transformed linear equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"v", "'"}], "[", "x", "]"}], "-", 
+               RowBox[{"v", "[", "x", "]"}]}], "==", 
+              RowBox[{"-", "x"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial condition for v: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"v", "[", "0", "]"}], "==", 
+              RowBox[{"1", "/", "initialValue"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<v(x) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "vSolution", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Recovered y(x) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "ySolution", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Equation verification: \>\"", ",", "equationCheck"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Initial-condition verification: \>\"", ",", 
+            "initialCheck"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Does y = 0 satisfy the original equation? \>\"", ",", 
+            "zeroSolutionCheck"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"ySolution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "3"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "4"}], ",", "4"}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Bernoulli IVP Solution\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "1", ",", "\"\<Initial value y(0)\>\""}], 
+      "}"}], ",", "0.5", ",", "2", ",", "0.25"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974719682151756`*^9, 3.9974719682151756`*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"4a1ea039-d636-b04c-ad18-a5c8c45e56f9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialValue$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialValue$$], 1, "Initial value y(0)"}, 0.5, 2, 
+      0.25, ControlType -> Manipulator}}, Typeset`size$$ = {
+    653.16796875, {168.22780052781366`, 173.95973412156366`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`initialValue$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`vSolution$, $CellContext`ySolution$, \
+$CellContext`equationCheck$, $CellContext`initialCheck$, \
+$CellContext`zeroSolutionCheck$}, $CellContext`vSolution$ = $CellContext`x + 
+          1 + (1/$CellContext`initialValue$$ - 1) 
+           Exp[$CellContext`x]; $CellContext`ySolution$ = 
+         1/$CellContext`vSolution$; $CellContext`equationCheck$ = 
+         FullSimplify[
+          D[$CellContext`ySolution$, $CellContext`x] + \
+$CellContext`ySolution$ == $CellContext`x $CellContext`ySolution$^2, 
+           Assumptions -> $CellContext`initialValue$$ > 
+            0]; $CellContext`initialCheck$ = 
+         FullSimplify[
+          ReplaceAll[$CellContext`ySolution$, $CellContext`x -> 
+             0] == $CellContext`initialValue$$, 
+           Assumptions -> $CellContext`initialValue$$ > 
+            0]; $CellContext`zeroSolutionCheck$ = 
+         FullSimplify[D[0, $CellContext`x] + 0 == $CellContext`x 0^2]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.7: Bernoulli Transformation \
+Explorer", 18, Bold], 
+           Row[{"Original equation: ", 
+             TraditionalForm[
+             Derivative[
+                1][$CellContext`y][$CellContext`x] + \
+$CellContext`y[$CellContext`x] == $CellContext`x \
+$CellContext`y[$CellContext`x]^2]}], 
+           Row[{"Bernoulli exponent: n = 2"}], 
+           Row[{"Substitution: ", 
+             
+             TraditionalForm[$CellContext`v[$CellContext`x] == \
+$CellContext`y[$CellContext`x]^(-1)]}], 
+           Row[{"Transformed linear equation: ", 
+             TraditionalForm[
+             Derivative[
+                1][$CellContext`v][$CellContext`x] - \
+$CellContext`v[$CellContext`x] == -$CellContext`x]}], 
+           Row[{"Initial condition for v: ", 
+             
+             TraditionalForm[$CellContext`v[0] == 
+              1/$CellContext`initialValue$$]}], 
+           Row[{"v(x) = ", 
+             TraditionalForm[$CellContext`vSolution$]}], 
+           Row[{"Recovered y(x) = ", 
+             TraditionalForm[$CellContext`ySolution$]}], 
+           Row[{"Equation verification: ", $CellContext`equationCheck$}], 
+           
+           Row[{"Initial-condition verification: ", \
+$CellContext`initialCheck$}], 
+           
+           Row[{"Does y = 0 satisfy the original equation? ", \
+$CellContext`zeroSolutionCheck$}], 
+           
+           Plot[$CellContext`ySolution$, {$CellContext`x, 0, 3}, 
+            PlotRange -> {-4, 4}, AxesLabel -> {"x", "y"}, GridLines -> 
+            Automatic, PlotLabel -> "Bernoulli IVP Solution"]}]], 
+      "Specifications" :> {{{$CellContext`initialValue$$, 1, 
+          "Initial value y(0)"}, 0.5, 2, 0.25}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      695.7679687499999, {211.08864037156366`, 216.82057396531366`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974719701077766`*^9},
+ CellLabel->"Out[52]=",ExpressionUUID->"4d249190-181f-ae44-a351-1813512d8603"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"405149ba-d482-1244-8f61-4f1a4a4be4c3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5866, 147, 294, "Input",ExpressionUUID->"4a1ea039-d636-b04c-ad18-a5c8c45e56f9"],
+Cell[6445, 171, 4472, 92, 444, "Output",ExpressionUUID->"4d249190-181f-ae44-a351-1813512d8603"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

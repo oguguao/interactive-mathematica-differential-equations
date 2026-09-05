@@ -1,0 +1,256 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10127,        246]
+NotebookOptionsPosition[      9643,        229]
+NotebookOutlinePosition[     10039,        245]
+CellTagsIndexPosition[      9996,        242]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "firstFunction", ",", "secondFunction", ",", "convolutionResult", ",", 
+       "transformProduct", ",", "inverseProduct", ",", "verification"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"firstFunction", "[", "t_", "]"}], ":=", "1"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"secondFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"frequency", " ", "t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"convolutionResult", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"Integrate", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"firstFunction", "[", "tau", "]"}], "*", 
+            RowBox[{"secondFunction", "[", 
+             RowBox[{"t", "-", "tau"}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tau", ",", "0", ",", "t"}], "}"}]}], "]"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{
+           RowBox[{"t", ">=", "0"}], "&&", 
+           RowBox[{"frequency", ">", "0"}]}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"transformProduct", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"LaplaceTransform", "[", 
+          RowBox[{
+           RowBox[{"firstFunction", "[", "t", "]"}], ",", "t", ",", "s"}], 
+          "]"}], "*", 
+         RowBox[{"LaplaceTransform", "[", 
+          RowBox[{
+           RowBox[{"secondFunction", "[", "t", "]"}], ",", "t", ",", "s"}], 
+          "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"inverseProduct", "=", 
+       RowBox[{"InverseLaplaceTransform", "[", 
+        RowBox[{"transformProduct", ",", "s", ",", "t"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"convolutionResult", "==", "inverseProduct"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{
+           RowBox[{"t", ">=", "0"}], "&&", 
+           RowBox[{"frequency", ">", "0"}]}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.5: The Convolution \
+Theorem\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<f(t) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"firstFunction", "[", "t", "]"}], "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<g(t) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"secondFunction", "[", "t", "]"}], "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Convolution (f*g)(t):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "convolutionResult", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<F(s) G(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transformProduct", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Inverse transform of F(s) G(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "inverseProduct", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"convolutionResult", ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "10"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<(f*g)(t)\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Convolution as an Accumulated Response\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"frequency", ",", "1", ",", "\"\<Frequency\>\""}], "}"}], ",", 
+     "0.5", ",", "4", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997479688620346*^9, 3.997479688620346*^9}},
+ CellLabel->
+  "In[140]:=",ExpressionUUID->"b3b5ab4e-eab2-f34c-9ed0-50fdcabf538f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`frequency$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`frequency$$], 1, "Frequency"}, 0.5, 4, 0.5, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    554.203125, {131.701834875043, 137.433768468793}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`frequency$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`firstFunction$, $CellContext`secondFunction$, \
+$CellContext`convolutionResult$, $CellContext`transformProduct$, \
+$CellContext`inverseProduct$, $CellContext`verification$}, \
+$CellContext`firstFunction$[
+           Pattern[$CellContext`t, 
+            Blank[]]] := 1; $CellContext`secondFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         Sin[$CellContext`frequency$$ $CellContext`t$]; \
+$CellContext`convolutionResult$ = FullSimplify[
+           
+           Integrate[$CellContext`firstFunction$[$CellContext`tau] \
+$CellContext`secondFunction$[$CellContext`t - $CellContext`tau], \
+{$CellContext`tau, 0, $CellContext`t}], Assumptions -> 
+           And[$CellContext`t >= 0, $CellContext`frequency$$ > 
+             0]]; $CellContext`transformProduct$ = 
+         FullSimplify[LaplaceTransform[
+             $CellContext`firstFunction$[$CellContext`t], $CellContext`t, \
+$CellContext`s] LaplaceTransform[
+             $CellContext`secondFunction$[$CellContext`t], $CellContext`t, \
+$CellContext`s]]; $CellContext`inverseProduct$ = 
+         InverseLaplaceTransform[$CellContext`transformProduct$, \
+$CellContext`s, $CellContext`t]; $CellContext`verification$ = 
+         FullSimplify[$CellContext`convolutionResult$ == \
+$CellContext`inverseProduct$, Assumptions -> 
+           And[$CellContext`t >= 0, $CellContext`frequency$$ > 0]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.5: The Convolution Theorem", 18, 
+            Bold], 
+           Row[{"f(t) = ", 
+             TraditionalForm[
+              $CellContext`firstFunction$[$CellContext`t]]}], 
+           Row[{"g(t) = ", 
+             TraditionalForm[
+              $CellContext`secondFunction$[$CellContext`t]]}], 
+           Row[{"Convolution (f*g)(t):   ", 
+             TraditionalForm[$CellContext`convolutionResult$]}], 
+           Row[{"F(s) G(s):   ", 
+             TraditionalForm[$CellContext`transformProduct$]}], 
+           Row[{"Inverse transform of F(s) G(s):   ", 
+             TraditionalForm[$CellContext`inverseProduct$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           
+           Plot[$CellContext`convolutionResult$, {$CellContext`t, 0, 10}, 
+            PlotRange -> All, AxesLabel -> {"t", "(f*g)(t)"}, GridLines -> 
+            Automatic, PlotLabel -> 
+            "Convolution as an Accumulated Response"]}]], 
+      "Specifications" :> {{{$CellContext`frequency$$, 1, "Frequency"}, 0.5, 
+         4, 0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{596.8031249999999, {174.562674718793, 180.294608312543}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974796898883514`*^9},
+ CellLabel->
+  "Out[141]=",ExpressionUUID->"e31edf3d-e660-ae46-934d-dbcebfd6353a"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c2627f62-9063-aa4e-b9d4-7920135a0596"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4790, 119, 256, "Input",ExpressionUUID->"b3b5ab4e-eab2-f34c-9ed0-50fdcabf538f"],
+Cell[5369, 143, 4258, 83, 371, "Output",ExpressionUUID->"e31edf3d-e660-ae46-934d-dbcebfd6353a"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

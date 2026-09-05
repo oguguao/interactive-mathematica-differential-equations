@@ -1,0 +1,337 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13370,        327]
+NotebookOptionsPosition[     12885,        310]
+NotebookOutlinePosition[     13281,        326]
+CellTagsIndexPosition[     13238,        323]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "op", ",", "residual", ",", "description", ",", "classification"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"Switch", "[", 
+       RowBox[{"choice", ",", "1", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"op", "[", "z_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"x", "^", "2"}], " ", 
+            RowBox[{"D", "[", 
+             RowBox[{"z", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], "+", 
+           RowBox[{"x", " ", 
+            RowBox[{"D", "[", 
+             RowBox[{"z", ",", "x"}], "]"}]}], "-", "z"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"description", "=", "\"\<L[y] = x^2 y'' + x y' - y\>\""}], ";",
+          "\[IndentingNewLine]", 
+         RowBox[{"classification", "=", "\"\<Linear\>\""}]}], ",", "2", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"op", "[", "z_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"z", ",", "x"}], "]"}], "+", 
+           RowBox[{"z", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"description", "=", "\"\<L[y] = y' + y^2\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"classification", "=", "\"\<Nonlinear\>\""}]}], ",", "3", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"op", "[", "z_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"z", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "+", 
+           RowBox[{"Sin", "[", "z", "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"description", "=", "\"\<L[y] = y'' + Sin[y]\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"classification", "=", "\"\<Nonlinear\>\""}]}], ",", "4", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"op", "[", "z_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Exp", "[", "x", "]"}], " ", 
+            RowBox[{"D", "[", 
+             RowBox[{"z", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], "+", 
+           RowBox[{
+            RowBox[{"Cos", "[", "x", "]"}], " ", 
+            RowBox[{"D", "[", 
+             RowBox[{"z", ",", "x"}], "]"}]}], "+", 
+           RowBox[{
+            RowBox[{"x", "^", "2"}], " ", "z"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "description", "=", "\"\<L[y] = e^x y'' + cos(x)y' + x^2 y\>\""}], ";",
+          "\[IndentingNewLine]", 
+         RowBox[{"classification", "=", "\"\<Linear\>\""}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"residual", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"Expand", "[", 
+         RowBox[{
+          RowBox[{"op", "[", 
+           RowBox[{
+            RowBox[{"a", " ", 
+             RowBox[{"f", "[", "x", "]"}]}], "+", 
+            RowBox[{"b", " ", 
+             RowBox[{"g", "[", "x", "]"}]}]}], "]"}], "-", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"a", " ", 
+             RowBox[{"op", "[", 
+              RowBox[{"f", "[", "x", "]"}], "]"}]}], "+", 
+            RowBox[{"b", " ", 
+             RowBox[{"op", "[", 
+              RowBox[{"g", "[", "x", "]"}], "]"}]}]}], ")"}]}], "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 1.4: Linearity Tester\>\"",
+            ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Selected Operator\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", "description", ",", 
+         RowBox[{"Spacer", "[", "5", "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Superposition Test\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", 
+         RowBox[{"TraditionalForm", "[", 
+          RowBox[{
+           RowBox[{"L", "[", 
+            RowBox[{
+             RowBox[{"a", " ", 
+              RowBox[{"f", "[", "x", "]"}]}], "+", 
+             RowBox[{"b", " ", 
+              RowBox[{"g", "[", "x", "]"}]}]}], "]"}], "==", 
+           RowBox[{
+            RowBox[{"a", " ", 
+             RowBox[{"L", "[", 
+              RowBox[{"f", "[", "x", "]"}], "]"}]}], "+", 
+            RowBox[{"b", " ", 
+             RowBox[{"L", "[", 
+              RowBox[{"g", "[", "x", "]"}], "]"}]}]}]}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Residual:   \>\"", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", "residual", "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"TrueQ", "[", 
+            RowBox[{"FullSimplify", "[", 
+             RowBox[{"residual", "==", "0"}], "]"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<YES \[LongDash] the superposition property \
+holds.\>\"", ",", "14", ",", "Bold"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<NO \[LongDash] the superposition property fails.\>\"",
+              ",", "14", ",", "Bold"}], "]"}]}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Classification:   \>\"", ",", "Bold"}], "]"}], ",", 
+            "classification"}], "}"}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"choice", ",", "1", ",", "\"\<Choose an operator:\>\""}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<Linear: variable coefficients\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<Nonlinear: y^2\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<Nonlinear: Sin[y]\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<Linear: complicated coefficients\>\""}]}], 
+      "}"}], ",", 
+     RowBox[{"ControlType", "->", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "2", ",", "\"\<a\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "1", ",", "\"\<b\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974695207903595`*^9, 3.9974695207903595`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"dc7a0348-cf08-3d4a-894f-274969aa3cfc"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 2, $CellContext`b$$ = 
+    1, $CellContext`choice$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`choice$$], 1, "Choose an operator:"}, {
+      1 -> "Linear: variable coefficients", 2 -> "Nonlinear: y^2", 3 -> 
+       "Nonlinear: Sin[y]", 4 -> "Linear: complicated coefficients"}, 
+      ControlType -> PopupMenu}, {{
+       Hold[$CellContext`a$$], 2, "a"}, -3, 3, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`b$$], 1, "b"}, -3, 3, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    484.927734375, {74.42353515625, 80.15546875}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 2, $CellContext`b$$ = 
+        1, $CellContext`choice$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`op$, $CellContext`residual$, \
+$CellContext`description$, $CellContext`classification$}, 
+        Switch[$CellContext`choice$$, 1, $CellContext`op$[
+             Pattern[$CellContext`z, 
+              Blank[]]] := $CellContext`x^2 
+             D[$CellContext`z, {$CellContext`x, 2}] + $CellContext`x 
+             D[$CellContext`z, $CellContext`x] - $CellContext`z; \
+$CellContext`description$ = 
+           "L[y] = x^2 y'' + x y' - y"; $CellContext`classification$ = 
+           "Linear", 2, $CellContext`op$[
+             Pattern[$CellContext`z, 
+              Blank[]]] := 
+           D[$CellContext`z, $CellContext`x] + $CellContext`z^2; \
+$CellContext`description$ = "L[y] = y' + y^2"; $CellContext`classification$ = 
+           "Nonlinear", 3, $CellContext`op$[
+             Pattern[$CellContext`z, 
+              Blank[]]] := 
+           D[$CellContext`z, {$CellContext`x, 2}] + 
+            Sin[$CellContext`z]; $CellContext`description$ = 
+           "L[y] = y'' + Sin[y]"; $CellContext`classification$ = "Nonlinear", 
+          4, $CellContext`op$[
+             Pattern[$CellContext`z, 
+              Blank[]]] := 
+           Exp[$CellContext`x] D[$CellContext`z, {$CellContext`x, 2}] + 
+            Cos[$CellContext`x] 
+             D[$CellContext`z, $CellContext`x] + $CellContext`x^2 \
+$CellContext`z; $CellContext`description$ = 
+           "L[y] = e^x y'' + cos(x)y' + x^2 y"; $CellContext`classification$ = 
+           "Linear"]; $CellContext`residual$ = FullSimplify[
+           
+           Expand[$CellContext`op$[$CellContext`a$$ \
+$CellContext`f[$CellContext`x] + $CellContext`b$$ \
+$CellContext`g[$CellContext`x]] - ($CellContext`a$$ $CellContext`op$[
+               $CellContext`f[$CellContext`x]] + $CellContext`b$$ \
+$CellContext`op$[
+               $CellContext`g[$CellContext`x]])]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 1.4: Linearity Tester", 18, Bold], 
+           Style["Selected Operator", 14, Bold], $CellContext`description$, 
+           Spacer[5], 
+           Style["Superposition Test", 14, Bold], 
+           
+           TraditionalForm[$CellContext`L[$CellContext`a$$ \
+$CellContext`f[$CellContext`x] + $CellContext`b$$ \
+$CellContext`g[$CellContext`x]] == $CellContext`a$$ $CellContext`L[
+                $CellContext`f[$CellContext`x]] + $CellContext`b$$ \
+$CellContext`L[
+                $CellContext`g[$CellContext`x]]], 
+           Row[{
+             Style["Residual:   ", Bold], 
+             TraditionalForm[$CellContext`residual$]}], 
+           If[
+            TrueQ[
+             FullSimplify[$CellContext`residual$ == 0]], 
+            Style[
+            "YES \[LongDash] the superposition property holds.", 14, Bold], 
+            Style[
+            "NO \[LongDash] the superposition property fails.", 14, Bold]], 
+           Row[{
+             Style[
+             "Classification:   ", Bold], $CellContext`classification$}]}]], 
+      "Specifications" :> {{{$CellContext`choice$$, 1, 
+          "Choose an operator:"}, {
+         1 -> "Linear: variable coefficients", 2 -> "Nonlinear: y^2", 3 -> 
+          "Nonlinear: Sin[y]", 4 -> "Linear: complicated coefficients"}, 
+         ControlType -> PopupMenu}, {{$CellContext`a$$, 2, "a"}, -3, 3, 
+         1}, {{$CellContext`b$$, 1, "b"}, -3, 3, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{527.527734375, {146.57236328125, 152.304296875}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997469523649481*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"658a2fd8-ab95-1143-b909-9436d02916f4"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9deda5c7-ad83-7f44-b4aa-2a42caff82d7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6839, 174, 370, "Input",ExpressionUUID->"dc7a0348-cf08-3d4a-894f-274969aa3cfc"],
+Cell[7418, 198, 5451, 109, 315, "Output",ExpressionUUID->"658a2fd8-ab95-1143-b909-9436d02916f4"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

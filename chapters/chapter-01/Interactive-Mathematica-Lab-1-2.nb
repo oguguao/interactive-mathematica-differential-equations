@@ -1,0 +1,385 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     15929,        375]
+NotebookOptionsPosition[     15444,        358]
+NotebookOutlinePosition[     15840,        374]
+CellTagsIndexPosition[     15797,        371]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Switch", "[", 
+    RowBox[{"example", ",", "\"\<ODE\>\"", ",", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"candidate", ",", "lhs", ",", "rhs", ",", "check"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"candidate", "=", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"2", " ", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"lhs", "=", 
+         RowBox[{"D", "[", 
+          RowBox[{"candidate", ",", "x"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rhs", "=", 
+         RowBox[{"2", " ", "candidate"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"check", "=", 
+         RowBox[{"FullSimplify", "[", 
+          RowBox[{"lhs", "==", "rhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Interactive Mathematica Lab 1.2: ODE or PDE?\>\"", ",",
+              "18", ",", "Bold"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Ordinary Differential Equation\>\"", ",", "16", ",", 
+             "Bold"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Equation:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"v", "'"}], "[", "x", "]"}], "==", 
+                RowBox[{"2", " ", 
+                 RowBox[{"v", "[", "x", "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Candidate solution:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", 
+               RowBox[{
+                RowBox[{"v", "[", "x", "]"}], "==", "candidate"}], "]"}]}], 
+             "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", "\"\<Independent variable:   x\>\"", "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+            "{", "\"\<Number of independent variables:   1\>\"", "}"}], "]"}],
+            ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+            "{", "\"\<Derivative type:   Ordinary derivative\>\"", "}"}], 
+            "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Classification: ODE\>\"", ",", "14", ",", "Bold"}], 
+            "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Left side:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", "lhs", "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Right side:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", "rhs", "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"TrueQ", "[", "check", "]"}], ",", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<YES \[LongDash] the proposed function satisfies \
+the ODE.\>\"", ",", "14", ",", "Bold"}], "]"}], ",", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<NO \[LongDash] the proposed function does not \
+satisfy the ODE.\>\"", ",", "14", ",", "Bold"}], "]"}]}], "]"}], ",", 
+           RowBox[{"Plot", "[", 
+            RowBox[{"candidate", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+             RowBox[{"PlotRange", "->", "All"}], ",", 
+             RowBox[{"AxesLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", "\"\<v(x)\>\""}], "}"}]}], ",", 
+             RowBox[{"PlotLabel", "->", "\"\<ODE Solution\>\""}]}], "]"}]}], 
+          "}"}], "]"}]}]}], "]"}], ",", "\"\<PDE\>\"", ",", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "candidate", ",", "timeDerivative", ",", "spaceDerivative", ",", 
+         "check"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"candidate", "=", 
+         RowBox[{
+          RowBox[{"Exp", "[", 
+           RowBox[{"-", "t"}], "]"}], " ", 
+          RowBox[{"Sin", "[", "x", "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"timeDerivative", "=", 
+         RowBox[{"D", "[", 
+          RowBox[{"candidate", ",", "t"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"spaceDerivative", "=", 
+         RowBox[{"D", "[", 
+          RowBox[{"candidate", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"check", "=", 
+         RowBox[{"FullSimplify", "[", 
+          RowBox[{"timeDerivative", "==", "spaceDerivative"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Interactive Mathematica Lab 1.2: ODE or PDE?\>\"", ",",
+              "18", ",", "Bold"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Partial Differential Equation\>\"", ",", "16", ",", 
+             "Bold"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Equation:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", 
+               RowBox[{
+                RowBox[{"D", "[", 
+                 RowBox[{
+                  RowBox[{"u", "[", 
+                   RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "==", 
+                RowBox[{"D", "[", 
+                 RowBox[{
+                  RowBox[{"u", "[", 
+                   RowBox[{"x", ",", "t"}], "]"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], "]"}]}], "}"}], 
+            "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Candidate solution:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", 
+               RowBox[{
+                RowBox[{"u", "[", 
+                 RowBox[{"x", ",", "t"}], "]"}], "==", "candidate"}], "]"}]}],
+              "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", "\"\<Independent variables:   x and t\>\"", "}"}], 
+            "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+            "{", "\"\<Number of independent variables:   2\>\"", "}"}], "]"}],
+            ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{
+            "{", "\"\<Derivative type:   Partial derivatives\>\"", "}"}], 
+            "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Classification: PDE\>\"", ",", "14", ",", "Bold"}], 
+            "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time derivative:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", "timeDerivative", "]"}]}], 
+             "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Second space derivative:   \>\"", ",", 
+              RowBox[{"TraditionalForm", "[", "spaceDerivative", "]"}]}], 
+             "}"}], "]"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"TrueQ", "[", "check", "]"}], ",", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<YES \[LongDash] the proposed function satisfies \
+the PDE.\>\"", ",", "14", ",", "Bold"}], "]"}], ",", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<NO \[LongDash] the proposed function does not \
+satisfy the PDE.\>\"", ",", "14", ",", "Bold"}], "]"}]}], "]"}], ",", 
+           RowBox[{"Plot3D", "[", 
+            RowBox[{"candidate", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", 
+               RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "3"}], "}"}], ",", 
+             RowBox[{"PlotRange", "->", "All"}], ",", 
+             RowBox[{"AxesLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{"\"\<x\>\"", ",", "\"\<t\>\"", ",", "\"\<u(x,t)\>\""}],
+                "}"}]}], ",", 
+             RowBox[{"PlotLabel", "->", "\"\<PDE Solution Surface\>\""}], ",", 
+             RowBox[{"Mesh", "->", "None"}]}], "]"}]}], "}"}], "]"}]}]}], 
+      "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "example", ",", "\"\<ODE\>\"", 
+       ",", "\"\<Choose an equation type:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<ODE\>\"", ",", "\"\<PDE\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974692674499416`*^9, 3.9974692674499416`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"d6a4bc4d-b170-804f-963d-c2bbe824a76e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`example$$ = "ODE", Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`example$$], "ODE", "Choose an equation type:"}, {
+      "ODE", "PDE"}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    435.4453125, {168.17562388870232`, 173.90755748245232`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`example$$ = "ODE"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Switch[$CellContext`example$$, "ODE", 
+        Module[{$CellContext`candidate, $CellContext`lhs, $CellContext`rhs, \
+$CellContext`check}, $CellContext`candidate = 
+          Exp[2 $CellContext`x]; $CellContext`lhs = 
+          D[$CellContext`candidate, $CellContext`x]; $CellContext`rhs = 
+          2 $CellContext`candidate; $CellContext`check = 
+          FullSimplify[$CellContext`lhs == $CellContext`rhs]; Column[{
+            Style["Interactive Mathematica Lab 1.2: ODE or PDE?", 18, Bold], 
+            Style["Ordinary Differential Equation", 16, Bold], 
+            Row[{"Equation:   ", 
+              TraditionalForm[
+              Derivative[1][$CellContext`v][$CellContext`x] == 
+               2 $CellContext`v[$CellContext`x]]}], 
+            Row[{"Candidate solution:   ", 
+              
+              TraditionalForm[$CellContext`v[$CellContext`x] == \
+$CellContext`candidate]}], 
+            Row[{"Independent variable:   x"}], 
+            Row[{"Number of independent variables:   1"}], 
+            Row[{"Derivative type:   Ordinary derivative"}], 
+            Style["Classification: ODE", 14, Bold], 
+            Row[{"Left side:   ", 
+              TraditionalForm[$CellContext`lhs]}], 
+            Row[{"Right side:   ", 
+              TraditionalForm[$CellContext`rhs]}], 
+            If[
+             TrueQ[$CellContext`check], 
+             Style[
+             "YES \[LongDash] the proposed function satisfies the ODE.", 14, 
+              Bold], 
+             Style[
+             "NO \[LongDash] the proposed function does not satisfy the ODE.",
+               14, Bold]], 
+            
+            Plot[$CellContext`candidate, {$CellContext`x, -2, 2}, PlotRange -> 
+             All, AxesLabel -> {"x", "v(x)"}, PlotLabel -> "ODE Solution"]}]],
+         "PDE", 
+        Module[{$CellContext`candidate, $CellContext`timeDerivative, \
+$CellContext`spaceDerivative, $CellContext`check}, $CellContext`candidate = 
+          Exp[-$CellContext`t] 
+           Sin[$CellContext`x]; $CellContext`timeDerivative = 
+          D[$CellContext`candidate, $CellContext`t]; \
+$CellContext`spaceDerivative = 
+          D[$CellContext`candidate, {$CellContext`x, 2}]; $CellContext`check = 
+          FullSimplify[$CellContext`timeDerivative == \
+$CellContext`spaceDerivative]; Column[{
+            Style["Interactive Mathematica Lab 1.2: ODE or PDE?", 18, Bold], 
+            Style["Partial Differential Equation", 16, Bold], 
+            Row[{"Equation:   ", 
+              TraditionalForm[D[
+                 $CellContext`u[$CellContext`x, $CellContext`t], \
+$CellContext`t] == D[
+                 $CellContext`u[$CellContext`x, $CellContext`t], \
+{$CellContext`x, 2}]]}], 
+            Row[{"Candidate solution:   ", 
+              
+              TraditionalForm[$CellContext`u[$CellContext`x, $CellContext`t] == \
+$CellContext`candidate]}], 
+            Row[{"Independent variables:   x and t"}], 
+            Row[{"Number of independent variables:   2"}], 
+            Row[{"Derivative type:   Partial derivatives"}], 
+            Style["Classification: PDE", 14, Bold], 
+            Row[{"Time derivative:   ", 
+              TraditionalForm[$CellContext`timeDerivative]}], 
+            Row[{"Second space derivative:   ", 
+              TraditionalForm[$CellContext`spaceDerivative]}], 
+            If[
+             TrueQ[$CellContext`check], 
+             Style[
+             "YES \[LongDash] the proposed function satisfies the PDE.", 14, 
+              Bold], 
+             Style[
+             "NO \[LongDash] the proposed function does not satisfy the PDE.",
+               14, Bold]], 
+            
+            Plot3D[$CellContext`candidate, {$CellContext`x, 0, 2 
+              Pi}, {$CellContext`t, 0, 3}, PlotRange -> All, 
+             AxesLabel -> {"x", "t", "u(x,t)"}, PlotLabel -> 
+             "PDE Solution Surface", Mesh -> None]}]]], 
+      "Specifications" :> {{{$CellContext`example$$, "ODE", 
+          "Choose an equation type:"}, {"ODE", "PDE"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{478.0453125, {211.02181529495232`, 216.75374888870232`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974692717333565`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"87438e06-2177-cf41-a724-89a1cf296fb3"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e93bc700-9ca5-934f-aa6b-d1f127bebc1a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 9054, 216, 503, "Input",ExpressionUUID->"d6a4bc4d-b170-804f-963d-c2bbe824a76e"],
+Cell[9633, 240, 5795, 115, 444, "Output",ExpressionUUID->"87438e06-2177-cf41-a724-89a1cf296fb3"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

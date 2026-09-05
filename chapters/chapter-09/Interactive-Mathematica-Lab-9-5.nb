@@ -1,0 +1,287 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11198,        277]
+NotebookOptionsPosition[     10714,        260]
+NotebookOutlinePosition[     11110,        276]
+CellTagsIndexPosition[     11067,        273]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "normalizedP", ",", "normalizedQ", ",", "ordinaryAtZero", ",", 
+       "regularTests", ",", "regularSingularAtZero", ",", "classification", ",",
+        "indicialPolynomial", ",", "indicialRoots"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"normalizedP", "[", "x_", "]"}], ":=", 
+       RowBox[{"1", "/", "x"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"normalizedQ", "[", "x_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"x", "^", "2"}], "-", 
+          RowBox[{"orderParameter", "^", "2"}]}], ")"}], "/", 
+        RowBox[{"x", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"ordinaryAtZero", "=", 
+       RowBox[{"And", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Denominator", "[", 
+             RowBox[{"Together", "[", 
+              RowBox[{"normalizedP", "[", "x", "]"}], "]"}], "]"}], "/.", 
+            "\[IndentingNewLine]", 
+            RowBox[{"x", "->", "0"}]}], ")"}], "!=", "0"}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Denominator", "[", 
+             RowBox[{"Together", "[", 
+              RowBox[{"normalizedQ", "[", "x", "]"}], "]"}], "]"}], "/.", 
+            "\[IndentingNewLine]", 
+            RowBox[{"x", "->", "0"}]}], ")"}], "!=", "0"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"regularTests", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Limit", "[", 
+           RowBox[{
+            RowBox[{"x", " ", 
+             RowBox[{"normalizedP", "[", "x", "]"}]}], ",", 
+            RowBox[{"x", "->", "0"}]}], "]"}], ",", 
+          RowBox[{"Limit", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"x", "^", "2"}], " ", 
+             RowBox[{"normalizedQ", "[", "x", "]"}]}], ",", 
+            RowBox[{"x", "->", "0"}]}], "]"}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"regularSingularAtZero", "=", 
+       RowBox[{"And", "@@", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FreeQ", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"Indeterminate", "|", "ComplexInfinity", "|", 
+              RowBox[{"DirectedInfinity", "[", "_", "]"}]}]}], "]"}], "&"}], "/@",
+           "regularTests"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+        "ordinaryAtZero", ",", "\"\<Ordinary point\>\"", ",", 
+         "regularSingularAtZero", ",", "\"\<Regular singular point\>\"", ",", 
+         "True", ",", "\"\<Irregular singular point\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"indicialPolynomial", "[", "r_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"r", " ", 
+         RowBox[{"(", 
+          RowBox[{"r", "-", "1"}], ")"}]}], "+", 
+        RowBox[{
+         RowBox[{"regularTests", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], " ", "r"}], "+", 
+        RowBox[{"regularTests", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"indicialRoots", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"indicialPolynomial", "[", "r", "]"}], "==", "0"}], ",", 
+         "r"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.5: Singular Points\>\"", 
+           ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Bessel order: \>\"", ",", "orderParameter"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Ordinary at x = 0: \>\"", ",", "ordinaryAtZero"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Regular-singular test values: \>\"", ",", 
+            "regularTests"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Classification: \>\"", ",", "classification"}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial polynomial: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"indicialPolynomial", "[", "r", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial roots: \>\"", ",", "indicialRoots"}], "}"}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orderParameter", ",", "1", ",", "\"\<Bessel order\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0", "->", "\"\<0\>\""}], ",", 
+       RowBox[{"1", "->", "\"\<1\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<3\>\""}]}], "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974809786306305`*^9, 3.9974809786306305`*^9}},
+ CellLabel->
+  "In[160]:=",ExpressionUUID->"06d6204a-4d9f-4c4d-ac4e-6453f27fa520"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orderParameter$$ = 1, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`orderParameter$$], 1, "Bessel order"}, {
+      0 -> "0", 1 -> "1", 2 -> "2", 3 -> "3"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {475.03125, {56.014794921875, 61.746728515625}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`orderParameter$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`normalizedP$, $CellContext`normalizedQ$, \
+$CellContext`ordinaryAtZero$, $CellContext`regularTests$, \
+$CellContext`regularSingularAtZero$, $CellContext`classification$, \
+$CellContext`indicialPolynomial$, $CellContext`indicialRoots$}, \
+$CellContext`normalizedP$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := 1/$CellContext`x; $CellContext`normalizedQ$[
+           Pattern[$CellContext`x$, 
+            
+            Blank[]]] := ($CellContext`x$^2 - \
+$CellContext`orderParameter$$^2)/$CellContext`x$^2; \
+$CellContext`ordinaryAtZero$ = And[ReplaceAll[
+             Denominator[
+              Together[
+               $CellContext`normalizedP$[$CellContext`x]]], $CellContext`x -> 
+             0] != 0, ReplaceAll[
+             Denominator[
+              Together[
+               $CellContext`normalizedQ$[$CellContext`x]]], $CellContext`x -> 
+             0] != 0]; $CellContext`regularTests$ = FullSimplify[{
+            
+            Limit[$CellContext`x $CellContext`normalizedP$[$CellContext`x], \
+$CellContext`x -> 0], 
+            
+            Limit[$CellContext`x^2 $CellContext`normalizedQ$[$CellContext`x], \
+$CellContext`x -> 0]}]; $CellContext`regularSingularAtZero$ = Apply[And, 
+           Map[FreeQ[#, 
+             Alternatives[Indeterminate, ComplexInfinity, 
+              DirectedInfinity[
+               
+               Blank[]]]]& , $CellContext`regularTests$]]; \
+$CellContext`classification$ = 
+         Which[$CellContext`ordinaryAtZero$, 
+           "Ordinary point", $CellContext`regularSingularAtZero$, 
+           "Regular singular point", True, 
+           "Irregular singular point"]; $CellContext`indicialPolynomial$[
+           Pattern[$CellContext`r$, 
+            Blank[]]] := $CellContext`r$ ($CellContext`r$ - 1) + 
+          Part[$CellContext`regularTests$, 1] $CellContext`r$ + 
+          Part[$CellContext`regularTests$, 2]; $CellContext`indicialRoots$ = 
+         Solve[$CellContext`indicialPolynomial$[$CellContext`r] == 
+           0, $CellContext`r]; Column[{
+           Style[
+           "Interactive Mathematica Lab 9.5: Singular Points", 18, Bold], 
+           Row[{"Bessel order: ", $CellContext`orderParameter$$}], 
+           Row[{"Ordinary at x = 0: ", $CellContext`ordinaryAtZero$}], 
+           
+           Row[{"Regular-singular test values: ", \
+$CellContext`regularTests$}], 
+           Row[{"Classification: ", $CellContext`classification$}], 
+           Row[{"Indicial polynomial: ", 
+             TraditionalForm[
+              $CellContext`indicialPolynomial$[$CellContext`r]]}], 
+           Row[{"Indicial roots: ", $CellContext`indicialRoots$}]}]], 
+      "Specifications" :> {{{$CellContext`orderParameter$$, 1, 
+          "Bessel order"}, {0 -> "0", 1 -> "1", 2 -> "2", 3 -> "3"}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{517.63125, {98.860986328125, 104.592919921875}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997480979602766*^9},
+ CellLabel->
+  "Out[161]=",ExpressionUUID->"335eb646-959a-7a48-ae5d-9e5036e124c5"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f4fb6f7e-75e1-1c40-b0d8-3b66bfdc122d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5545, 142, 332, "Input",ExpressionUUID->"06d6204a-4d9f-4c4d-ac4e-6453f27fa520"],
+Cell[6124, 166, 4574, 91, 220, "Output",ExpressionUUID->"335eb646-959a-7a48-ae5d-9e5036e124c5"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,323 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13143,        313]
+NotebookOptionsPosition[     12659,        296]
+NotebookOutlinePosition[     13055,        312]
+CellTagsIndexPosition[     13012,        309]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "basis1", ",", "basis2", ",", "forcing", ",", "intervalLeft", ",", 
+       "intervalRight", ",", "wronskianValue", ",", "parameter1", ",", 
+       "parameter2", ",", "particular", ",", "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"basis1", "=", 
+       RowBox[{"Cos", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"basis2", "=", 
+       RowBox[{"Sin", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Switch", "[", 
+       RowBox[{"forcingChoice", ",", "\"\<Sec[x]\>\"", ",", 
+        RowBox[{
+         RowBox[{"forcing", "=", 
+          RowBox[{"Sec", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalLeft", "=", 
+          RowBox[{"-", "1.4"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalRight", "=", "1.4"}]}], ",", "\"\<Exp[x]\>\"", ",", 
+        RowBox[{
+         RowBox[{"forcing", "=", 
+          RowBox[{"Exp", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalLeft", "=", 
+          RowBox[{"-", "2"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalRight", "=", "2"}]}], ",", "\"\<x\>\"", ",", 
+        RowBox[{
+         RowBox[{"forcing", "=", "x"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalLeft", "=", 
+          RowBox[{"-", "3"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"intervalRight", "=", "3"}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"wronskianValue", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"Det", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"basis1", ",", "basis2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"basis1", ",", "x"}], "]"}], ",", 
+             RowBox[{"D", "[", 
+              RowBox[{"basis2", ",", "x"}], "]"}]}], "}"}]}], "}"}], "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"parameter1", "=", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "basis2"}], " ", 
+          RowBox[{"forcing", "/", "wronskianValue"}]}], ",", "x"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"parameter2", "=", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{"basis1", " ", 
+          RowBox[{"forcing", "/", "wronskianValue"}]}], ",", "x"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"particular", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"basis1", " ", "parameter1"}], "+", 
+          RowBox[{"basis2", " ", "parameter2"}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"forcingChoice", "==", "\"\<Sec[x]\>\""}], ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "Pi"}], "/", "2"}], "<", "x", "<", 
+             RowBox[{"Pi", "/", "2"}]}], ",", 
+            RowBox[{"Element", "[", 
+             RowBox[{"x", ",", "Reals"}], "]"}]}], "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"particular", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "+", "particular"}], "==",
+           "forcing"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"forcingChoice", "==", "\"\<Sec[x]\>\""}], ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "Pi"}], "/", "2"}], "<", "x", "<", 
+             RowBox[{"Pi", "/", "2"}]}], ",", 
+            RowBox[{"Element", "[", 
+             RowBox[{"x", ",", "Reals"}], "]"}]}], "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.8: Variation of \
+Parameters\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Forcing function:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "forcing", "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Fundamental set:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{"basis1", ",", "basis2"}], "}"}], "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Wronskian:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "wronskianValue", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<u1:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "parameter1", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<u2:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "parameter2", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Particular solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "particular", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"particular", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "intervalLeft", ",", "intervalRight"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<yp(x)\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Particular Solution from Variation of \
+Parameters\>\""}]}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingChoice", ",", "\"\<Sec[x]\>\"", 
+       ",", "\"\<Choose forcing function\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Sec[x]\>\"", ",", "\"\<Exp[x]\>\"", ",", "\"\<x\>\""}], 
+      "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974776370300045`*^9, 3.9974776370300045`*^9}},
+ CellLabel->"In[96]:=",ExpressionUUID->"5f69eea9-a00f-c04a-9330-2d0187fa9945"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`forcingChoice$$ = "Sec[x]", Typeset`show$$ =
+     True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`forcingChoice$$], "Sec[x]", 
+       "Choose forcing function"}, {"Sec[x]", "Exp[x]", "x"}, ControlType -> 
+      SetterBar}}, Typeset`size$$ = {
+    554.203125, {136.56596825803913`, 142.29790185178913`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`forcingChoice$$ = "Sec[x]"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`basis1$, $CellContext`basis2$, \
+$CellContext`forcing$, $CellContext`intervalLeft$, \
+$CellContext`intervalRight$, $CellContext`wronskianValue$, \
+$CellContext`parameter1$, $CellContext`parameter2$, $CellContext`particular$, \
+$CellContext`verification$}, $CellContext`basis1$ = 
+         Cos[$CellContext`x]; $CellContext`basis2$ = Sin[$CellContext`x]; 
+        Switch[$CellContext`forcingChoice$$, 
+          "Sec[x]", $CellContext`forcing$ = 
+           Sec[$CellContext`x]; $CellContext`intervalLeft$ = -1.4; \
+$CellContext`intervalRight$ = 1.4, 
+          "Exp[x]", $CellContext`forcing$ = 
+           Exp[$CellContext`x]; $CellContext`intervalLeft$ = -2; \
+$CellContext`intervalRight$ = 2, 
+          "x", $CellContext`forcing$ = $CellContext`x; \
+$CellContext`intervalLeft$ = -3; $CellContext`intervalRight$ = 
+           3]; $CellContext`wronskianValue$ = FullSimplify[
+           Det[{{$CellContext`basis1$, $CellContext`basis2$}, {
+              D[$CellContext`basis1$, $CellContext`x], 
+              
+              D[$CellContext`basis2$, $CellContext`x]}}]]; \
+$CellContext`parameter1$ = 
+         Integrate[(-$CellContext`basis2$) \
+($CellContext`forcing$/$CellContext`wronskianValue$), $CellContext`x]; \
+$CellContext`parameter2$ = 
+         Integrate[$CellContext`basis1$ \
+($CellContext`forcing$/$CellContext`wronskianValue$), $CellContext`x]; \
+$CellContext`particular$ = 
+         FullSimplify[$CellContext`basis1$ $CellContext`parameter1$ + \
+$CellContext`basis2$ $CellContext`parameter2$, Assumptions -> 
+           If[$CellContext`forcingChoice$$ == 
+             "Sec[x]", (-Pi)/2 < $CellContext`x < Pi/2, 
+             Element[$CellContext`x, Reals]]]; $CellContext`verification$ = 
+         FullSimplify[
+          D[$CellContext`particular$, {$CellContext`x, 
+               2}] + $CellContext`particular$ == $CellContext`forcing$, 
+           Assumptions -> 
+           If[$CellContext`forcingChoice$$ == 
+             "Sec[x]", (-Pi)/2 < $CellContext`x < Pi/2, 
+             Element[$CellContext`x, Reals]]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.8: Variation of Parameters", 18, 
+            Bold], 
+           Row[{"Forcing function:   ", 
+             TraditionalForm[$CellContext`forcing$]}], 
+           Row[{"Fundamental set:   ", 
+             TraditionalForm[{$CellContext`basis1$, $CellContext`basis2$}]}], 
+           Row[{"Wronskian:   ", 
+             TraditionalForm[$CellContext`wronskianValue$]}], 
+           Row[{"u1:   ", 
+             TraditionalForm[$CellContext`parameter1$]}], 
+           Row[{"u2:   ", 
+             TraditionalForm[$CellContext`parameter2$]}], 
+           Row[{"Particular solution:   ", 
+             TraditionalForm[$CellContext`particular$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           
+           Plot[$CellContext`particular$, {$CellContext`x, \
+$CellContext`intervalLeft$, $CellContext`intervalRight$}, PlotRange -> All, 
+            AxesLabel -> {"x", "yp(x)"}, GridLines -> Automatic, PlotLabel -> 
+            "Particular Solution from Variation of Parameters"]}]], 
+      "Specifications" :> {{{$CellContext`forcingChoice$$, "Sec[x]", 
+          "Choose forcing function"}, {"Sec[x]", "Exp[x]", "x"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      596.8031249999999, {179.41215966428913`, 185.14409325803913`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974776385965443`*^9},
+ CellLabel->"Out[97]=",ExpressionUUID->"58fda1f4-5183-6a4c-b68d-596b7acd477e"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2f664521-f3b2-1c4d-bce3-c254de562a09"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6916, 170, 503, "Input",ExpressionUUID->"5f69eea9-a00f-c04a-9330-2d0187fa9945"],
+Cell[7495, 194, 5148, 99, 381, "Output",ExpressionUUID->"58fda1f4-5183-6a4c-b68d-596b7acd477e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

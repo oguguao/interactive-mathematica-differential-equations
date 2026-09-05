@@ -1,0 +1,246 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9701,        236]
+NotebookOptionsPosition[      9217,        219]
+NotebookOutlinePosition[      9613,        235]
+CellTagsIndexPosition[      9570,        232]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "gravity", ",", "terminalVelocity", ",", "velocityModel", ",", 
+       "timeToFivePercentGap"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"gravity", "=", "9.81"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"terminalVelocity", "=", 
+       RowBox[{"mass", " ", 
+        RowBox[{"gravity", "/", "dragCoefficient"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"velocityModel", "[", "t_", "]"}], ":=", 
+       RowBox[{"terminalVelocity", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"initialVelocity", "-", "terminalVelocity"}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "dragCoefficient"}], " ", 
+           RowBox[{"t", "/", "mass"}]}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"timeToFivePercentGap", "=", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"(", 
+          RowBox[{"mass", "/", "dragCoefficient"}], ")"}]}], " ", 
+        RowBox[{"Log", "[", "0.05", "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.6: Motion and Linear Air \
+Resistance\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"mass", " ", 
+               RowBox[{
+                RowBox[{"v", "'"}], "[", "t", "]"}]}], "==", 
+              RowBox[{
+               RowBox[{"mass", " ", "gravity"}], "-", 
+               RowBox[{"dragCoefficient", " ", 
+                RowBox[{"v", "[", "t", "]"}]}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Terminal velocity: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "terminalVelocity", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"8", ",", "2"}], "}"}]}], "]"}], ",", "\"\< m/s\>\""}],
+            "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Time for the velocity gap to shrink to 5%: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "timeToFivePercentGap", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "2"}], "}"}]}], "]"}], ",", "\"\< s\>\""}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"velocityModel", "[", "t", "]"}], ",", 
+             "terminalVelocity"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<v(t)\>\"", ",", "\"\<Terminal velocity\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Seconds\>\"", ",", "\"\<m/s\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Velocity with Linear Air Resistance\>\""}]}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mass", ",", "80", ",", "\"\<Mass m (kg)\>\""}], "}"}], ",", 
+     "20", ",", "120", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dragCoefficient", ",", "12", ",", "\"\<Drag coefficient c\>\""}], 
+      "}"}], ",", "2", ",", "30", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialVelocity", ",", "0", ",", "\"\<Initial downward velocity\>\""}],
+       "}"}], ",", "0", ",", "80", ",", "5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997476573947912*^9, 3.997476573947912*^9}},
+ CellLabel->"In[73]:=",ExpressionUUID->"b07e540e-66a6-6d4e-a57c-b6da965de1ce"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dragCoefficient$$ = 
+    12, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 80, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`mass$$], 80, "Mass m (kg)"}, 20, 120, 10, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`dragCoefficient$$], 12, "Drag coefficient c"}, 2, 30,
+       2, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialVelocity$$], 0, "Initial downward velocity"}, 
+      0, 80, 5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    643.271484375, {81.47328811578537, 87.20522170953537}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dragCoefficient$$ = 
+        12, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 80}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`gravity$, $CellContext`terminalVelocity$, \
+$CellContext`velocityModel$, $CellContext`timeToFivePercentGap$}, \
+$CellContext`gravity$ = 
+         9.81; $CellContext`terminalVelocity$ = $CellContext`mass$$ \
+($CellContext`gravity$/$CellContext`dragCoefficient$$); \
+$CellContext`velocityModel$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`terminalVelocity$ + \
+($CellContext`initialVelocity$$ - $CellContext`terminalVelocity$) 
+           Exp[(-$CellContext`dragCoefficient$$) \
+($CellContext`t$/$CellContext`mass$$)]; $CellContext`timeToFivePercentGap$ = \
+(-($CellContext`mass$$/$CellContext`dragCoefficient$$)) Log[0.05]; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.6: Motion and Linear Air \
+Resistance", 18, Bold], 
+           Row[{"Differential equation: ", 
+             
+             TraditionalForm[$CellContext`mass$$ 
+               Derivative[
+                1][$CellContext`v][$CellContext`t] == $CellContext`mass$$ \
+$CellContext`gravity$ - $CellContext`dragCoefficient$$ \
+$CellContext`v[$CellContext`t]]}], 
+           Row[{"Terminal velocity: ", 
+             NumberForm[
+              N[$CellContext`terminalVelocity$], {8, 2}], " m/s"}], 
+           Row[{"Time for the velocity gap to shrink to 5%: ", 
+             NumberForm[
+              N[$CellContext`timeToFivePercentGap$], {7, 2}], " s"}], 
+           Plot[{
+             $CellContext`velocityModel$[$CellContext`t], \
+$CellContext`terminalVelocity$}, {$CellContext`t, 0, 30}, PlotRange -> All, 
+            PlotLegends -> {"v(t)", "Terminal velocity"}, 
+            AxesLabel -> {"Seconds", "m/s"}, GridLines -> Automatic, 
+            PlotLabel -> "Velocity with Linear Air Resistance"]}]], 
+      "Specifications" :> {{{$CellContext`mass$$, 80, "Mass m (kg)"}, 20, 120,
+          10}, {{$CellContext`dragCoefficient$$, 12, "Drag coefficient c"}, 2,
+          30, 2}, {{$CellContext`initialVelocity$$, 0, 
+          "Initial downward velocity"}, 0, 80, 5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      685.8714843749999, {151.93412795953537`, 157.66606155328537`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974765756075974`*^9},
+ CellLabel->"Out[74]=",ExpressionUUID->"e0fd3718-94aa-7e43-8e1b-99125b397f56"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"47061ba4-c154-1e4e-8b13-4a0c6718700a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4417, 111, 275, "Input",ExpressionUUID->"b07e540e-66a6-6d4e-a57c-b6da965de1ce"],
+Cell[4996, 135, 4205, 81, 326, "Output",ExpressionUUID->"e0fd3718-94aa-7e43-8e1b-99125b397f56"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

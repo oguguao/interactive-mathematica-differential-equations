@@ -1,0 +1,238 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9486,        228]
+NotebookOptionsPosition[      9002,        211]
+NotebookOutlinePosition[      9398,        227]
+CellTagsIndexPosition[      9355,        224]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "timeFunction", ",", "convergenceAssumption", ",", "fromDefinition", ",",
+        "fromCommand", ",", "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"Switch", "[", 
+       RowBox[{"functionChoice", ",", "\"\<t^2\>\"", ",", 
+        RowBox[{
+         RowBox[{"timeFunction", "=", 
+          RowBox[{"t", "^", "2"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"convergenceAssumption", "=", 
+          RowBox[{
+           RowBox[{"Re", "[", "s", "]"}], ">", "0"}]}]}], ",", "\"\<t^3\>\"", 
+        ",", 
+        RowBox[{
+         RowBox[{"timeFunction", "=", 
+          RowBox[{"t", "^", "3"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"convergenceAssumption", "=", 
+          RowBox[{
+           RowBox[{"Re", "[", "s", "]"}], ">", "0"}]}]}], 
+        ",", "\"\<Exp[2 t]\>\"", ",", 
+        RowBox[{
+         RowBox[{"timeFunction", "=", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"2", " ", "t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"convergenceAssumption", "=", 
+          RowBox[{
+           RowBox[{"Re", "[", "s", "]"}], ">", "2"}]}]}], 
+        ",", "\"\<Sin[3 t]\>\"", ",", 
+        RowBox[{
+         RowBox[{"timeFunction", "=", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"3", " ", "t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"convergenceAssumption", "=", 
+          RowBox[{
+           RowBox[{"Re", "[", "s", "]"}], ">", "0"}]}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"fromDefinition", "=", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Exp", "[", 
+           RowBox[{
+            RowBox[{"-", "s"}], " ", "t"}], "]"}], "*", "timeFunction"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "Infinity"}], "}"}], ",", 
+         RowBox[{"Assumptions", "->", "convergenceAssumption"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"fromCommand", "=", 
+       RowBox[{"LaplaceTransform", "[", 
+        RowBox[{"timeFunction", ",", "t", ",", "s"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"fromDefinition", "==", "fromCommand"}], ",", 
+         RowBox[{"Assumptions", "->", "convergenceAssumption"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.1: Definition of the \
+Laplace Transform\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Time-domain function f(t):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "timeFunction", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<From the defining integral:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "fromDefinition", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Mathematica LaplaceTransform:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "fromCommand", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Convergence condition:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "convergenceAssumption", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Results agree:   \>\"", ",", "verification"}], "}"}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "functionChoice", ",", "\"\<t^2\>\"", ",", "\"\<Choose f(t)\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<t^2\>\"", ",", "\"\<t^3\>\"", ",", "\"\<Exp[2 t]\>\"", 
+       ",", "\"\<Sin[3 t]\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974795238900127`*^9, 3.9974795238900127`*^9}},
+ CellLabel->
+  "In[132]:=",ExpressionUUID->"0335ab17-808a-fd4d-a7d0-7ab776e45c6e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`functionChoice$$ = "t^2", Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`functionChoice$$], "t^2", "Choose f(t)"}, {
+      "t^2", "t^3", "Exp[2 t]", "Sin[3 t]"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {
+    672.9609375, {56.829714355468745`, 62.561647949218745`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`functionChoice$$ = "t^2"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`timeFunction$, \
+$CellContext`convergenceAssumption$, $CellContext`fromDefinition$, \
+$CellContext`fromCommand$, $CellContext`verification$}, 
+        Switch[$CellContext`functionChoice$$, 
+          "t^2", $CellContext`timeFunction$ = $CellContext`t^2; \
+$CellContext`convergenceAssumption$ = Re[$CellContext`s] > 0, 
+          "t^3", $CellContext`timeFunction$ = $CellContext`t^3; \
+$CellContext`convergenceAssumption$ = Re[$CellContext`s] > 0, 
+          "Exp[2 t]", $CellContext`timeFunction$ = 
+           Exp[2 $CellContext`t]; $CellContext`convergenceAssumption$ = 
+           Re[$CellContext`s] > 2, 
+          "Sin[3 t]", $CellContext`timeFunction$ = 
+           Sin[3 $CellContext`t]; $CellContext`convergenceAssumption$ = 
+           Re[$CellContext`s] > 0]; $CellContext`fromDefinition$ = 
+         Integrate[
+          Exp[(-$CellContext`s) $CellContext`t] $CellContext`timeFunction$, \
+{$CellContext`t, 0, Infinity}, 
+           Assumptions -> $CellContext`convergenceAssumption$]; \
+$CellContext`fromCommand$ = 
+         LaplaceTransform[$CellContext`timeFunction$, $CellContext`t, \
+$CellContext`s]; $CellContext`verification$ = 
+         FullSimplify[$CellContext`fromDefinition$ == \
+$CellContext`fromCommand$, 
+           Assumptions -> $CellContext`convergenceAssumption$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.1: Definition of the Laplace \
+Transform", 18, Bold], 
+           Row[{"Time-domain function f(t):   ", 
+             TraditionalForm[$CellContext`timeFunction$]}], 
+           Row[{"From the defining integral:   ", 
+             TraditionalForm[$CellContext`fromDefinition$]}], 
+           Row[{"Mathematica LaplaceTransform:   ", 
+             TraditionalForm[$CellContext`fromCommand$]}], 
+           Row[{"Convergence condition:   ", 
+             TraditionalForm[$CellContext`convergenceAssumption$]}], 
+           Row[{"Results agree:   ", $CellContext`verification$}]}]], 
+      "Specifications" :> {{{$CellContext`functionChoice$$, "t^2", 
+          "Choose f(t)"}, {"t^2", "t^3", "Exp[2 t]", "Sin[3 t]"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      715.5609374999999, {99.67590576171875, 105.40783935546875`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997479525174246*^9},
+ CellLabel->
+  "Out[133]=",ExpressionUUID->"8cd26a6b-d129-7e46-b048-2dad817589e7"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fcac379b-d3b8-424e-9eba-65876506d690"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4444, 109, 332, "Input",ExpressionUUID->"0335ab17-808a-fd4d-a7d0-7ab776e45c6e"],
+Cell[5023, 133, 3963, 75, 222, "Output",ExpressionUUID->"8cd26a6b-d129-7e46-b048-2dad817589e7"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

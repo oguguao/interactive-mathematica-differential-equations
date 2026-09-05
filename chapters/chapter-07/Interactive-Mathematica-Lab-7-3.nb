@@ -1,0 +1,270 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10737,        260]
+NotebookOptionsPosition[     10253,        243]
+NotebookOutlinePosition[     10649,        259]
+CellTagsIndexPosition[     10606,        256]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "baseTransform", ",", "propertyResult", ",", "directResult", ",", 
+       "verification", ",", "explanation"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"propertyChoice", "==", "\"\<Exponential Shift\>\""}], ",", 
+        RowBox[{
+         RowBox[{"baseTransform", "=", 
+          RowBox[{"LaplaceTransform", "[", 
+           RowBox[{
+            RowBox[{"Sin", "[", 
+             RowBox[{"3", " ", "t"}], "]"}], ",", "t", ",", "s"}], "]"}]}], ";",
+          "\[IndentingNewLine]", 
+         RowBox[{"propertyResult", "=", 
+          RowBox[{"baseTransform", "/.", "\[IndentingNewLine]", 
+           RowBox[{"s", "->", 
+            RowBox[{"s", "-", "shiftAmount"}]}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"directResult", "=", 
+          RowBox[{"LaplaceTransform", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Exp", "[", 
+              RowBox[{"shiftAmount", " ", "t"}], "]"}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"3", " ", "t"}], "]"}]}], ",", "t", ",", "s"}], "]"}]}],
+          ";", "\[IndentingNewLine]", 
+         RowBox[{"explanation", "=", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Property used: F(s) becomes F(s - \>\"", ",", 
+             "shiftAmount", ",", "\"\<)\>\""}], "}"}], "]"}]}]}], ",", 
+        RowBox[{
+         RowBox[{"baseTransform", "=", 
+          RowBox[{"LaplaceTransform", "[", 
+           RowBox[{
+            RowBox[{"Cos", "[", "t", "]"}], ",", "t", ",", "s"}], "]"}]}], ";",
+          "\[IndentingNewLine]", 
+         RowBox[{"propertyResult", "=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], "^", "timePower"}], " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"baseTransform", ",", 
+             RowBox[{"{", 
+              RowBox[{"s", ",", "timePower"}], "}"}]}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"directResult", "=", 
+          RowBox[{"LaplaceTransform", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"t", "^", "timePower"}], " ", 
+             RowBox[{"Cos", "[", "t", "]"}]}], ",", "t", ",", "s"}], "]"}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"explanation", "=", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Property used: L{t^n f(t)} = (-1)^n d^nF/ds^n, n = \
+\>\"", ",", "timePower"}], "}"}], "]"}]}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"propertyResult", "==", "directResult"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.3: Operational \
+Properties I\>\"", ",", "18", ",", "Bold"}], "]"}], ",", "explanation", ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Base transform:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "baseTransform", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Using the property:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "propertyResult", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Direct transformation:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "directResult", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Results agree:   \>\"", ",", "verification"}], "}"}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "propertyChoice", ",", "\"\<Exponential Shift\>\"", 
+       ",", "\"\<Choose property\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Exponential Shift\>\"", 
+       ",", "\"\<Multiplication by t^n\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"shiftAmount", ",", "2", ",", "\"\<Exponential shift a\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"timePower", ",", "2", ",", "\"\<Power n\>\""}], "}"}], ",", 
+     "1", ",", "4", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974796323750153`*^9, 3.9974796323750153`*^9}},
+ CellLabel->
+  "In[136]:=",ExpressionUUID->"dd7f3ccc-89d2-6744-b2a8-5fd1a0062a3b"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`propertyChoice$$ = 
+    "Exponential Shift", $CellContext`shiftAmount$$ = 
+    2, $CellContext`timePower$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`propertyChoice$$], "Exponential Shift", 
+       "Choose property"}, {"Exponential Shift", "Multiplication by t^n"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`shiftAmount$$], 2, "Exponential shift a"}, -2, 3, 1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`timePower$$], 2, "Power n"}, 1, 4, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    564.099609375, {61.56078857421875, 67.29272216796875}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`propertyChoice$$ = 
+        "Exponential Shift", $CellContext`shiftAmount$$ = 
+        2, $CellContext`timePower$$ = 2}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`baseTransform$, $CellContext`propertyResult$, \
+$CellContext`directResult$, $CellContext`verification$, \
+$CellContext`explanation$}, 
+        If[$CellContext`propertyChoice$$ == 
+          "Exponential Shift", $CellContext`baseTransform$ = LaplaceTransform[
+             Sin[
+             3 $CellContext`t], $CellContext`t, $CellContext`s]; \
+$CellContext`propertyResult$ = 
+           ReplaceAll[$CellContext`baseTransform$, $CellContext`s -> \
+$CellContext`s - $CellContext`shiftAmount$$]; $CellContext`directResult$ = 
+           LaplaceTransform[
+            Exp[$CellContext`shiftAmount$$ $CellContext`t] 
+             Sin[3 $CellContext`t], $CellContext`t, $CellContext`s]; \
+$CellContext`explanation$ = 
+           Row[{"Property used: F(s) becomes F(s - ", \
+$CellContext`shiftAmount$$, ")"}], $CellContext`baseTransform$ = 
+           LaplaceTransform[
+             
+             Cos[$CellContext`t], $CellContext`t, $CellContext`s]; \
+$CellContext`propertyResult$ = (-1)^$CellContext`timePower$$ 
+            D[$CellContext`baseTransform$, {$CellContext`s, \
+$CellContext`timePower$$}]; $CellContext`directResult$ = 
+           LaplaceTransform[$CellContext`t^$CellContext`timePower$$ 
+             Cos[$CellContext`t], $CellContext`t, $CellContext`s]; \
+$CellContext`explanation$ = 
+           Row[{"Property used: L{t^n f(t)} = (-1)^n d^nF/ds^n, n = ", \
+$CellContext`timePower$$}]]; $CellContext`verification$ = 
+         FullSimplify[$CellContext`propertyResult$ == \
+$CellContext`directResult$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.3: Operational Properties I", 18, 
+            Bold], $CellContext`explanation$, 
+           Row[{"Base transform:   ", 
+             TraditionalForm[$CellContext`baseTransform$]}], 
+           Row[{"Using the property:   ", 
+             TraditionalForm[$CellContext`propertyResult$]}], 
+           Row[{"Direct transformation:   ", 
+             TraditionalForm[$CellContext`directResult$]}], 
+           Row[{"Results agree:   ", $CellContext`verification$}]}]], 
+      "Specifications" :> {{{$CellContext`propertyChoice$$, 
+          "Exponential Shift", "Choose property"}, {
+         "Exponential Shift", "Multiplication by t^n"}, ControlType -> 
+         SetterBar}, {{$CellContext`shiftAmount$$, 2, 
+          "Exponential shift a"}, -2, 3, 
+         1}, {{$CellContext`timePower$$, 2, "Power n"}, 1, 4, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      606.6996093749999, {132.00697998046874`, 137.73891357421874`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974796336565704`*^9},
+ CellLabel->
+  "Out[137]=",ExpressionUUID->"1bb2fd98-242d-a144-8abf-3a582f3bf9b9"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5536141b-1097-ce44-8634-8c33dfe615d8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4975, 126, 332, "Input",ExpressionUUID->"dd7f3ccc-89d2-6744-b2a8-5fd1a0062a3b"],
+Cell[5554, 150, 4683, 90, 286, "Output",ExpressionUUID->"1bb2fd98-242d-a144-8abf-3a582f3bf9b9"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

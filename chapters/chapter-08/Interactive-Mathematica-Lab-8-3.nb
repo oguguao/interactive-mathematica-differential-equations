@@ -1,0 +1,359 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14355,        349]
+NotebookOptionsPosition[     13870,        332]
+NotebookOutlinePosition[     14266,        348]
+CellTagsIndexPosition[     14223,        345]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficientMatrix", ",", "forcingFunction", ",", "eigenvalues", ",", 
+       "variationSolution", ",", "directSolution", ",", "checks", ",", 
+       "forcingDescription"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"coefficientMatrix", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "2"}], ",", 
+           RowBox[{"-", "3"}]}], "}"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"forcingFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"forcingAmplitude", "*", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"forcingRate", " ", "t"}], "]"}]}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"eigenvalues", "=", 
+       RowBox[{"Eigenvalues", "[", "coefficientMatrix", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"variationSolution", "[", "t_", "]"}], ":=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"Integrate", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"MatrixExp", "[", 
+             RowBox[{"coefficientMatrix", "*", 
+              RowBox[{"(", 
+               RowBox[{"t", "-", "tau"}], ")"}]}], "]"}], ".", 
+            RowBox[{"forcingFunction", "[", "tau", "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tau", ",", "0", ",", "t"}], "}"}]}], "]"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"t", ">=", "0"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"directSolution", "=", 
+       RowBox[{"DSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"state1", "'"}], "[", "t", "]"}], "==", 
+            RowBox[{"state2", "[", "t", "]"}]}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"state2", "'"}], "[", "t", "]"}], "==", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "2"}], " ", 
+              RowBox[{"state1", "[", "t", "]"}]}], "-", 
+             RowBox[{"3", " ", 
+              RowBox[{"state2", "[", "t", "]"}]}], "+", 
+             RowBox[{"forcingAmplitude", " ", 
+              RowBox[{"Exp", "[", 
+               RowBox[{"forcingRate", " ", "t"}], "]"}]}]}]}], ",", 
+           RowBox[{
+            RowBox[{"state1", "[", "0", "]"}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"state2", "[", "0", "]"}], "==", "0"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"state1", "[", "t", "]"}], ",", 
+           RowBox[{"state2", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"checks", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"variationSolution", "[", "t", "]"}], "==", 
+            "directSolution"}], ",", 
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{
+              RowBox[{"variationSolution", "[", "t", "]"}], ",", "t"}], "]"}],
+             "==", 
+            RowBox[{
+             RowBox[{"coefficientMatrix", ".", 
+              RowBox[{"variationSolution", "[", "t", "]"}]}], "+", 
+             RowBox[{"forcingFunction", "[", "t", "]"}]}]}], ",", 
+           RowBox[{
+            RowBox[{"variationSolution", "[", "0", "]"}], "==", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}]}]}], "}"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"t", ">=", "0"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"forcingDescription", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"MemberQ", "[", 
+          RowBox[{"eigenvalues", ",", "forcingRate"}], "]"}], 
+         ",", "\"\<The forcing rate matches a homogeneous eigenvalue \
+\[LongDash] resonance occurs.\>\"", 
+         ",", "\"\<The forcing rate does not match a homogeneous \
+eigenvalue.\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 8.3: Nonhomogeneous Linear \
+Systems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Coefficient-matrix eigenvalues:   \>\"", ",", 
+            "eigenvalues"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Forcing vector:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"forcingFunction", "[", "t", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"forcingDescription", ",", "14", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Variation-of-constants solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"variationSolution", "[", "t", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Direct DSolve solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "directSolution", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "checks"}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"variationSolution", "[", "t", "]"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "5"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x1(t)\>\"", ",", "\"\<x2(t)\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<Value\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Forced Linear-System Response\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingAmplitude", ",", "1", ",", "\"\<Forcing amplitude\>\""}], "}"}],
+      ",", "0.5", ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingRate", ",", "1", ",", "\"\<Exponential forcing rate\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], "->", "\"\<-2  (resonant)\>\""}], ",", 
+       RowBox[{
+        RowBox[{"-", "1"}], "->", "\"\<-1  (resonant)\>\""}], ",", 
+       RowBox[{"0", "->", "\"\<0\>\""}], ",", 
+       RowBox[{"1", "->", "\"\<1\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2\>\""}]}], "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974803975722904`*^9, 3.9974803975722904`*^9}},
+ CellLabel->
+  "In[150]:=",ExpressionUUID->"9f84b6e5-b473-2842-8084-204081027971"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`forcingAmplitude$$ = 
+    1, $CellContext`forcingRate$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`forcingAmplitude$$], 1, "Forcing amplitude"}, 0.5, 3,
+       0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`forcingRate$$], 1, "Exponential forcing rate"}, {-2 -> 
+       "-2  (resonant)", -1 -> "-1  (resonant)", 0 -> "0", 1 -> "1", 2 -> 
+       "2"}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    613.58203125, {140.4722111949083, 146.2041447886583}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`forcingAmplitude$$ = 
+        1, $CellContext`forcingRate$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficientMatrix$, $CellContext`forcingFunction$, \
+$CellContext`eigenvalues$, $CellContext`variationSolution$, \
+$CellContext`directSolution$, $CellContext`checks$, \
+$CellContext`forcingDescription$}, $CellContext`coefficientMatrix$ = {{0, 
+          1}, {-2, -3}}; $CellContext`forcingFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := {
+          0, $CellContext`forcingAmplitude$$ 
+           Exp[$CellContext`forcingRate$$ $CellContext`t$]}; \
+$CellContext`eigenvalues$ = 
+         Eigenvalues[$CellContext`coefficientMatrix$]; \
+$CellContext`variationSolution$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := FullSimplify[
+           Integrate[
+            Dot[
+             
+             MatrixExp[$CellContext`coefficientMatrix$ ($CellContext`t$ - \
+$CellContext`tau)], 
+             $CellContext`forcingFunction$[$CellContext`tau]], \
+{$CellContext`tau, 0, $CellContext`t$}], 
+           Assumptions -> $CellContext`t$ >= 0]; $CellContext`directSolution$ = 
+         DSolveValue[{
+           Derivative[
+             1][$CellContext`state1][$CellContext`t] == \
+$CellContext`state2[$CellContext`t], 
+            Derivative[
+             1][$CellContext`state2][$CellContext`t] == (-2) \
+$CellContext`state1[$CellContext`t] - 
+             3 $CellContext`state2[$CellContext`t] + \
+$CellContext`forcingAmplitude$$ 
+              Exp[$CellContext`forcingRate$$ $CellContext`t], \
+$CellContext`state1[0] == 0, $CellContext`state2[0] == 0}, {
+            $CellContext`state1[$CellContext`t], 
+            $CellContext`state2[$CellContext`t]}, $CellContext`t]; \
+$CellContext`checks$ = 
+         FullSimplify[{$CellContext`variationSolution$[$CellContext`t] == \
+$CellContext`directSolution$, D[
+              $CellContext`variationSolution$[$CellContext`t], \
+$CellContext`t] == Dot[$CellContext`coefficientMatrix$, 
+               $CellContext`variationSolution$[$CellContext`t]] + \
+$CellContext`forcingFunction$[$CellContext`t], \
+$CellContext`variationSolution$[0] == {0, 0}}, 
+           Assumptions -> $CellContext`t >= 
+            0]; $CellContext`forcingDescription$ = If[
+           MemberQ[$CellContext`eigenvalues$, $CellContext`forcingRate$$], 
+           "The forcing rate matches a homogeneous eigenvalue \[LongDash] \
+resonance occurs.", 
+           "The forcing rate does not match a homogeneous eigenvalue."]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 8.3: Nonhomogeneous Linear Systems", 
+            18, Bold], 
+           
+           Row[{"Coefficient-matrix eigenvalues:   ", \
+$CellContext`eigenvalues$}], 
+           Row[{"Forcing vector:   ", 
+             TraditionalForm[
+              $CellContext`forcingFunction$[$CellContext`t]]}], 
+           Style[$CellContext`forcingDescription$, 14, Bold], 
+           Row[{"Variation-of-constants solution:   ", 
+             TraditionalForm[
+              $CellContext`variationSolution$[$CellContext`t]]}], 
+           Row[{"Direct DSolve solution:   ", 
+             TraditionalForm[$CellContext`directSolution$]}], 
+           Row[{"Verification:   ", $CellContext`checks$}], 
+           Plot[
+            Evaluate[
+             $CellContext`variationSolution$[$CellContext`t]], \
+{$CellContext`t, 0, 5}, PlotRange -> All, PlotLegends -> {"x1(t)", "x2(t)"}, 
+            AxesLabel -> {"t", "Value"}, GridLines -> Automatic, PlotLabel -> 
+            "Forced Linear-System Response"]}]], 
+      "Specifications" :> {{{$CellContext`forcingAmplitude$$, 1, 
+          "Forcing amplitude"}, 0.5, 3, 
+         0.5}, {{$CellContext`forcingRate$$, 1, 
+          "Exponential forcing rate"}, {-2 -> "-2  (resonant)", -1 -> 
+          "-1  (resonant)", 0 -> "0", 1 -> "1", 2 -> "2"}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      656.1820312499999, {197.11840260115832`, 202.85033619490832`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974803988192425`*^9},
+ CellLabel->
+  "Out[151]=",ExpressionUUID->"ea8edd3b-eafb-0642-9a15-b9ad5de50ddd"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"751d78cf-c743-b747-b988-bfcd613cea84"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7444, 187, 427, "Input",ExpressionUUID->"9f84b6e5-b473-2842-8084-204081027971"],
+Cell[8023, 211, 5831, 118, 416, "Output",ExpressionUUID->"ea8edd3b-eafb-0642-9a15-b9ad5de50ddd"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,275 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10707,        265]
+NotebookOptionsPosition[     10223,        248]
+NotebookOutlinePosition[     10619,        264]
+CellTagsIndexPosition[     10576,        261]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "exactSolution", ",", "numericalSolution", ",", "meshPoints", ",", 
+       "comparisonTable", ",", "maximumError"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"exactSolution", "[", "x_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "1"}], ")"}], "^", "2"}], "-", 
+        RowBox[{"0.5", " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"numericalSolution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+            RowBox[{
+             RowBox[{"y", "[", "x", "]"}], "-", 
+             RowBox[{"x", "^", "2"}], "+", "1"}]}], ",", 
+           RowBox[{
+            RowBox[{"y", "[", "0", "]"}], "==", "0.5"}]}], "}"}], ",", "y", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "2"}], "}"}], ",", 
+         RowBox[{"AccuracyGoal", "->", "12"}], ",", 
+         RowBox[{"PrecisionGoal", "->", "12"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"meshPoints", "=", 
+       RowBox[{"Range", "[", 
+        RowBox[{"0", ",", "2", ",", "meshSpacing"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"comparisonTable", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"meshPoint", ",", 
+           RowBox[{"numericalSolution", "[", "meshPoint", "]"}], ",", 
+           RowBox[{"exactSolution", "[", "meshPoint", "]"}], ",", 
+           RowBox[{"Abs", "[", 
+            RowBox[{
+             RowBox[{"numericalSolution", "[", "meshPoint", "]"}], "-", 
+             RowBox[{"exactSolution", "[", "meshPoint", "]"}]}], "]"}]}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"meshPoint", ",", "meshPoints"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"maximumError", "=", 
+       RowBox[{"Max", "[", 
+        RowBox[{"comparisonTable", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "4"}], "]"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 6.1: Introduction to \
+Numerical Approximation\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Mesh spacing: \>\"", ",", "meshSpacing"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Number of displayed mesh points: \>\"", ",", 
+            RowBox[{"Length", "[", "meshPoints", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Largest displayed absolute error: \>\"", ",", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "maximumError", "]"}], ",", "4"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"Prepend", "[", 
+            RowBox[{
+             RowBox[{"N", "[", 
+              RowBox[{"comparisonTable", ",", "8"}], "]"}], ",", 
+             RowBox[{"{", 
+              
+              RowBox[{"\"\<x\>\"", ",", "\"\<Numerical\>\"", 
+               ",", "\"\<Exact\>\"", ",", "\"\<Absolute Error\>\""}], "}"}]}],
+             "]"}], ",", 
+           RowBox[{"Frame", "->", "All"}]}], "]"}], ",", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"exactSolution", "[", "x", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "2"}], "}"}], ",", 
+             RowBox[{"PlotRange", "->", "All"}]}], "]"}], ",", 
+           RowBox[{"ListPlot", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"meshPoint", ",", 
+                 RowBox[{"numericalSolution", "[", "meshPoint", "]"}]}], 
+                "}"}], "&"}], "/@", "meshPoints"}], ",", 
+             RowBox[{"PlotMarkers", "->", "Automatic"}]}], "]"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Exact Curve and Sampled Numerical Values\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"meshSpacing", ",", "0.2", ",", "\"\<Mesh spacing\>\""}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.5", "->", "\"\<0.5\>\""}], ",", 
+       RowBox[{"0.25", "->", "\"\<0.25\>\""}], ",", 
+       RowBox[{"0.2", "->", "\"\<0.2\>\""}], ",", 
+       RowBox[{"0.1", "->", "\"\<0.1\>\""}]}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.9974786194166393`*^9, 3.9974786194166393`*^9}},
+ CellLabel->
+  "In[114]:=",ExpressionUUID->"f2963373-0bcd-3048-b6eb-14f14e0f42df"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`meshSpacing$$ = 0.2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`meshSpacing$$], 0.2, "Mesh spacing"}, {
+      0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1"}, ControlType -> 
+      SetterBar}}, Typeset`size$$ = {
+    712.546875, {224.31133745215328`, 230.04327104590328`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`meshSpacing$$ = 0.2}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`exactSolution$, $CellContext`numericalSolution$, \
+$CellContext`meshPoints$, $CellContext`comparisonTable$, \
+$CellContext`maximumError$}, $CellContext`exactSolution$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := ($CellContext`x + 1)^2 - 0.5 
+          Exp[$CellContext`x]; $CellContext`numericalSolution$ = 
+         NDSolveValue[{
+           Derivative[
+             1][$CellContext`y][$CellContext`x] == \
+$CellContext`y[$CellContext`x] - $CellContext`x^2 + 1, $CellContext`y[0] == 
+            0.5}, $CellContext`y, {$CellContext`x, 0, 2}, AccuracyGoal -> 12, 
+           PrecisionGoal -> 12]; $CellContext`meshPoints$ = 
+         Range[0, 
+           2, $CellContext`meshSpacing$$]; $CellContext`comparisonTable$ = 
+         Table[{$CellContext`meshPoint, 
+            $CellContext`numericalSolution$[$CellContext`meshPoint], 
+            $CellContext`exactSolution$[$CellContext`meshPoint], 
+            
+            Abs[$CellContext`numericalSolution$[$CellContext`meshPoint] - \
+$CellContext`exactSolution$[$CellContext`meshPoint]]}, \
+{$CellContext`meshPoint, $CellContext`meshPoints$}]; \
+$CellContext`maximumError$ = Max[
+           Part[$CellContext`comparisonTable$, All, 4]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 6.1: Introduction to Numerical \
+Approximation", 18, Bold], 
+           Row[{"Mesh spacing: ", $CellContext`meshSpacing$$}], 
+           Row[{"Number of displayed mesh points: ", 
+             Length[$CellContext`meshPoints$]}], 
+           Row[{"Largest displayed absolute error: ", 
+             ScientificForm[
+              N[$CellContext`maximumError$], 4]}], 
+           Grid[
+            Prepend[
+             N[$CellContext`comparisonTable$, 8], {
+             "x", "Numerical", "Exact", "Absolute Error"}], Frame -> All], 
+           Show[
+            Plot[
+             $CellContext`exactSolution$[$CellContext`x], {$CellContext`x, 0, 
+              2}, PlotRange -> All], 
+            ListPlot[
+             Map[{$CellContext`meshPoint, 
+               $CellContext`numericalSolution$[$CellContext`meshPoint]}& , \
+$CellContext`meshPoints$], PlotMarkers -> Automatic], AxesLabel -> {"x", "y"},
+             PlotLabel -> "Exact Curve and Sampled Numerical Values"]}]], 
+      "Specifications" :> {{{$CellContext`meshSpacing$$, 0.2, 
+          "Mesh spacing"}, {
+         0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1"}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      755.1468749999999, {267.1575288584033, 272.8894624521533}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974786210813694`*^9},
+ CellLabel->
+  "Out[115]=",ExpressionUUID->"dd708934-adcd-f540-a4b3-3e90695e9ff0"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d0cf60c5-76ac-2040-acd7-514e7a3ba93e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5351, 136, 332, "Input",ExpressionUUID->"f2963373-0bcd-3048-b6eb-14f14e0f42df"],
+Cell[5930, 160, 4277, 85, 557, "Output",ExpressionUUID->"dd708934-adcd-f540-a4b3-3e90695e9ff0"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

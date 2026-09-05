@@ -1,0 +1,283 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10525,        273]
+NotebookOptionsPosition[     10041,        256]
+NotebookOutlinePosition[     10437,        272]
+CellTagsIndexPosition[     10394,        269]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"y", ",", "x", ",", "problemNumber", ",", "revealAnswer"}], "]"}],
+    ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"equations", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+        RowBox[{"x", " ", 
+         RowBox[{"y", "[", "x", "]"}]}]}], "]"}], ",", 
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"y", "[", "x", "]"}]}]}], "==", "x"}], "]"}], ",", 
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", " ", "x", " ", 
+            RowBox[{"y", "[", "x", "]"}]}], "+", "1"}], ")"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"x", "^", "2"}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{"y", "[", "x", "]"}]}]}], ")"}], " ", 
+          RowBox[{
+           RowBox[{"y", "'"}], "[", "x", "]"}]}]}], "==", "0"}], "]"}], ",", 
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+         RowBox[{"y", "[", "x", "]"}]}], "==", 
+        RowBox[{"x", " ", 
+         RowBox[{
+          RowBox[{"y", "[", "x", "]"}], "^", "2"}]}]}], "]"}], ",", 
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+        RowBox[{"1", "+", 
+         RowBox[{
+          RowBox[{"y", "[", "x", "]"}], "/", "x"}]}]}], "]"}], ",", 
+      RowBox[{"HoldForm", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", 
+           RowBox[{"y", "[", "x", "]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+     "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"preferredMethods", "=", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Separation of variables\>\"", 
+      ",", "\"\<First-order linear\>\"", ",", "\"\<Exact equation\>\"", 
+      ",", "\"\<Bernoulli\>\"", 
+      ",", "\"\<Homogeneous substitution y = v x\>\"", 
+      ",", "\"\<Composite substitution u = x + y\>\""}], "}"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"otherMethods", "=", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Also a homogeneous first-order linear equation\>\"", 
+      ",", "\"\<No simpler standard method is more direct\>\"", 
+      ",", "\"\<Exactness is the most direct structure\>\"", 
+      ",", "\"\<Bernoulli is the natural transformation\>\"", 
+      ",", "\"\<Also a first-order linear equation\>\"", 
+      ",", "\"\<Composite substitution is the natural simplification\>\""}], 
+     "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"reasons", "=", 
+    RowBox[{"{", 
+     RowBox[{"\"\<The right-hand side is a product of a function of x and a \
+function of y.\>\"", 
+      ",", "\"\<The equation is already in the form y' + P(x)y = Q(x).\>\"", 
+      ",", "\"\<In differential form, the required mixed partial derivatives \
+agree.\>\"", 
+      ",", "\"\<The equation contains the nonlinear power y^2 in Bernoulli \
+form.\>\"", 
+      ",", "\"\<The right-hand side depends only on the ratio y/x, although \
+the equation is also linear.\>\"", 
+      ",", "\"\<The repeated quantity x + y appears as a single composite \
+expression.\>\""}], "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Interactive Mathematica Lab 2.10: Method-Selection \
+Challenge\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Problem \>\"", ",", "problemNumber"}], "}"}], "]"}], ",", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Equation: \>\"", ",", 
+         RowBox[{"TraditionalForm", "[", 
+          RowBox[{"equations", "[", 
+           RowBox[{"[", "problemNumber", "]"}], "]"}], "]"}]}], "}"}], "]"}], 
+      ",", 
+      RowBox[{"If", "[", 
+       RowBox[{"revealAnswer", ",", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Preferred method: \>\"", ",", "Bold"}], "]"}], ",", 
+              RowBox[{"preferredMethods", "[", 
+               RowBox[{"[", "problemNumber", "]"}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Other observation: \>\"", ",", "Bold"}], "]"}], ",", 
+              RowBox[{"otherMethods", "[", 
+               RowBox[{"[", "problemNumber", "]"}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Why: \>\"", ",", "Bold"}], "]"}], ",", 
+              RowBox[{"reasons", "[", 
+               RowBox[{"[", "problemNumber", "]"}], "]"}]}], "}"}], "]"}]}], 
+          "}"}], "]"}], ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Classify the equation before revealing the \
+suggestion.\>\"", ",", "14", ",", "Bold"}], "]"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"problemNumber", ",", "1", ",", "\"\<Choose a problem:\>\""}], 
+      "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"Length", "[", "equations", "]"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"revealAnswer", ",", "False", ",", "\"\<Reveal answer:\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", "True"}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997472104016136*^9, 3.997472104016136*^9}},
+ CellLabel->"In[57]:=",ExpressionUUID->"c313c594-e338-0e4d-b40e-a8b3e9931bc0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`problemNumber$$ = 
+    1, $CellContext`revealAnswer$$ = False, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`problemNumber$$], 1, "Choose a problem:"}, {1, 2, 3, 
+      4, 5, 6}, ControlType -> PopupMenu}, {{
+       Hold[$CellContext`revealAnswer$$], False, "Reveal answer:"}, {
+      False, True}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    594.6943359375, {31.222607421874997`, 36.954541015625}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`problemNumber$$ = 
+        1, $CellContext`revealAnswer$$ = False}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> Column[{
+         Style[
+         "Interactive Mathematica Lab 2.10: Method-Selection Challenge", 18, 
+          Bold], 
+         Row[{"Problem ", $CellContext`problemNumber$$}], 
+         Row[{"Equation: ", 
+           TraditionalForm[
+            Part[$CellContext`equations, $CellContext`problemNumber$$]]}], 
+         If[$CellContext`revealAnswer$$, 
+          Column[{
+            Row[{
+              Style["Preferred method: ", Bold], 
+              
+              Part[$CellContext`preferredMethods, \
+$CellContext`problemNumber$$]}], 
+            Row[{
+              Style["Other observation: ", Bold], 
+              Part[$CellContext`otherMethods, $CellContext`problemNumber$$]}], 
+            Row[{
+              Style["Why: ", Bold], 
+              Part[$CellContext`reasons, $CellContext`problemNumber$$]}]}], 
+          Style[
+          "Classify the equation before revealing the suggestion.", 14, 
+           Bold]]}], 
+      "Specifications" :> {{{$CellContext`problemNumber$$, 1, 
+          "Choose a problem:"}, {1, 2, 3, 4, 5, 
+         6}}, {{$CellContext`revealAnswer$$, False, "Reveal answer:"}, {
+         False, True}, ControlType -> SetterBar}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{637.2943359374999, {89.556787109375, 95.288720703125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997472105133873*^9},
+ CellLabel->"Out[62]=",ExpressionUUID->"c9e0795b-8fbb-674f-a4d0-5f40856aadc0"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6e0209ab-5c1f-3741-acb2-faf6129fcdb1"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6291, 164, 465, "Input",ExpressionUUID->"c313c594-e338-0e4d-b40e-a8b3e9931bc0"],
+Cell[6870, 188, 3155, 65, 201, "Output",ExpressionUUID->"c9e0795b-8fbb-674f-a4d0-5f40856aadc0"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

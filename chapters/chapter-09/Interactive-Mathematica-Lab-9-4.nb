@@ -1,0 +1,306 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11923,        296]
+NotebookOptionsPosition[     11439,        279]
+NotebookOutlinePosition[     11835,        295]
+CellTagsIndexPosition[     11792,        292]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficientFunction", ",", "radius", ",", "leftEndpoint", ",", 
+       "rightEndpoint", ",", "leftEndpointTest", ",", "rightEndpointTest", ",",
+        "closedForm", ",", "partialSum"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"coefficientFunction", "[", "n_", "]"}], ":=", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"n", " ", 
+          RowBox[{"scaleParameter", "^", "n"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"radius", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"Limit", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"coefficientFunction", "[", "n", "]"}], "/", 
+            RowBox[{"coefficientFunction", "[", 
+             RowBox[{"n", "+", "1"}], "]"}]}], "]"}], ",", 
+          RowBox[{"n", "->", "Infinity"}]}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"leftEndpoint", "=", 
+       RowBox[{"1", "-", "radius"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rightEndpoint", "=", 
+       RowBox[{"1", "+", "radius"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"leftEndpointTest", "=", 
+       RowBox[{"SumConvergence", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], "^", "n"}], "/", "n"}], ",", "n"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rightEndpointTest", "=", 
+       RowBox[{"SumConvergence", "[", 
+        RowBox[{
+         RowBox[{"1", "/", "n"}], ",", "n"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"closedForm", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"Sum", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x", "-", "1"}], ")"}], "^", "n"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"n", " ", 
+              RowBox[{"scaleParameter", "^", "n"}]}], ")"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"n", ",", "1", ",", "Infinity"}], "}"}]}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"x", "-", "1"}], "]"}], "<", "scaleParameter"}]}], "]"}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"partialSum", "=", 
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"x", "-", "1"}], ")"}], "^", "n"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"n", " ", 
+            RowBox[{"scaleParameter", "^", "n"}]}], ")"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", "1", ",", "numberOfTerms"}], "}"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.4: Radius and Interval \
+of Convergence\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Scale parameter: \>\"", ",", "scaleParameter"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Radius: \>\"", ",", "radius"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Candidate interval: (\>\"", ",", "leftEndpoint", 
+            ",", "\"\<, \>\"", ",", "rightEndpoint", ",", "\"\<)\>\""}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Left endpoint converges: \>\"", ",", 
+            "leftEndpointTest"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Right endpoint converges: \>\"", ",", 
+            "rightEndpointTest"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Closed form inside the radius: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "closedForm", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"closedForm", ",", "partialSum"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"1", "-", 
+              RowBox[{"0.95", " ", "scaleParameter"}]}], ",", 
+             RowBox[{"1", "+", 
+              RowBox[{"0.95", " ", "scaleParameter"}]}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Infinite series / closed form\>\"", 
+              ",", "\"\<Partial sum\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<Value\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}]}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"scaleParameter", ",", "3", ",", "\"\<Series scale\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"2", "->", "\"\<2\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<3\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<4\>\""}], ",", 
+       RowBox[{"5", "->", "\"\<5\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"numberOfTerms", ",", "10", ",", "\"\<Partial-sum terms\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"5", ",", "10", ",", "20", ",", "40"}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.9974809424542503`*^9, 3.9974809424542503`*^9}},
+ CellLabel->
+  "In[158]:=",ExpressionUUID->"c653853f-9656-b44c-94da-ee4af1e6d496"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`numberOfTerms$$ = 
+    10, $CellContext`scaleParameter$$ = 3, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`scaleParameter$$], 3, "Series scale"}, {
+      2 -> "2", 3 -> "3", 4 -> "4", 5 -> "5"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`numberOfTerms$$], 10, "Partial-sum terms"}, {5, 10, 
+      20, 40}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    663.064453125, {119.10574030342879`, 124.83767389717879`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`numberOfTerms$$ = 
+        10, $CellContext`scaleParameter$$ = 3}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficientFunction$, $CellContext`radius$, \
+$CellContext`leftEndpoint$, $CellContext`rightEndpoint$, \
+$CellContext`leftEndpointTest$, $CellContext`rightEndpointTest$, \
+$CellContext`closedForm$, $CellContext`partialSum$}, \
+$CellContext`coefficientFunction$[
+           Pattern[$CellContext`n$, 
+            Blank[]]] := 
+         1/($CellContext`n$ $CellContext`scaleParameter$$^$CellContext`n$); \
+$CellContext`radius$ = FullSimplify[
+           Limit[
+            
+            Abs[$CellContext`coefficientFunction$[$CellContext`n]/$\
+CellContext`coefficientFunction$[$CellContext`n + 1]], $CellContext`n -> 
+            Infinity]]; $CellContext`leftEndpoint$ = 
+         1 - $CellContext`radius$; $CellContext`rightEndpoint$ = 
+         1 + $CellContext`radius$; $CellContext`leftEndpointTest$ = 
+         SumConvergence[(-1)^$CellContext`n/$CellContext`n, $CellContext`n]; \
+$CellContext`rightEndpointTest$ = 
+         SumConvergence[
+          1/$CellContext`n, $CellContext`n]; $CellContext`closedForm$ = 
+         FullSimplify[
+           
+           Sum[($CellContext`x - 
+              1)^$CellContext`n/($CellContext`n \
+$CellContext`scaleParameter$$^$CellContext`n), {$CellContext`n, 1, Infinity}],
+            Abs[$CellContext`x - 
+             1] < $CellContext`scaleParameter$$]; $CellContext`partialSum$ = 
+         Sum[($CellContext`x - 
+             1)^$CellContext`n/($CellContext`n \
+$CellContext`scaleParameter$$^$CellContext`n), {$CellContext`n, 
+            1, $CellContext`numberOfTerms$$}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 9.4: Radius and Interval of \
+Convergence", 18, Bold], 
+           Row[{"Scale parameter: ", $CellContext`scaleParameter$$}], 
+           Row[{"Radius: ", $CellContext`radius$}], 
+           
+           Row[{"Candidate interval: (", $CellContext`leftEndpoint$, 
+             ", ", $CellContext`rightEndpoint$, ")"}], 
+           Row[{"Left endpoint converges: ", $CellContext`leftEndpointTest$}], 
+           
+           Row[{"Right endpoint converges: ", \
+$CellContext`rightEndpointTest$}], 
+           Row[{"Closed form inside the radius: ", 
+             TraditionalForm[$CellContext`closedForm$]}], 
+           
+           Plot[{$CellContext`closedForm$, $CellContext`partialSum$}, \
+{$CellContext`x, 1 - 0.95 $CellContext`scaleParameter$$, 1 + 
+             0.95 $CellContext`scaleParameter$$}, PlotRange -> All, 
+            PlotLegends -> {"Infinite series / closed form", "Partial sum"}, 
+            AxesLabel -> {"x", "Value"}, GridLines -> Automatic]}]], 
+      "Specifications" :> {{{$CellContext`scaleParameter$$, 3, 
+          "Series scale"}, {
+         2 -> "2", 3 -> "3", 4 -> "4", 5 -> 
+          "5"}}, {{$CellContext`numberOfTerms$$, 10, "Partial-sum terms"}, {5,
+          10, 20, 40}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      705.6644531249999, {175.7372832721788, 181.4692168659288}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997480945607567*^9},
+ CellLabel->
+  "Out[159]=",ExpressionUUID->"bab47c55-b88c-3e4d-8e62-0b5cf8285898"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d9246cd2-90fb-c94f-89d2-b7b0cf8b6e3d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6008, 157, 351, "Input",ExpressionUUID->"c653853f-9656-b44c-94da-ee4af1e6d496"],
+Cell[6587, 181, 4836, 95, 374, "Output",ExpressionUUID->"bab47c55-b88c-3e4d-8e62-0b5cf8285898"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,272 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10695,        262]
+NotebookOptionsPosition[     10211,        245]
+NotebookOutlinePosition[     10607,        261]
+CellTagsIndexPosition[     10564,        258]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "leadingCoefficient", ",", "firstCoefficient", ",", "zeroCoefficient", ",",
+        "normalizedP", ",", "normalizedQ", ",", "singularPoints", ",", 
+       "ordinaryAtCenter", ",", "distances", ",", "nearestDistance"}], "}"}], 
+     ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"leadingCoefficient", "[", "x_", "]"}], ":=", 
+       RowBox[{"1", "+", 
+        RowBox[{"x", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"firstCoefficient", "[", "x_", "]"}], ":=", "x"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"zeroCoefficient", "[", "x_", "]"}], ":=", 
+       RowBox[{"-", "1"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"normalizedP", "[", "x_", "]"}], ":=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"firstCoefficient", "[", "x", "]"}], "/", 
+         RowBox[{"leadingCoefficient", "[", "x", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"normalizedQ", "[", "x_", "]"}], ":=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"zeroCoefficient", "[", "x", "]"}], "/", 
+         RowBox[{"leadingCoefficient", "[", "x", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"singularPoints", "=", 
+       RowBox[{"x", "/.", "\[IndentingNewLine]", 
+        RowBox[{"Solve", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"leadingCoefficient", "[", "x", "]"}], "==", "0"}], ",", 
+          "x", ",", "Complexes"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"ordinaryAtCenter", "=", 
+       RowBox[{"And", "[", 
+        RowBox[{
+         RowBox[{"Not", "[", 
+          RowBox[{"PossibleZeroQ", "[", 
+           RowBox[{"leadingCoefficient", "[", "center", "]"}], "]"}], "]"}], ",", 
+         RowBox[{"Not", "[", 
+          RowBox[{"PossibleZeroQ", "[", 
+           RowBox[{
+            RowBox[{"Denominator", "[", 
+             RowBox[{"Together", "[", 
+              RowBox[{"normalizedP", "[", "x", "]"}], "]"}], "]"}], "/.", 
+            "\[IndentingNewLine]", 
+            RowBox[{"x", "->", "center"}]}], "]"}], "]"}], ",", 
+         RowBox[{"Not", "[", 
+          RowBox[{"PossibleZeroQ", "[", 
+           RowBox[{
+            RowBox[{"Denominator", "[", 
+             RowBox[{"Together", "[", 
+              RowBox[{"normalizedQ", "[", "x", "]"}], "]"}], "]"}], "/.", 
+            "\[IndentingNewLine]", 
+            RowBox[{"x", "->", "center"}]}], "]"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"distances", "=", 
+       RowBox[{"N", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"center", "-", "#"}], "]"}], "&"}], "/@", 
+         "singularPoints"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"nearestDistance", "=", 
+       RowBox[{"Min", "[", "distances", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.2: Ordinary Points\>\"", 
+           ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential-equation leading coefficient: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"leadingCoefficient", "[", "x", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Singular points: \>\"", ",", "singularPoints"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Expansion center: \>\"", ",", "center"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Ordinary at selected center: \>\"", ",", 
+            "ordinaryAtCenter"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Distances to singularities: \>\"", ",", "distances"}],
+            "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Guaranteed radius of convergence: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{"nearestDistance", ",", 
+              RowBox[{"{", 
+               RowBox[{"8", ",", "4"}], "}"}]}], "]"}]}], "}"}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"center", ",", "0", ",", "\"\<Expansion center\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.25"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997480823476118*^9, 3.997480823476118*^9}},
+ CellLabel->
+  "In[154]:=",ExpressionUUID->"542e987b-88e8-f042-96d1-b07a5c8534ac"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`center$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`center$$], 0, "Expansion center"}, -2, 2, 0.25, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    475.03125, {57.09703369140625, 62.82896728515625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`center$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`leadingCoefficient$, \
+$CellContext`firstCoefficient$, $CellContext`zeroCoefficient$, \
+$CellContext`normalizedP$, $CellContext`normalizedQ$, \
+$CellContext`singularPoints$, $CellContext`ordinaryAtCenter$, \
+$CellContext`distances$, $CellContext`nearestDistance$}, \
+$CellContext`leadingCoefficient$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := 1 + $CellContext`x^2; $CellContext`firstCoefficient$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := $CellContext`x; $CellContext`zeroCoefficient$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := -1; $CellContext`normalizedP$[
+           Pattern[$CellContext`x$, 
+            Blank[]]] := 
+         FullSimplify[$CellContext`firstCoefficient$[$CellContext`x$]/$\
+CellContext`leadingCoefficient$[$CellContext`x$]]; $CellContext`normalizedQ$[
+           Pattern[$CellContext`x$, 
+            Blank[]]] := 
+         FullSimplify[$CellContext`zeroCoefficient$[$CellContext`x$]/$\
+CellContext`leadingCoefficient$[$CellContext`x$]]; \
+$CellContext`singularPoints$ = ReplaceAll[$CellContext`x, 
+           
+           Solve[$CellContext`leadingCoefficient$[$CellContext`x] == 
+            0, $CellContext`x, Complexes]]; $CellContext`ordinaryAtCenter$ = 
+         And[
+           Not[
+            PossibleZeroQ[
+             $CellContext`leadingCoefficient$[$CellContext`center$$]]], 
+           Not[
+            PossibleZeroQ[
+             ReplaceAll[
+              Denominator[
+               Together[
+                $CellContext`normalizedP$[$CellContext`x]]], $CellContext`x -> \
+$CellContext`center$$]]], 
+           Not[
+            PossibleZeroQ[
+             ReplaceAll[
+              Denominator[
+               Together[
+                $CellContext`normalizedQ$[$CellContext`x]]], $CellContext`x -> \
+$CellContext`center$$]]]]; $CellContext`distances$ = N[
+           Map[
+           Abs[$CellContext`center$$ - #]& , $CellContext`singularPoints$]]; \
+$CellContext`nearestDistance$ = Min[$CellContext`distances$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 9.2: Ordinary Points", 18, Bold], 
+           Row[{"Differential-equation leading coefficient: ", 
+             TraditionalForm[
+              $CellContext`leadingCoefficient$[$CellContext`x]]}], 
+           Row[{"Singular points: ", $CellContext`singularPoints$}], 
+           Row[{"Expansion center: ", $CellContext`center$$}], 
+           
+           Row[{"Ordinary at selected center: ", \
+$CellContext`ordinaryAtCenter$}], 
+           Row[{"Distances to singularities: ", $CellContext`distances$}], 
+           Row[{"Guaranteed radius of convergence: ", 
+             NumberForm[$CellContext`nearestDistance$, {8, 4}]}]}]], 
+      "Specifications" :> {{{$CellContext`center$$, 0, 
+          "Expansion center"}, -2, 2, 0.25}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{517.63125, {99.95787353515625, 105.68980712890625`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997480825252371*^9},
+ CellLabel->
+  "Out[155]=",ExpressionUUID->"646b59bb-834e-ce4b-8e6f-f5e70e3c228b"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"11d90d35-f086-5b4d-8e31-a6c1bcac82d3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5035, 123, 389, "Input",ExpressionUUID->"542e987b-88e8-f042-96d1-b07a5c8534ac"],
+Cell[5614, 147, 4581, 95, 222, "Output",ExpressionUUID->"646b59bb-834e-ce4b-8e6f-f5e70e3c228b"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

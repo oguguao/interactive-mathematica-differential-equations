@@ -1,0 +1,338 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13887,        330]
+NotebookOptionsPosition[     12825,        307]
+NotebookOutlinePosition[     13221,        323]
+CellTagsIndexPosition[     13178,        320]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"examples", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<Both negative\>\"", ",", 
+        RowBox[{"-", "2"}], ",", 
+        RowBox[{"-", "3"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Opposite signs\>\"", ",", "1", ",", 
+        RowBox[{"-", "2"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Both positive\>\"", ",", "1", ",", "3"}], "}"}]}], 
+     "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "label", ",", "root1", ",", "root2", ",", "coefficient1", ",", 
+       "coefficient2", ",", "solution", ",", "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"label", ",", "root1", ",", "root2"}], "}"}], "=", 
+       RowBox[{"examples", "[", 
+        RowBox[{"[", "caseChoice", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"coefficient1", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"initialSlope", "-", 
+          RowBox[{"root2", " ", "initialValue"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"root1", "-", "root2"}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"coefficient2", "=", 
+       RowBox[{"initialValue", "-", "coefficient1"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{
+        RowBox[{"coefficient1", " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"root1", " ", "x"}], "]"}]}], "+", 
+        RowBox[{"coefficient2", " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"root2", " ", "x"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"solution", "/.", " ", 
+             RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialValue"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"solution", ",", "x"}], "]"}], "/.", " ", 
+             RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialSlope"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.2: Distinct Real \
+Characteristic Roots\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Root pattern:   \>\"", ",", "label"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Characteristic roots:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{"root1", ",", "root2"}], "}"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Initial-condition check:   \>\"", ",", 
+            "verification"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"solution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "4"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "label"}]}], "]"}]}], "}"}], "]"}]}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"caseChoice", ",", "1", ",", "\"\<Root pattern\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<Both negative\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<Opposite signs\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<Both positive\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "1", ",", "\"\<y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialSlope", ",", "0", ",", "\"\<y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997477444055397*^9, 3.997477444055397*^9}},
+ CellLabel->"In[83]:=",ExpressionUUID->"f11244fd-b968-af4c-975f-4a83162ee67f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`caseChoice$$ = 
+    1, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`caseChoice$$], 1, "Root pattern"}, {
+      1 -> "Both negative", 2 -> "Opposite signs", 3 -> "Both positive"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`initialValue$$], 1, "y(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialSlope$$], 0, "y'(0)"}, -3, 3, 0.5, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    663.064453125, {113.48194600912159`, 119.21387960287159`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`caseChoice$$ = 
+        1, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`label$, $CellContext`root1$, $CellContext`root2$, \
+$CellContext`coefficient1$, $CellContext`coefficient2$, \
+$CellContext`solution$, $CellContext`verification$}, {$CellContext`label$, \
+$CellContext`root1$, $CellContext`root2$} = 
+         Part[$CellContext`examples, $CellContext`caseChoice$$]; \
+$CellContext`coefficient1$ = ($CellContext`initialSlope$$ - \
+$CellContext`root2$ $CellContext`initialValue$$)/($CellContext`root1$ - \
+$CellContext`root2$); $CellContext`coefficient2$ = \
+$CellContext`initialValue$$ - $CellContext`coefficient1$; \
+$CellContext`solution$ = $CellContext`coefficient1$ 
+           Exp[$CellContext`root1$ $CellContext`x] + \
+$CellContext`coefficient2$ 
+           Exp[$CellContext`root2$ $CellContext`x]; \
+$CellContext`verification$ = 
+         FullSimplify[{
+           ReplaceAll[$CellContext`solution$, $CellContext`x -> 
+              0] == $CellContext`initialValue$$, ReplaceAll[
+              D[$CellContext`solution$, $CellContext`x], $CellContext`x -> 
+              0] == $CellContext`initialSlope$$}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.2: Distinct Real Characteristic \
+Roots", 18, Bold], 
+           Row[{"Root pattern:   ", $CellContext`label$}], 
+           Row[{"Characteristic roots:   ", 
+             TraditionalForm[{$CellContext`root1$, $CellContext`root2$}]}], 
+           Row[{"Solution:   ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+           Row[{"Initial-condition check:   ", $CellContext`verification$}], 
+           
+           Plot[$CellContext`solution$, {$CellContext`x, 0, 4}, PlotRange -> 
+            All, AxesLabel -> {"x", "y"}, GridLines -> Automatic, 
+            PlotLabel -> $CellContext`label$]}]], 
+      "Specifications" :> {{{$CellContext`caseChoice$$, 1, "Root pattern"}, {
+         1 -> "Both negative", 2 -> "Opposite signs", 3 -> 
+          "Both positive"}}, {{$CellContext`initialValue$$, 1, "y(0)"}, -2, 2,
+          0.5}, {{$CellContext`initialSlope$$, 0, "y'(0)"}, -3, 3, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      705.6644531249999, {183.92813741537162`, 189.66007100912162`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997477445548748*^9},
+ CellLabel->"Out[85]=",ExpressionUUID->"2d922b28-fe5f-364f-818a-4e748fbe2e73"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", \\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) is \
+longer than depth of object.\"", 2, 88, 28, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997477477547022*^9},
+ CellLabel->"",ExpressionUUID->"5f2ddf47-208e-ed4a-8f8a-efe407b98d70"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "shape", 
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"label$124401\\\", \\\",\\\
+\", \\\"root1$124401\\\", \\\",\\\", \\\"root2$124401\\\"}], \\\"}\\\"}]\\) \
+and \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\[LeftDoubleBracket]\\\", \
+\\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) are not the same shape.\"", 2, 
+   88, 29, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997477477681389*^9},
+ CellLabel->"",ExpressionUUID->"56d81b07-af0b-6640-9b45-a6f513586474"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", \\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) is \
+longer than depth of object.\"", 2, 90, 30, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9974775067350597`*^9},
+ CellLabel->"",ExpressionUUID->"d14e9c35-b543-5746-ab3b-ea39e0b5e458"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "shape", 
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"label$125975\\\", \\\",\\\
+\", \\\"root1$125975\\\", \\\",\\\", \\\"root2$125975\\\"}], \\\"}\\\"}]\\) \
+and \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\[LeftDoubleBracket]\\\", \
+\\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) are not the same shape.\"", 2, 
+   90, 31, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997477506745371*^9},
+ CellLabel->"",ExpressionUUID->"e977d5e3-36a0-bc49-9176-25589c09b7ea"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", \\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) is \
+longer than depth of object.\"", 2, 92, 32, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997477538810444*^9},
+ CellLabel->"",ExpressionUUID->"57912372-ac9f-d34b-9d13-1d318efd3f24"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "shape", 
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"label$127417\\\", \\\",\\\
+\", \\\"root1$127417\\\", \\\",\\\", \\\"root2$127417\\\"}], \\\"}\\\"}]\\) \
+and \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\[LeftDoubleBracket]\\\", \
+\\\"1\\\", \\\"\[RightDoubleBracket]\\\"}]\\) are not the same shape.\"", 2, 
+   92, 33, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9974775388219223`*^9},
+ CellLabel->"",ExpressionUUID->"179c7c03-38d0-ee48-bbe1-bfa9edd55554"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"002558bf-128f-f740-a791-6e28f2336bcb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4923, 127, 294, "Input",ExpressionUUID->"f11244fd-b968-af4c-975f-4a83162ee67f"],
+Cell[5502, 151, 4294, 81, 390, "Output",ExpressionUUID->"2d922b28-fe5f-364f-818a-4e748fbe2e73"],
+Cell[9799, 234, 434, 9, 26, "Message",ExpressionUUID->"5f2ddf47-208e-ed4a-8f8a-efe407b98d70"],
+Cell[10236, 245, 563, 11, 26, "Message",ExpressionUUID->"56d81b07-af0b-6640-9b45-a6f513586474"],
+Cell[10802, 258, 436, 9, 26, "Message",ExpressionUUID->"d14e9c35-b543-5746-ab3b-ea39e0b5e458"],
+Cell[11241, 269, 563, 11, 26, "Message",ExpressionUUID->"e977d5e3-36a0-bc49-9176-25589c09b7ea"],
+Cell[11807, 282, 434, 9, 26, "Message",ExpressionUUID->"57912372-ac9f-d34b-9d13-1d318efd3f24"],
+Cell[12244, 293, 565, 11, 26, "Message",ExpressionUUID->"179c7c03-38d0-ee48-bbe1-bfa9edd55554"]
+}, Open  ]]
+}
+]
+*)
+

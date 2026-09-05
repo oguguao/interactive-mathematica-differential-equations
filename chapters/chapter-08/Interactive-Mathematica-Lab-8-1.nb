@@ -1,0 +1,382 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14649,        372]
+NotebookOptionsPosition[     14164,        355]
+NotebookOutlinePosition[     14560,        371]
+CellTagsIndexPosition[     14517,        368]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficientMatrix", ",", "eigenvalues", ",", "eigenvectors", ",", 
+       "fundamentalMatrix", ",", "matrixCheck", ",", "tolerance", ",", 
+       "classification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"coefficientMatrix", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"entry11", ",", "entry12"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"entry21", ",", "entry22"}], "}"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eigenvalues", ",", "eigenvectors"}], "}"}], "=", 
+       RowBox[{"Eigensystem", "[", "coefficientMatrix", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"fundamentalMatrix", "[", "t_", "]"}], ":=", 
+       RowBox[{"MatrixExp", "[", 
+        RowBox[{"coefficientMatrix", " ", "t"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"matrixCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"fundamentalMatrix", "[", "t", "]"}], ",", "t"}], "]"}], "==", 
+         RowBox[{"coefficientMatrix", ".", 
+          RowBox[{"fundamentalMatrix", "[", "t", "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"tolerance", "=", 
+       RowBox[{"10", "^", 
+        RowBox[{"-", "8"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], "<",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Min", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "<", "0"}],
+           "&&", 
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], ">", 
+           "0"}]}], ",", "\"\<Saddle point\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], "<",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "<", 
+           "0"}]}], ",", "\"\<Stable node\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], "<",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Min", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], ">", 
+           "0"}]}], ",", "\"\<Unstable node\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], ">=",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "<", 
+           RowBox[{"-", "tolerance"}]}]}], ",", "\"\<Stable spiral\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], ">=",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Min", "[", 
+            RowBox[{"Re", "[", 
+             RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], ">", 
+           "tolerance"}]}], ",", "\"\<Unstable spiral\>\"", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Im", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], ">=",
+            "tolerance"}], "&&", 
+          RowBox[{
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"Re", "[", 
+              RowBox[{"N", "[", "eigenvalues", "]"}], "]"}], "]"}], "]"}], "<",
+            "tolerance"}]}], ",", "\"\<Center\>\"", ",", "True", 
+         ",", "\"\<Degenerate or boundary case\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 8.1: Preliminary Theory \
+\[LongDash] Linear Systems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Coefficient matrix:   \>\"", ",", 
+            RowBox[{"MatrixForm", "[", "coefficientMatrix", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Eigenvalues:   \>\"", ",", "eigenvalues"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Eigenvectors:   \>\"", ",", "eigenvectors"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Equilibrium classification:   \>\"", ",", 
+            "classification"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Matrix exponential satisfies Phi'(t) = A Phi(t):   \>\
+\"", ",", "matrixCheck"}], "}"}], "]"}], ",", 
+         RowBox[{"StreamPlot", "[", 
+          RowBox[{
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"coefficientMatrix", ".", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "y"}], "}"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x1\>\"", ",", "\"\<x2\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Phase Portrait of X' = A X\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"entry11", ",", "3", ",", "\"\<a11\>\""}], "}"}], ",", 
+     RowBox[{"-", "4"}], ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"entry12", ",", "2", ",", "\"\<a12\>\""}], "}"}], ",", 
+     RowBox[{"-", "4"}], ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"entry21", ",", "1", ",", "\"\<a21\>\""}], "}"}], ",", 
+     RowBox[{"-", "4"}], ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"entry22", ",", "4", ",", "\"\<a22\>\""}], "}"}], ",", 
+     RowBox[{"-", "4"}], ",", "4", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997480319653393*^9, 3.9974803196543922`*^9}},
+ CellLabel->
+  "In[146]:=",ExpressionUUID->"3ce8f170-b829-c340-aa18-d1b79d98316f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`entry11$$ = 3, $CellContext`entry12$$ = 
+    2, $CellContext`entry21$$ = 1, $CellContext`entry22$$ = 4, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`entry11$$], 3, "a11"}, -4, 4, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`entry12$$], 2, "a12"}, -4, 4, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`entry21$$], 1, "a21"}, -4, 4, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`entry22$$], 4, "a22"}, -4, 4, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    673.03125, {154.93369683159722`, 160.66563042534722`}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`entry11$$ = 3, $CellContext`entry12$$ = 
+        2, $CellContext`entry21$$ = 1, $CellContext`entry22$$ = 4}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficientMatrix$, $CellContext`eigenvalues$, \
+$CellContext`eigenvectors$, $CellContext`fundamentalMatrix$, \
+$CellContext`matrixCheck$, $CellContext`tolerance$, \
+$CellContext`classification$}, $CellContext`coefficientMatrix$ = \
+{{$CellContext`entry11$$, $CellContext`entry12$$}, {$CellContext`entry21$$, \
+$CellContext`entry22$$}}; {$CellContext`eigenvalues$, \
+$CellContext`eigenvectors$} = 
+         Eigensystem[$CellContext`coefficientMatrix$]; \
+$CellContext`fundamentalMatrix$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         MatrixExp[$CellContext`coefficientMatrix$ $CellContext`t$]; \
+$CellContext`matrixCheck$ = FullSimplify[D[
+             $CellContext`fundamentalMatrix$[$CellContext`t], $CellContext`t] == 
+           Dot[$CellContext`coefficientMatrix$, 
+             $CellContext`fundamentalMatrix$[$CellContext`t]]]; \
+$CellContext`tolerance$ = 10^(-8); $CellContext`classification$ = Which[
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] < $CellContext`tolerance$, Min[
+              Re[
+               N[$CellContext`eigenvalues$]]] < 0, Max[
+              Re[
+               N[$CellContext`eigenvalues$]]] > 0], "Saddle point", 
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] < $CellContext`tolerance$, Max[
+              Re[
+               N[$CellContext`eigenvalues$]]] < 0], "Stable node", 
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] < $CellContext`tolerance$, Min[
+              Re[
+               N[$CellContext`eigenvalues$]]] > 0], "Unstable node", 
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] >= $CellContext`tolerance$, 
+            Max[
+              Re[
+               N[$CellContext`eigenvalues$]]] < -$CellContext`tolerance$], 
+           "Stable spiral", 
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] >= $CellContext`tolerance$, 
+            Min[
+              Re[
+               N[$CellContext`eigenvalues$]]] > $CellContext`tolerance$], 
+           "Unstable spiral", 
+           And[Max[
+              Abs[
+               Im[
+                N[$CellContext`eigenvalues$]]]] >= $CellContext`tolerance$, 
+            Max[
+              Abs[
+               Re[
+                N[$CellContext`eigenvalues$]]]] < $CellContext`tolerance$], 
+           "Center", True, "Degenerate or boundary case"]; Column[{
+           Style[
+           "Interactive Mathematica Lab 8.1: Preliminary Theory \[LongDash] \
+Linear Systems", 18, Bold], 
+           Row[{"Coefficient matrix:   ", 
+             MatrixForm[$CellContext`coefficientMatrix$]}], 
+           Row[{"Eigenvalues:   ", $CellContext`eigenvalues$}], 
+           Row[{"Eigenvectors:   ", $CellContext`eigenvectors$}], 
+           
+           Row[{"Equilibrium classification:   ", \
+$CellContext`classification$}], 
+           
+           Row[{"Matrix exponential satisfies Phi'(t) = A Phi(t):   ", \
+$CellContext`matrixCheck$}], 
+           StreamPlot[
+            Evaluate[
+             
+             Dot[$CellContext`coefficientMatrix$, {$CellContext`x, \
+$CellContext`y}]], {$CellContext`x, -3, 3}, {$CellContext`y, -3, 3}, 
+            FrameLabel -> {"x1", "x2"}, PlotLabel -> 
+            "Phase Portrait of X' = A X"]}]], 
+      "Specifications" :> {{{$CellContext`entry11$$, 3, "a11"}, -4, 4, 
+         1}, {{$CellContext`entry12$$, 2, "a12"}, -4, 4, 
+         1}, {{$CellContext`entry21$$, 1, "a21"}, -4, 4, 
+         1}, {{$CellContext`entry22$$, 4, "a22"}, -4, 4, 1}}, "Options" :> {},
+       "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      715.6312499999999, {239.19453667534725`, 244.92647026909725`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.99748032203076*^9},
+ CellLabel->
+  "Out[147]=",ExpressionUUID->"c29e8789-4562-4243-b43a-03d1bc09ae16"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2c23bf32-0c3e-344e-beff-3f44bfe787bf"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7616, 197, 389, "Input",ExpressionUUID->"3ce8f170-b829-c340-aa18-d1b79d98316f"],
+Cell[8195, 221, 5953, 131, 501, "Output",ExpressionUUID->"c29e8789-4562-4243-b43a-03d1bc09ae16"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

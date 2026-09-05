@@ -1,0 +1,270 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10834,        260]
+NotebookOptionsPosition[     10350,        243]
+NotebookOutlinePosition[     10746,        259]
+CellTagsIndexPosition[     10703,        256]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "transformEquation", ",", "transformRule", ",", "transformSolution", ",",
+        "partialFractionForm", ",", "timeSolution", ",", "verification"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"transformEquation", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"s", "^", "2"}], " ", "transformY"}], "-", 
+           RowBox[{"s", " ", "initialValue"}], "-", "initialSlope"}], ")"}], "+", 
+         RowBox[{"3", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"s", " ", "transformY"}], "-", "initialValue"}], ")"}]}], 
+         "+", 
+         RowBox[{"2", " ", "transformY"}]}], "==", "0"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"transformRule", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"Solve", "[", 
+         RowBox[{"transformEquation", ",", "transformY"}], "]"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"transformSolution", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"transformY", "/.", "\[IndentingNewLine]", "transformRule"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"partialFractionForm", "=", 
+       RowBox[{"Apart", "[", 
+        RowBox[{"transformSolution", ",", "s"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"timeSolution", "=", 
+       RowBox[{"InverseLaplaceTransform", "[", 
+        RowBox[{"transformSolution", ",", "s", ",", "t"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"timeSolution", ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "2"}], "}"}]}], "]"}], "+", 
+            RowBox[{"3", " ", 
+             RowBox[{"D", "[", 
+              RowBox[{"timeSolution", ",", "t"}], "]"}]}], "+", 
+            RowBox[{"2", " ", "timeSolution"}]}], "==", "0"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"timeSolution", "/.", "\[IndentingNewLine]", 
+             RowBox[{"t", "->", "0"}]}], ")"}], "==", "initialValue"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"timeSolution", ",", "t"}], "]"}], "/.", 
+             "\[IndentingNewLine]", 
+             RowBox[{"t", "->", "0"}]}], ")"}], "==", "initialSlope"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.2: Inverse Transforms \
+and Derivative Formulas\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transformed equation:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transformEquation", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Y(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transformSolution", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Partial-fraction form:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "partialFractionForm", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Time-domain solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "t", "]"}], "==", "timeSolution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"timeSolution", ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "8"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<y(t)\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Solution Obtained by Laplace Transform\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "1", ",", "\"\<y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialSlope", ",", "0", ",", "\"\<y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974796005603046`*^9, 3.9974796005603046`*^9}},
+ CellLabel->
+  "In[134]:=",ExpressionUUID->"a5e8f3d6-3d36-2c45-b90c-9b5c6e1ee6d1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialSlope$$ = 
+    0, $CellContext`initialValue$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialValue$$], 1, "y(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialSlope$$], 0, "y'(0)"}, -2, 2, 0.5, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    742.236328125, {130.16374796487003`, 135.89568155862003`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialSlope$$ = 
+        0, $CellContext`initialValue$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`transformEquation$, $CellContext`transformRule$, \
+$CellContext`transformSolution$, $CellContext`partialFractionForm$, \
+$CellContext`timeSolution$, $CellContext`verification$}, \
+$CellContext`transformEquation$ = ($CellContext`s^2 $CellContext`transformY - \
+$CellContext`s $CellContext`initialValue$$ - $CellContext`initialSlope$$) + 
+           3 ($CellContext`s $CellContext`transformY - \
+$CellContext`initialValue$$) + 2 $CellContext`transformY == 
+          0; $CellContext`transformRule$ = First[
+           
+           Solve[$CellContext`transformEquation$, $CellContext`transformY]]; \
+$CellContext`transformSolution$ = FullSimplify[
+           
+           ReplaceAll[$CellContext`transformY, $CellContext`transformRule$]]; \
+$CellContext`partialFractionForm$ = 
+         Apart[$CellContext`transformSolution$, $CellContext`s]; \
+$CellContext`timeSolution$ = 
+         InverseLaplaceTransform[$CellContext`transformSolution$, \
+$CellContext`s, $CellContext`t]; $CellContext`verification$ = 
+         FullSimplify[{
+           D[$CellContext`timeSolution$, {$CellContext`t, 2}] + 
+             3 D[$CellContext`timeSolution$, $CellContext`t] + 
+             2 $CellContext`timeSolution$ == 0, 
+            ReplaceAll[$CellContext`timeSolution$, $CellContext`t -> 
+              0] == $CellContext`initialValue$$, ReplaceAll[
+              D[$CellContext`timeSolution$, $CellContext`t], $CellContext`t -> 
+              0] == $CellContext`initialSlope$$}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.2: Inverse Transforms and \
+Derivative Formulas", 18, Bold], 
+           Row[{"Transformed equation:   ", 
+             TraditionalForm[$CellContext`transformEquation$]}], 
+           Row[{"Y(s):   ", 
+             TraditionalForm[$CellContext`transformSolution$]}], 
+           Row[{"Partial-fraction form:   ", 
+             TraditionalForm[$CellContext`partialFractionForm$]}], 
+           Row[{"Time-domain solution:   ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`t] == \
+$CellContext`timeSolution$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           
+           Plot[$CellContext`timeSolution$, {$CellContext`t, 0, 8}, PlotRange -> 
+            All, AxesLabel -> {"t", "y(t)"}, GridLines -> Automatic, 
+            PlotLabel -> "Solution Obtained by Laplace Transform"]}]], 
+      "Specifications" :> {{{$CellContext`initialValue$$, 1, "y(0)"}, -2, 2, 
+         0.5}, {{$CellContext`initialSlope$$, 0, "y'(0)"}, -2, 2, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      784.8363281249999, {186.82458780862004`, 192.55652140237004`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997479601495756*^9},
+ CellLabel->
+  "Out[135]=",ExpressionUUID->"41ccfb59-d0bf-f44a-9f41-fe7bd55b6343"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3151ebf6-0cd3-084e-b75d-65c21da188cb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5240, 130, 351, "Input",ExpressionUUID->"a5e8f3d6-3d36-2c45-b90c-9b5c6e1ee6d1"],
+Cell[5819, 154, 4515, 86, 396, "Output",ExpressionUUID->"41ccfb59-d0bf-f44a-9f41-fe7bd55b6343"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

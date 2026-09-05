@@ -1,0 +1,331 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12996,        321]
+NotebookOptionsPosition[     12512,        304]
+NotebookOutlinePosition[     12908,        320]
+CellTagsIndexPosition[     12865,        317]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "populationData", ",", "exponentialFit", ",", "logisticFit", ",", 
+       "exponentialModel", ",", "logisticModel", ",", "exponentialSSE", ",", 
+       "logisticSSE", ",", "betterFit"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"populationData", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "50"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "72"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "104"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", "145"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"4", ",", "190"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "235"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"6", ",", "270"}], "}"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"exponentialFit", "=", 
+       RowBox[{"FindFit", "[", 
+        RowBox[{"populationData", ",", 
+         RowBox[{"initialFit", "*", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"exponentialRate", " ", "t"}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"initialFit", ",", "50"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"exponentialRate", ",", "0.25"}], "}"}]}], "}"}], ",", 
+         "t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"logisticFit", "=", 
+       RowBox[{"FindFit", "[", 
+        RowBox[{"populationData", ",", 
+         RowBox[{"fittedCapacity", "/", 
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            RowBox[{"fittedA", " ", 
+             RowBox[{"Exp", "[", 
+              RowBox[{
+               RowBox[{"-", "logisticRate"}], " ", "t"}], "]"}]}]}], ")"}]}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"fittedCapacity", ",", "350"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"fittedA", ",", "6"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"logisticRate", ",", "0.5"}], "}"}]}], "}"}], ",", "t"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"exponentialModel", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"initialFit", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"exponentialRate", " ", "t"}], "]"}]}], "/.", 
+        "\[IndentingNewLine]", "exponentialFit"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"logisticModel", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"fittedCapacity", "/", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"fittedA", " ", 
+            RowBox[{"Exp", "[", 
+             RowBox[{
+              RowBox[{"-", "logisticRate"}], " ", "t"}], "]"}]}]}], ")"}]}], "/.",
+         "\[IndentingNewLine]", "logisticFit"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"exponentialSSE", "=", 
+       RowBox[{"Total", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "-", 
+             RowBox[{"exponentialModel", "[", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ")"}], "^", "2"}], 
+          "&"}], "/@", "populationData"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"logisticSSE", "=", 
+       RowBox[{"Total", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "-", 
+             RowBox[{"logisticModel", "[", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ")"}], "^", "2"}], 
+          "&"}], "/@", "populationData"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"betterFit", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"exponentialSSE", "<", "logisticSSE"}], 
+         ",", "\"\<Exponential has the smaller SSE\>\"", 
+         ",", "\"\<Logistic has the smaller SSE\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.9: Selecting and \
+Evaluating a Mathematical Model\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Exponential SSE: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "exponentialSSE", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Logistic SSE: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "logisticSSE", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Closer numerical fit to these data: \>\"", ",", 
+            "betterFit"}], "}"}], "]"}], ",", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"ListPlot", "[", 
+            RowBox[{"populationData", ",", 
+             RowBox[{"PlotStyle", "->", 
+              RowBox[{"PointSize", "[", "0.02", "]"}]}]}], "]"}], ",", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"exponentialModel", "[", "t", "]"}], ",", 
+               RowBox[{"logisticModel", "[", "t", "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "displayHorizon"}], "}"}], ",", 
+             RowBox[{"PlotRange", "->", "All"}], ",", 
+             RowBox[{"PlotLegends", "->", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Exponential\>\"", ",", "\"\<Logistic\>\""}], 
+               "}"}]}]}], "]"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<Population\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Observed Data and Competing Models\>\""}]}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"displayHorizon", ",", "10", ",", "\"\<Display horizon\>\""}], 
+      "}"}], ",", "6", ",", "25", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974766583023815`*^9, 3.9974766583023815`*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"7ae0b235-2c61-3347-b3f7-4510a6c0e16c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`displayHorizon$$ = 10, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`displayHorizon$$], 10, "Display horizon"}, 6, 25, 1, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    771.92578125, {99.8009166670932, 105.5328502608432}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`displayHorizon$$ = 10}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`populationData$, $CellContext`exponentialFit$, \
+$CellContext`logisticFit$, $CellContext`exponentialModel$, \
+$CellContext`logisticModel$, $CellContext`exponentialSSE$, \
+$CellContext`logisticSSE$, $CellContext`betterFit$}, \
+$CellContext`populationData$ = {{0, 50}, {1, 72}, {2, 104}, {3, 145}, {4, 
+          190}, {5, 235}, {6, 270}}; $CellContext`exponentialFit$ = 
+         FindFit[$CellContext`populationData$, $CellContext`initialFit 
+           Exp[$CellContext`exponentialRate $CellContext`t], \
+{{$CellContext`initialFit, 50}, {$CellContext`exponentialRate, 
+             0.25}}, $CellContext`t]; $CellContext`logisticFit$ = 
+         FindFit[$CellContext`populationData$, $CellContext`fittedCapacity/(
+           1 + $CellContext`fittedA 
+            Exp[(-$CellContext`logisticRate) $CellContext`t]), \
+{{$CellContext`fittedCapacity, 350}, {$CellContext`fittedA, 
+             6}, {$CellContext`logisticRate, 
+             0.5}}, $CellContext`t]; $CellContext`exponentialModel$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         ReplaceAll[$CellContext`initialFit 
+           Exp[$CellContext`exponentialRate $CellContext`t$], \
+$CellContext`exponentialFit$]; $CellContext`logisticModel$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         ReplaceAll[$CellContext`fittedCapacity/(
+           1 + $CellContext`fittedA 
+            Exp[(-$CellContext`logisticRate) $CellContext`t$]), \
+$CellContext`logisticFit$]; $CellContext`exponentialSSE$ = Total[
+           Map[(Part[#, 2] - $CellContext`exponentialModel$[
+              
+              Part[#, 1]])^2& , $CellContext`populationData$]]; \
+$CellContext`logisticSSE$ = Total[
+           Map[(Part[#, 2] - $CellContext`logisticModel$[
+              
+              Part[#, 1]])^2& , $CellContext`populationData$]]; \
+$CellContext`betterFit$ = 
+         If[$CellContext`exponentialSSE$ < $CellContext`logisticSSE$, 
+           "Exponential has the smaller SSE", "Logistic has the smaller SSE"]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 3.9: Selecting and Evaluating a \
+Mathematical Model", 18, Bold], 
+           Row[{"Exponential SSE: ", 
+             NumberForm[
+              N[$CellContext`exponentialSSE$], {10, 2}]}], 
+           Row[{"Logistic SSE: ", 
+             NumberForm[
+              N[$CellContext`logisticSSE$], {10, 2}]}], 
+           
+           Row[{"Closer numerical fit to these data: ", \
+$CellContext`betterFit$}], 
+           Show[
+            
+            ListPlot[$CellContext`populationData$, PlotStyle -> 
+             PointSize[0.02]], 
+            Plot[{
+              $CellContext`exponentialModel$[$CellContext`t], 
+              $CellContext`logisticModel$[$CellContext`t]}, {$CellContext`t, 
+              0, $CellContext`displayHorizon$$}, PlotRange -> All, 
+             PlotLegends -> {"Exponential", "Logistic"}], 
+            AxesLabel -> {"t", "Population"}, PlotLabel -> 
+            "Observed Data and Competing Models"]}]], 
+      "Specifications" :> {{{$CellContext`displayHorizon$$, 10, 
+          "Display horizon"}, 6, 25, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      814.5257812499999, {142.6617565108432, 148.3936901045932}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974766601166534`*^9},
+ CellLabel->"Out[80]=",ExpressionUUID->"1e1c668a-8d6d-ff4b-bb3a-a1ae5f50283f"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6b3478d0-13e0-9147-b003-d1f2dd274767"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6993, 179, 389, "Input",ExpressionUUID->"7ae0b235-2c61-3347-b3f7-4510a6c0e16c"],
+Cell[7572, 203, 4924, 98, 308, "Output",ExpressionUUID->"1e1c668a-8d6d-ff4b-bb3a-a1ae5f50283f"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

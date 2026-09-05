@@ -1,0 +1,280 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11283,        270]
+NotebookOptionsPosition[     10799,        253]
+NotebookOutlinePosition[     11195,        269]
+CellTagsIndexPosition[     11152,        266]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficient1", ",", "coefficient2", ",", "solution", ",", "period", ",",
+        "amplitude", ",", "upperEnvelope", ",", "lowerEnvelope", ",", 
+       "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"coefficient1", "=", "initialValue"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"coefficient2", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"initialSlope", "-", 
+          RowBox[{"alpha", " ", "initialValue"}]}], ")"}], "/", "beta"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{"alpha", " ", "x"}], "]"}], "*", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"coefficient1", " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"beta", " ", "x"}], "]"}]}], "+", 
+          RowBox[{"coefficient2", " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"beta", " ", "x"}], "]"}]}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"period", "=", 
+       RowBox[{"2", " ", 
+        RowBox[{"Pi", "/", 
+         RowBox[{"Abs", "[", "beta", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"amplitude", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"coefficient1", "^", "2"}], "+", 
+         RowBox[{"coefficient2", "^", "2"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"upperEnvelope", "=", 
+       RowBox[{"amplitude", " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{"alpha", " ", "x"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"lowerEnvelope", "=", 
+       RowBox[{"-", "upperEnvelope"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+          RowBox[{"2", " ", "alpha", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"solution", ",", "x"}], "]"}]}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"alpha", "^", "2"}], "+", 
+             RowBox[{"beta", "^", "2"}]}], ")"}], " ", "solution"}]}], "==", 
+         "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.4: Complex Conjugate \
+Characteristic Roots\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Characteristic roots:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"alpha", "+", 
+                RowBox[{"I", " ", "beta"}]}], ",", 
+               RowBox[{"alpha", "-", 
+                RowBox[{"I", " ", "beta"}]}]}], "}"}], "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Period:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "period", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"solution", ",", "upperEnvelope", ",", "lowerEnvelope"}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Solution\>\"", ",", "\"\<Upper envelope\>\"", 
+              ",", "\"\<Lower envelope\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Oscillatory Solution and Exponential Envelope\>\""}]}],
+           "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"alpha", ",", 
+       RowBox[{"-", "0.5"}], ",", "\"\<Real part alpha\>\""}], "}"}], ",", 
+     RowBox[{"-", "1.5"}], ",", "1", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"beta", ",", "2", ",", "\"\<Imaginary magnitude beta\>\""}], 
+      "}"}], ",", "0.5", ",", "4", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "1", ",", "\"\<y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialSlope", ",", "0", ",", "\"\<y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997477505138775*^9, 3.99747750513978*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"48b4d6a9-6d1b-244b-a447-95675812a089"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`alpha$$ = -0.5, $CellContext`beta$$ = 
+    2, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`alpha$$], -0.5, "Real part alpha"}, -1.5, 1, 0.25, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`beta$$], 2, "Imaginary magnitude beta"}, 0.5, 4, 0.5,
+       ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialValue$$], 1, "y(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialSlope$$], 0, "y'(0)"}, -3, 3, 0.5, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    702.650390625, {96.06365676845441, 101.79559036220441`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`alpha$$ = -0.5, $CellContext`beta$$ = 
+        2, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficient1$, $CellContext`coefficient2$, \
+$CellContext`solution$, $CellContext`period$, $CellContext`amplitude$, \
+$CellContext`upperEnvelope$, $CellContext`lowerEnvelope$, \
+$CellContext`verification$}, $CellContext`coefficient1$ = \
+$CellContext`initialValue$$; $CellContext`coefficient2$ = \
+($CellContext`initialSlope$$ - $CellContext`alpha$$ \
+$CellContext`initialValue$$)/$CellContext`beta$$; $CellContext`solution$ = 
+         Exp[$CellContext`alpha$$ $CellContext`x] ($CellContext`coefficient1$ 
+            Cos[$CellContext`beta$$ $CellContext`x] + \
+$CellContext`coefficient2$ 
+            Sin[$CellContext`beta$$ $CellContext`x]); $CellContext`period$ = 
+         2 (Pi/Abs[$CellContext`beta$$]); $CellContext`amplitude$ = 
+         Sqrt[$CellContext`coefficient1$^2 + $CellContext`coefficient2$^2]; \
+$CellContext`upperEnvelope$ = $CellContext`amplitude$ 
+          Exp[$CellContext`alpha$$ $CellContext`x]; \
+$CellContext`lowerEnvelope$ = -$CellContext`upperEnvelope$; \
+$CellContext`verification$ = 
+         FullSimplify[
+          D[$CellContext`solution$, {$CellContext`x, 2}] - 
+            2 $CellContext`alpha$$ 
+            D[$CellContext`solution$, $CellContext`x] + \
+($CellContext`alpha$$^2 + $CellContext`beta$$^2) $CellContext`solution$ == 0]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 4.4: Complex Conjugate Characteristic \
+Roots", 18, Bold], 
+           Row[{"Characteristic roots:   ", 
+             
+             TraditionalForm[{$CellContext`alpha$$ + 
+               I $CellContext`beta$$, $CellContext`alpha$$ - 
+               I $CellContext`beta$$}]}], 
+           Row[{"Period:   ", 
+             TraditionalForm[$CellContext`period$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           
+           Plot[{$CellContext`solution$, $CellContext`upperEnvelope$, \
+$CellContext`lowerEnvelope$}, {$CellContext`x, 0, 10}, PlotRange -> All, 
+            PlotLegends -> {"Solution", "Upper envelope", "Lower envelope"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Oscillatory Solution and Exponential Envelope"]}]], 
+      "Specifications" :> {{{$CellContext`alpha$$, -0.5, 
+          "Real part alpha"}, -1.5, 1, 
+         0.25}, {{$CellContext`beta$$, 2, "Imaginary magnitude beta"}, 0.5, 4,
+          0.5}, {{$CellContext`initialValue$$, 1, "y(0)"}, -2, 2, 
+         0.5}, {{$CellContext`initialSlope$$, 0, "y'(0)"}, -3, 3, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      745.2503906249999, {180.32449661220443`, 186.05643020595443`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974775060950947`*^9},
+ CellLabel->"Out[89]=",ExpressionUUID->"32bf409a-3280-ac47-8205-5d839228f0b8"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"42d5816e-ad46-5447-af3a-dc4d1d42187e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5397, 137, 332, "Input",ExpressionUUID->"48b4d6a9-6d1b-244b-a447-95675812a089"],
+Cell[5976, 161, 4807, 89, 383, "Output",ExpressionUUID->"32bf409a-3280-ac47-8205-5d839228f0b8"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

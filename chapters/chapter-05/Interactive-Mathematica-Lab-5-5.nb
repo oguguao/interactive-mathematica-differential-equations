@@ -1,0 +1,351 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14362,        341]
+NotebookOptionsPosition[     13877,        324]
+NotebookOutlinePosition[     14273,        340]
+CellTagsIndexPosition[     14230,        337]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "voltageFunction", ",", "charge", ",", "current", ",", 
+       "criticalResistance", ",", "discriminant", ",", "classification"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"voltageFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"voltageAmplitude", " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"forcingFrequency", " ", "t"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"criticalResistance", "=", 
+       RowBox[{"2", " ", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"inductance", "/", "capacitance"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"discriminant", "=", 
+       RowBox[{
+        RowBox[{"resistance", "^", "2"}], "-", 
+        RowBox[{"4", " ", 
+         RowBox[{"inductance", "/", "capacitance"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{"discriminant", "<", "0"}], ",", "\"\<Underdamped\>\"", ",", 
+         RowBox[{
+          RowBox[{"Chop", "[", "discriminant", "]"}], "==", "0"}], 
+         ",", "\"\<Critically damped\>\"", ",", 
+         RowBox[{"discriminant", ">", "0"}], ",", "\"\<Overdamped\>\""}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"charge", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"inductance", " ", 
+              RowBox[{
+               RowBox[{"q", "''"}], "[", "t", "]"}]}], "+", 
+             RowBox[{"resistance", " ", 
+              RowBox[{
+               RowBox[{"q", "'"}], "[", "t", "]"}]}], "+", 
+             RowBox[{
+              RowBox[{"q", "[", "t", "]"}], "/", "capacitance"}]}], "==", 
+            RowBox[{"voltageFunction", "[", "t", "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"q", "[", "0", "]"}], "==", "initialCharge"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"q", "'"}], "[", "0", "]"}], "==", "initialCurrent"}]}], 
+          "}"}], ",", "q", ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "20"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"current", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"charge", "'"}], "[", "t", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.5: Series RLC Circuits\>\
+\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Source-free classification: \>\"", ",", 
+            "classification"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Critical resistance: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "criticalResistance", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Circuit equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"inductance", " ", 
+                RowBox[{
+                 RowBox[{"q", "''"}], "[", "t", "]"}]}], "+", 
+               RowBox[{"resistance", " ", 
+                RowBox[{
+                 RowBox[{"q", "'"}], "[", "t", "]"}]}], "+", 
+               RowBox[{
+                RowBox[{"q", "[", "t", "]"}], "/", "capacitance"}]}], "==", 
+              RowBox[{"voltageFunction", "[", "t", "]"}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"charge", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Charge\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Charge q(t)\>\""}]}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"current", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Current\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Current i(t)\>\""}]}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"inductance", ",", "1", ",", "\"\<Inductance L\>\""}], "}"}], ",",
+      "0.5", ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"resistance", ",", "2", ",", "\"\<Resistance R\>\""}], "}"}], ",",
+      "0", ",", "8", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"capacitance", ",", "0.25", ",", "\"\<Capacitance C\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.125", "->", "\"\<1/8 F\>\""}], ",", 
+       RowBox[{"0.25", "->", "\"\<1/4 F\>\""}], ",", 
+       RowBox[{"0.5", "->", "\"\<1/2 F\>\""}], ",", 
+       RowBox[{"1", "->", "\"\<1 F\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "voltageAmplitude", ",", "10", ",", "\"\<Voltage amplitude\>\""}], 
+      "}"}], ",", "0", ",", "20", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingFrequency", ",", "3", ",", "\"\<Forcing frequency\>\""}], "}"}],
+      ",", "0.5", ",", "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialCharge", ",", "0", ",", "\"\<Initial charge\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialCurrent", ",", "0", ",", "\"\<Initial current\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974781905684395`*^9, 3.9974781905684395`*^9}},
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"dc8c1832-e82c-2049-8b52-3cd10d551c08"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`capacitance$$ = 
+    0.25, $CellContext`forcingFrequency$$ = 3, $CellContext`inductance$$ = 
+    1, $CellContext`initialCharge$$ = 0, $CellContext`initialCurrent$$ = 
+    0, $CellContext`resistance$$ = 2, $CellContext`voltageAmplitude$$ = 10, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`inductance$$], 1, "Inductance L"}, 0.5, 3, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`resistance$$], 2, "Resistance R"}, 0, 8, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`capacitance$$], 0.25, "Capacitance C"}, {
+      0.125 -> "1/8 F", 0.25 -> "1/4 F", 0.5 -> "1/2 F", 1 -> "1 F"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`voltageAmplitude$$], 10, "Voltage amplitude"}, 0, 20,
+       2, ControlType -> Manipulator}, {{
+       Hold[$CellContext`forcingFrequency$$], 3, "Forcing frequency"}, 0.5, 5,
+       0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialCharge$$], 0, "Initial charge"}, -1, 1, 0.25, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialCurrent$$], 0, "Initial current"}, -2, 2, 0.5,
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+    514.6171875, {149.35544373118313`, 155.08737732493313`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`capacitance$$ = 
+        0.25, $CellContext`forcingFrequency$$ = 3, $CellContext`inductance$$ = 
+        1, $CellContext`initialCharge$$ = 0, $CellContext`initialCurrent$$ = 
+        0, $CellContext`resistance$$ = 2, $CellContext`voltageAmplitude$$ = 
+        10}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`voltageFunction$, $CellContext`charge$, \
+$CellContext`current$, $CellContext`criticalResistance$, \
+$CellContext`discriminant$, $CellContext`classification$}, \
+$CellContext`voltageFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`voltageAmplitude$$ 
+          Sin[$CellContext`forcingFrequency$$ $CellContext`t$]; \
+$CellContext`criticalResistance$ = 
+         2 Sqrt[$CellContext`inductance$$/$CellContext`capacitance$$]; \
+$CellContext`discriminant$ = $CellContext`resistance$$^2 - 
+          4 ($CellContext`inductance$$/$CellContext`capacitance$$); \
+$CellContext`classification$ = 
+         Which[$CellContext`discriminant$ < 0, "Underdamped", 
+           Chop[$CellContext`discriminant$] == 0, 
+           "Critically damped", $CellContext`discriminant$ > 0, 
+           "Overdamped"]; $CellContext`charge$ = 
+         NDSolveValue[{$CellContext`inductance$$ 
+              Derivative[
+               2][$CellContext`q][$CellContext`t] + $CellContext`resistance$$ 
+              Derivative[
+               1][$CellContext`q][$CellContext`t] + \
+$CellContext`q[$CellContext`t]/$CellContext`capacitance$$ == \
+$CellContext`voltageFunction$[$CellContext`t], $CellContext`q[
+             0] == $CellContext`initialCharge$$, 
+            Derivative[1][$CellContext`q][
+             0] == $CellContext`initialCurrent$$}, $CellContext`q, \
+{$CellContext`t, 0, 20}]; $CellContext`current$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := Derivative[1][$CellContext`charge$][$CellContext`t$]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 5.5: Series RLC Circuits", 18, Bold], 
+           
+           Row[{"Source-free classification: ", \
+$CellContext`classification$}], 
+           Row[{"Critical resistance: ", 
+             NumberForm[
+              N[$CellContext`criticalResistance$], {7, 3}]}], 
+           Row[{"Circuit equation: ", 
+             
+             TraditionalForm[$CellContext`inductance$$ 
+                Derivative[
+                 2][$CellContext`q][$CellContext`t] + \
+$CellContext`resistance$$ 
+                Derivative[
+                 1][$CellContext`q][$CellContext`t] + \
+$CellContext`q[$CellContext`t]/$CellContext`capacitance$$ == \
+$CellContext`voltageFunction$[$CellContext`t]]}], 
+           Plot[
+            $CellContext`charge$[$CellContext`t], {$CellContext`t, 0, 20}, 
+            PlotRange -> All, AxesLabel -> {"Time", "Charge"}, GridLines -> 
+            Automatic, PlotLabel -> "Charge q(t)"], 
+           Plot[
+            $CellContext`current$[$CellContext`t], {$CellContext`t, 0, 20}, 
+            PlotRange -> All, AxesLabel -> {"Time", "Current"}, GridLines -> 
+            Automatic, PlotLabel -> "Current i(t)"]}]], 
+      "Specifications" :> {{{$CellContext`inductance$$, 1, "Inductance L"}, 
+         0.5, 3, 0.5}, {{$CellContext`resistance$$, 2, "Resistance R"}, 0, 8, 
+         0.5}, {{$CellContext`capacitance$$, 0.25, "Capacitance C"}, {
+         0.125 -> "1/8 F", 0.25 -> "1/4 F", 0.5 -> "1/2 F", 1 -> 
+          "1 F"}}, {{$CellContext`voltageAmplitude$$, 10, 
+          "Voltage amplitude"}, 0, 20, 
+         2}, {{$CellContext`forcingFrequency$$, 3, "Forcing frequency"}, 0.5, 
+         5, 0.5}, {{$CellContext`initialCharge$$, 0, "Initial charge"}, -1, 1,
+          0.25}, {{$CellContext`initialCurrent$$, 0, "Initial current"}, -2, 
+         2, 0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      557.2171874999999, {275.00163513743314`, 280.73356873118314`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.99747819176038*^9},
+ CellLabel->
+  "Out[109]=",ExpressionUUID->"222650a0-3fd5-6d4b-ab07-1c7b90a17636"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4bd6d0f8-a21b-e84f-bfe5-938ee1692d54"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6853, 176, 370, "Input",ExpressionUUID->"dc8c1832-e82c-2049-8b52-3cd10d551c08"],
+Cell[7432, 200, 6429, 121, 572, "Output",ExpressionUUID->"222650a0-3fd5-6d4b-ab07-1c7b90a17636"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

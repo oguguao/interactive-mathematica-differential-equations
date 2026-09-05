@@ -1,0 +1,351 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14084,        341]
+NotebookOptionsPosition[     13599,        324]
+NotebookOutlinePosition[     13995,        340]
+CellTagsIndexPosition[     13952,        337]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingFunction", ",", "solution", ",", "modelType", ",", 
+       "naturalFrequency"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"forcingFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"forcingAmplitude", "==", "0"}], ",", "0", ",", 
+         RowBox[{"forcingAmplitude", " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"forcingFrequency", " ", "t"}], "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"naturalFrequency", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{"springConstant", "/", "mass"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"modelType", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"dampingCoefficient", "==", "0"}], "&&", 
+          RowBox[{"forcingAmplitude", "==", "0"}]}], 
+         ",", "\"\<Free undamped\>\"", ",", 
+         RowBox[{
+          RowBox[{"dampingCoefficient", ">", "0"}], "&&", 
+          RowBox[{"forcingAmplitude", "==", "0"}]}], 
+         ",", "\"\<Free damped\>\"", ",", 
+         RowBox[{
+          RowBox[{"dampingCoefficient", "==", "0"}], "&&", 
+          RowBox[{"forcingAmplitude", "!=", "0"}]}], 
+         ",", "\"\<Forced undamped\>\"", ",", "True", 
+         ",", "\"\<Forced damped\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"mass", " ", 
+              RowBox[{
+               RowBox[{"x", "''"}], "[", "t", "]"}]}], "+", 
+             RowBox[{"dampingCoefficient", " ", 
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "t", "]"}]}], "+", 
+             RowBox[{"springConstant", " ", 
+              RowBox[{"x", "[", "t", "]"}]}]}], "==", 
+            RowBox[{"forcingFunction", "[", "t", "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"x", "[", "0", "]"}], "==", "initialDisplacement"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"x", "'"}], "[", "0", "]"}], "==", "initialVelocity"}]}],
+           "}"}], ",", "x", ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "20"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.1: Modeling Spring-Mass \
+Systems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Classification: \>\"", ",", "modelType"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Natural angular frequency: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "naturalFrequency", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Model: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"mass", " ", 
+                RowBox[{
+                 RowBox[{"x", "''"}], "[", "t", "]"}]}], "+", 
+               RowBox[{"dampingCoefficient", " ", 
+                RowBox[{
+                 RowBox[{"x", "'"}], "[", "t", "]"}]}], "+", 
+               RowBox[{"springConstant", " ", 
+                RowBox[{"x", "[", "t", "]"}]}]}], "==", 
+              RowBox[{"forcingFunction", "[", "t", "]"}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial conditions: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"x", "[", "0", "]"}], "==", "initialDisplacement"}], ",", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"x", "'"}], "[", "0", "]"}], "==", 
+                "initialVelocity"}]}], "}"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"solution", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Displacement\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "modelType"}]}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mass", ",", "2", ",", "\"\<Mass m\>\""}], "}"}], ",", "0.5", ",",
+      "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dampingCoefficient", ",", "3", ",", "\"\<Damping coefficient c\>\""}], 
+      "}"}], ",", "0", ",", "8", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"springConstant", ",", "8", ",", "\"\<Spring constant k\>\""}], 
+      "}"}], ",", "1", ",", "20", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingAmplitude", ",", "4", ",", "\"\<Forcing amplitude\>\""}], "}"}],
+      ",", "0", ",", "10", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingFrequency", ",", "2", ",", "\"\<Forcing frequency\>\""}], "}"}],
+      ",", "0.5", ",", "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialDisplacement", ",", "0.5", 
+       ",", "\"\<Initial displacement\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialVelocity", ",", "0", ",", "\"\<Initial velocity\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997478059691065*^9, 3.997478059691065*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"d3535252-1e3b-ba4f-9923-b0cd5e79549e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dampingCoefficient$$ = 
+    3, $CellContext`forcingAmplitude$$ = 4, $CellContext`forcingFrequency$$ = 
+    2, $CellContext`initialDisplacement$$ = 
+    0.5, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+    2, $CellContext`springConstant$$ = 8, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`mass$$], 2, "Mass m"}, 0.5, 5, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`dampingCoefficient$$], 3, "Damping coefficient c"}, 
+      0, 8, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`springConstant$$], 8, "Spring constant k"}, 1, 20, 1,
+       ControlType -> Manipulator}, {{
+       Hold[$CellContext`forcingAmplitude$$], 4, "Forcing amplitude"}, 0, 10, 
+      1, ControlType -> Manipulator}, {{
+       Hold[$CellContext`forcingFrequency$$], 2, "Forcing frequency"}, 0.5, 5,
+       0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialDisplacement$$], 0.5, 
+       "Initial displacement"}, -2, 2, 0.25, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialVelocity$$], 0, "Initial velocity"}, -3, 3, 
+      0.5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    604.5908203125, {95.11710823202719, 100.84904182577719`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dampingCoefficient$$ = 
+        3, $CellContext`forcingAmplitude$$ = 
+        4, $CellContext`forcingFrequency$$ = 
+        2, $CellContext`initialDisplacement$$ = 
+        0.5, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+        2, $CellContext`springConstant$$ = 8}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`forcingFunction$, $CellContext`solution$, \
+$CellContext`modelType$, $CellContext`naturalFrequency$}, \
+$CellContext`forcingFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         If[$CellContext`forcingAmplitude$$ == 0, 
+           0, $CellContext`forcingAmplitude$$ 
+           Cos[$CellContext`forcingFrequency$$ $CellContext`t$]]; \
+$CellContext`naturalFrequency$ = 
+         Sqrt[$CellContext`springConstant$$/$CellContext`mass$$]; \
+$CellContext`modelType$ = Which[
+           
+           And[$CellContext`dampingCoefficient$$ == 
+            0, $CellContext`forcingAmplitude$$ == 0], "Free undamped", 
+           
+           And[$CellContext`dampingCoefficient$$ > 
+            0, $CellContext`forcingAmplitude$$ == 0], "Free damped", 
+           
+           And[$CellContext`dampingCoefficient$$ == 
+            0, $CellContext`forcingAmplitude$$ != 0], "Forced undamped", True,
+            "Forced damped"]; $CellContext`solution$ = 
+         NDSolveValue[{$CellContext`mass$$ 
+              Derivative[
+               2][$CellContext`x][$CellContext`t] + \
+$CellContext`dampingCoefficient$$ 
+              Derivative[
+               1][$CellContext`x][$CellContext`t] + \
+$CellContext`springConstant$$ $CellContext`x[$CellContext`t] == \
+$CellContext`forcingFunction$[$CellContext`t], $CellContext`x[
+             0] == $CellContext`initialDisplacement$$, 
+            Derivative[1][$CellContext`x][
+             0] == $CellContext`initialVelocity$$}, $CellContext`x, \
+{$CellContext`t, 0, 20}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 5.1: Modeling Spring-Mass Systems", 
+            18, Bold], 
+           Row[{"Classification: ", $CellContext`modelType$}], 
+           Row[{"Natural angular frequency: ", 
+             NumberForm[
+              N[$CellContext`naturalFrequency$], {7, 3}]}], 
+           Row[{"Model: ", 
+             
+             TraditionalForm[$CellContext`mass$$ 
+                Derivative[
+                 
+                 2][$CellContext`x][$CellContext`t] + \
+$CellContext`dampingCoefficient$$ 
+                Derivative[
+                 1][$CellContext`x][$CellContext`t] + \
+$CellContext`springConstant$$ $CellContext`x[$CellContext`t] == \
+$CellContext`forcingFunction$[$CellContext`t]]}], 
+           Row[{"Initial conditions: ", 
+             
+             TraditionalForm[{$CellContext`x[
+                0] == $CellContext`initialDisplacement$$, 
+               Derivative[1][$CellContext`x][
+                0] == $CellContext`initialVelocity$$}]}], 
+           Plot[
+            $CellContext`solution$[$CellContext`t], {$CellContext`t, 0, 20}, 
+            PlotRange -> All, AxesLabel -> {"Time", "Displacement"}, 
+            GridLines -> Automatic, PlotLabel -> $CellContext`modelType$]}]], 
+      "Specifications" :> {{{$CellContext`mass$$, 2, "Mass m"}, 0.5, 5, 
+         0.5}, {{$CellContext`dampingCoefficient$$, 3, 
+          "Damping coefficient c"}, 0, 8, 
+         0.5}, {{$CellContext`springConstant$$, 8, "Spring constant k"}, 1, 
+         20, 1}, {{$CellContext`forcingAmplitude$$, 4, "Forcing amplitude"}, 
+         0, 10, 1}, {{$CellContext`forcingFrequency$$, 2, 
+          "Forcing frequency"}, 0.5, 5, 
+         0.5}, {{$CellContext`initialDisplacement$$, 0.5, 
+          "Initial displacement"}, -2, 2, 
+         0.25}, {{$CellContext`initialVelocity$$, 0, "Initial velocity"}, -3, 
+         3, 0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      647.1908203124999, {220.7779480757772, 226.5098816695272}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.99747806089513*^9},
+ CellLabel->
+  "Out[101]=",ExpressionUUID->"90052816-916b-7643-8eaa-49d690f8e7a7"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4b38420e-f128-fe4c-91da-0a02e52021a0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6553, 169, 351, "Input",ExpressionUUID->"d3535252-1e3b-ba4f-9923-b0cd5e79549e"],
+Cell[7132, 193, 6451, 128, 464, "Output",ExpressionUUID->"90052816-916b-7643-8eaa-49d690f8e7a7"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

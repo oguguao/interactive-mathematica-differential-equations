@@ -1,0 +1,251 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10193,        241]
+NotebookOptionsPosition[      9709,        224]
+NotebookOutlinePosition[     10105,        240]
+CellTagsIndexPosition[     10062,        237]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "differentialOperator", ",", "forcing", ",", "trial", ",", 
+       "coefficientRule", ",", "particular", ",", "complementary", ",", 
+       "verification", ",", "resonanceMessage"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"differentialOperator", "[", "v_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{"v", ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+        RowBox[{"3", " ", 
+         RowBox[{"D", "[", 
+          RowBox[{"v", ",", "x"}], "]"}]}], "+", 
+        RowBox[{"2", " ", "v"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"complementary", "=", 
+       RowBox[{
+        RowBox[{"c1", " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}], "+", 
+        RowBox[{"c2", " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"2", " ", "x"}], "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"forcingChoice", "==", "\"\<Nonresonant\>\""}], ",", 
+        RowBox[{
+         RowBox[{"forcing", "=", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"3", " ", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"trial", "=", 
+          RowBox[{"unknownCoefficient", " ", 
+           RowBox[{"Exp", "[", 
+            RowBox[{"3", " ", "x"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+         "resonanceMessage", 
+          "=", "\"\<No resonance \[LongDash] use A Exp[3 x].\>\""}]}], ",", 
+        RowBox[{
+         RowBox[{"forcing", "=", 
+          RowBox[{"Exp", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"trial", "=", 
+          RowBox[{"unknownCoefficient", " ", "x", " ", 
+           RowBox[{"Exp", "[", "x", "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+         "resonanceMessage", 
+          "=", "\"\<Resonance \[LongDash] multiply the ordinary trial by x.\>\
+\""}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"coefficientRule", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"Solve", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FullSimplify", "[", 
+            RowBox[{
+             RowBox[{"differentialOperator", "[", "trial", "]"}], "/", 
+             "forcing"}], "]"}], "==", "1"}], ",", "unknownCoefficient"}], 
+         "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"particular", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"trial", "/.", "\[IndentingNewLine]", "coefficientRule"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"differentialOperator", "[", "particular", "]"}], "==", 
+         "forcing"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.7: Undetermined \
+Coefficients and Resonance\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Complementary solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "complementary", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"resonanceMessage", ",", "14", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Trial particular solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "trial", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Coefficient rule:   \>\"", ",", "coefficientRule"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Particular solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "particular", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingChoice", ",", "\"\<Resonant\>\"", ",", "\"\<Forcing case\>\""}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Resonant\>\"", ",", "\"\<Nonresonant\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997477611536585*^9, 3.997477611537586*^9}},
+ CellLabel->"In[94]:=",ExpressionUUID->"36c7b45c-3783-f24e-a73d-d009565bf000"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`forcingChoice$$ = "Resonant", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`forcingChoice$$], "Resonant", "Forcing case"}, {
+      "Resonant", "Nonresonant"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {712.546875, {57.67081298828124, 63.40274658203124}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`forcingChoice$$ = "Resonant"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`differentialOperator$, $CellContext`forcing$, \
+$CellContext`trial$, $CellContext`coefficientRule$, $CellContext`particular$, \
+$CellContext`complementary$, $CellContext`verification$, \
+$CellContext`resonanceMessage$}, $CellContext`differentialOperator$[
+           Pattern[$CellContext`v, 
+            Blank[]]] := 
+         D[$CellContext`v, {$CellContext`x, 2}] - 3 
+          D[$CellContext`v, $CellContext`x] + 
+          2 $CellContext`v; $CellContext`complementary$ = $CellContext`c1 
+           Exp[$CellContext`x] + $CellContext`c2 Exp[2 $CellContext`x]; 
+        If[$CellContext`forcingChoice$$ == 
+          "Nonresonant", $CellContext`forcing$ = 
+           Exp[3 $CellContext`x]; $CellContext`trial$ = \
+$CellContext`unknownCoefficient 
+            Exp[3 $CellContext`x]; $CellContext`resonanceMessage$ = 
+           "No resonance \[LongDash] use A Exp[3 x].", $CellContext`forcing$ = 
+           Exp[$CellContext`x]; $CellContext`trial$ = \
+$CellContext`unknownCoefficient $CellContext`x 
+            Exp[$CellContext`x]; $CellContext`resonanceMessage$ = 
+           "Resonance \[LongDash] multiply the ordinary trial by x."]; \
+$CellContext`coefficientRule$ = First[
+           Solve[
+           FullSimplify[$CellContext`differentialOperator$[$CellContext`trial$\
+]/$CellContext`forcing$] == 
+            1, $CellContext`unknownCoefficient]]; $CellContext`particular$ = 
+         FullSimplify[
+           
+           ReplaceAll[$CellContext`trial$, $CellContext`coefficientRule$]]; \
+$CellContext`verification$ = 
+         FullSimplify[$CellContext`differentialOperator$[$CellContext`\
+particular$] == $CellContext`forcing$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.7: Undetermined Coefficients and \
+Resonance", 18, Bold], 
+           Row[{"Complementary solution:   ", 
+             TraditionalForm[$CellContext`complementary$]}], 
+           Style[$CellContext`resonanceMessage$, 14, Bold], 
+           Row[{"Trial particular solution:   ", 
+             TraditionalForm[$CellContext`trial$]}], 
+           Row[{"Coefficient rule:   ", $CellContext`coefficientRule$}], 
+           Row[{"Particular solution:   ", 
+             TraditionalForm[$CellContext`particular$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}]}]], 
+      "Specifications" :> {{{$CellContext`forcingChoice$$, "Resonant", 
+          "Forcing case"}, {"Resonant", "Nonresonant"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      755.1468749999999, {100.51700439453124`, 106.24893798828124`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974776129176235`*^9},
+ CellLabel->"Out[95]=",ExpressionUUID->"4759ca36-0b7b-c94c-97b8-1c3bc7435e2d"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5d5d1f50-e6b8-4a44-b7f6-79f372009d9f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4809, 116, 370, "Input",ExpressionUUID->"36c7b45c-3783-f24e-a73d-d009565bf000"],
+Cell[5388, 140, 4305, 81, 223, "Output",ExpressionUUID->"4759ca36-0b7b-c94c-97b8-1c3bc7435e2d"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

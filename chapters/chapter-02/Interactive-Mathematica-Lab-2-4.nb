@@ -1,0 +1,286 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10719,        276]
+NotebookOptionsPosition[     10235,        259]
+NotebookOutlinePosition[     10631,        275]
+CellTagsIndexPosition[     10588,        272]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"mFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"2", " ", "x", " ", "y"}], "+", "3"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"nFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"x", "^", "2"}], "+", 
+     RowBox[{"4", " ", "y"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"potentialFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "^", "2"}], " ", "y"}], "+", 
+     RowBox[{"3", " ", "x"}], "+", 
+     RowBox[{"2", " ", 
+      RowBox[{"y", "^", "2"}]}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"exactnessCheck", ",", "gradientCheck"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"exactnessCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"mFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "==", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"nFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"gradientCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"potentialFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}], "==", 
+           RowBox[{"mFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}]}], ",", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"potentialFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "==", 
+           RowBox[{"nFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}]}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.4: Exact Equations and \
+Inspection\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<M(x,y) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"mFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<N(x,y) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"nFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<M_y = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"D", "[", 
+              RowBox[{
+               RowBox[{"mFun", "[", 
+                RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<N_x = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"D", "[", 
+              RowBox[{
+               RowBox[{"nFun", "[", 
+                RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Exactness check: \>\"", ",", "exactnessCheck"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Potential function: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"potentialFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Gradient verification: \>\"", ",", "gradientCheck"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Selected solution curve: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"potentialFun", "[", 
+               RowBox[{"x", ",", "y"}], "]"}], "==", "c"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"ContourPlot", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"potentialFun", "[", 
+             RowBox[{"x", ",", "y"}], "]"}], "==", "c"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Implicit Solution Curve F(x,y) = C\>\""}], 
+           ",", 
+           RowBox[{"PlotPoints", "->", "50"}]}], "]"}]}], "}"}], "]"}]}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "0", ",", "\"\<Solution constant C\>\""}], "}"}], ",", 
+     RowBox[{"-", "8"}], ",", "8", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974716439110165`*^9, 3.9974716439110165`*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"64ae14fc-7d3b-3345-8a0b-3ba510edd2d4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 0, "Solution constant C"}, -8, 8, 1, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    623.478515625, {161.91069959852427`, 167.64263319227427`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`c$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`exactnessCheck$, $CellContext`gradientCheck$}, \
+$CellContext`exactnessCheck$ = FullSimplify[D[
+             $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`y] == D[
+             $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`x]]; $CellContext`gradientCheck$ = FullSimplify[{D[
+              $CellContext`potentialFun[$CellContext`x, $CellContext`y], \
+$CellContext`x] == $CellContext`mFun[$CellContext`x, $CellContext`y], D[
+              $CellContext`potentialFun[$CellContext`x, $CellContext`y], \
+$CellContext`y] == $CellContext`nFun[$CellContext`x, $CellContext`y]}]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 2.4: Exact Equations and Inspection", 
+            18, Bold], 
+           Row[{"M(x,y) = ", 
+             TraditionalForm[
+              $CellContext`mFun[$CellContext`x, $CellContext`y]]}], 
+           Row[{"N(x,y) = ", 
+             TraditionalForm[
+              $CellContext`nFun[$CellContext`x, $CellContext`y]]}], 
+           Row[{"M_y = ", 
+             TraditionalForm[
+              D[
+               $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`y]]}], 
+           Row[{"N_x = ", 
+             TraditionalForm[
+              D[
+               $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`x]]}], 
+           Row[{"Exactness check: ", $CellContext`exactnessCheck$}], 
+           Row[{"Potential function: ", 
+             TraditionalForm[
+              $CellContext`potentialFun[$CellContext`x, $CellContext`y]]}], 
+           Row[{"Gradient verification: ", $CellContext`gradientCheck$}], 
+           Row[{"Selected solution curve: ", 
+             
+             TraditionalForm[$CellContext`potentialFun[$CellContext`x, \
+$CellContext`y] == $CellContext`c$$]}], 
+           
+           ContourPlot[$CellContext`potentialFun[$CellContext`x, \
+$CellContext`y] == $CellContext`c$$, {$CellContext`x, -3, 
+             3}, {$CellContext`y, -3, 3}, FrameLabel -> {"x", "y"}, PlotLabel -> 
+            "Implicit Solution Curve F(x,y) = C", PlotPoints -> 50]}]], 
+      "Specifications" :> {{{$CellContext`c$$, 0, "Solution constant C"}, -8, 
+         8, 1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      666.0785156249999, {204.77153944227427`, 210.50347303602427`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997471646205845*^9},
+ CellLabel->"Out[38]=",ExpressionUUID->"c872d6f2-bda3-ba4b-9c04-07c88a22ded3"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"734223b7-b574-494b-b256-2eef2c0963c8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5679, 152, 332, "Input",ExpressionUUID->"64ae14fc-7d3b-3345-8a0b-3ba510edd2d4"],
+Cell[6258, 176, 3961, 80, 432, "Output",ExpressionUUID->"c872d6f2-bda3-ba4b-9c04-07c88a22ded3"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

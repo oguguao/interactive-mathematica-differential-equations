@@ -1,0 +1,259 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10076,        249]
+NotebookOptionsPosition[      9592,        232]
+NotebookOutlinePosition[      9988,        248]
+CellTagsIndexPosition[      9945,        245]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "complementary", ",", "particular", ",", "completeSolution", ",", 
+       "checks"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"complementary", "=", 
+       RowBox[{
+        RowBox[{"c1", " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}], "+", 
+        RowBox[{"c2", " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"-", "x"}], "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"particular", "=", 
+       RowBox[{
+        RowBox[{"forcingAmplitude", "/", "3"}], "*", 
+        RowBox[{"Exp", "[", 
+         RowBox[{"2", " ", "x"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"completeSolution", "=", 
+       RowBox[{"complementary", "+", "particular"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"checks", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"complementary", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+            "complementary"}], "==", "0"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"particular", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", "particular"}], "==", 
+           RowBox[{"forcingAmplitude", " ", 
+            RowBox[{"Exp", "[", 
+             RowBox[{"2", " ", "x"}], "]"}]}]}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"completeSolution", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+            "completeSolution"}], "==", 
+           RowBox[{"forcingAmplitude", " ", 
+            RowBox[{"Exp", "[", 
+             RowBox[{"2", " ", "x"}], "]"}]}]}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.6: Nonhomogeneous \
+Solution Decomposition\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Complementary solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "complementary", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Particular solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "particular", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Complete solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "completeSolution", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "checks"}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "complementary", ",", "particular", ",", "completeSolution"}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "1"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Complementary yc\>\"", ",", "\"\<Particular yp\>\"",
+               ",", "\"\<Complete yc + yp\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Complementary + Particular Solution\>\""}]}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingAmplitude", ",", "1", ",", "\"\<Forcing amplitude\>\""}], "}"}],
+      ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c1", ",", "1", ",", "\"\<c1\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c2", ",", "0", ",", "\"\<c2\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997477580081255*^9, 3.997477580081255*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"8a15bec5-ee01-324f-8fb4-bd2bb74a45ee"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c1$$ = 1, $CellContext`c2$$ = 
+    0, $CellContext`forcingAmplitude$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`forcingAmplitude$$], 1, "Forcing amplitude"}, -3, 3, 
+      0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`c1$$], 1, "c1"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`c2$$], 0, "c2"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    692.75390625, {121.83166761886643`, 127.56360121261643`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c1$$ = 1, $CellContext`c2$$ = 
+        0, $CellContext`forcingAmplitude$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`complementary$, $CellContext`particular$, \
+$CellContext`completeSolution$, $CellContext`checks$}, \
+$CellContext`complementary$ = $CellContext`c1$$ 
+           Exp[$CellContext`x] + $CellContext`c2$$ 
+           Exp[-$CellContext`x]; $CellContext`particular$ = \
+($CellContext`forcingAmplitude$$/3) 
+          Exp[2 $CellContext`x]; $CellContext`completeSolution$ = \
+$CellContext`complementary$ + $CellContext`particular$; $CellContext`checks$ = 
+         FullSimplify[{
+           D[$CellContext`complementary$, {$CellContext`x, 
+                2}] - $CellContext`complementary$ == 0, 
+            D[$CellContext`particular$, {$CellContext`x, 
+                2}] - $CellContext`particular$ == \
+$CellContext`forcingAmplitude$$ Exp[2 $CellContext`x], 
+            D[$CellContext`completeSolution$, {$CellContext`x, 
+                2}] - $CellContext`completeSolution$ == \
+$CellContext`forcingAmplitude$$ Exp[2 $CellContext`x]}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.6: Nonhomogeneous Solution \
+Decomposition", 18, Bold], 
+           Row[{"Complementary solution:   ", 
+             TraditionalForm[$CellContext`complementary$]}], 
+           Row[{"Particular solution:   ", 
+             TraditionalForm[$CellContext`particular$]}], 
+           Row[{"Complete solution:   ", 
+             TraditionalForm[$CellContext`completeSolution$]}], 
+           Row[{"Verification:   ", $CellContext`checks$}], 
+           
+           Plot[{$CellContext`complementary$, $CellContext`particular$, \
+$CellContext`completeSolution$}, {$CellContext`x, -1, 2}, PlotRange -> All, 
+            PlotLegends -> {
+             "Complementary yc", "Particular yp", "Complete yc + yp"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Complementary + Particular Solution"]}]], 
+      "Specifications" :> {{{$CellContext`forcingAmplitude$$, 1, 
+          "Forcing amplitude"}, -3, 3, 
+         0.5}, {{$CellContext`c1$$, 1, "c1"}, -2, 2, 
+         0.5}, {{$CellContext`c2$$, 0, "c2"}, -2, 2, 0.5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      735.3539062499999, {192.29250746261647`, 198.02444105636647`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974775816489143`*^9},
+ CellLabel->"Out[93]=",ExpressionUUID->"92fe52eb-f5f6-fa40-887e-373a5baa63f2"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f285dee0-12e4-304e-aeee-00b77cdc9b4b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4824, 126, 275, "Input",ExpressionUUID->"8a15bec5-ee01-324f-8fb4-bd2bb74a45ee"],
+Cell[5403, 150, 4173, 79, 407, "Output",ExpressionUUID->"92fe52eb-f5f6-fa40-887e-373a5baa63f2"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

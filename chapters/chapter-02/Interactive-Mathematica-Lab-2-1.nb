@@ -1,0 +1,214 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      7894,        204]
+NotebookOptionsPosition[      7411,        187]
+NotebookOutlinePosition[      7807,        203]
+CellTagsIndexPosition[      7764,        200]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"solution", ",", "check", ",", "plot"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"solution", "=", 
+       RowBox[{"Tan", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"x", "^", "2"}], "/", "2"}], "+", 
+         RowBox[{"ArcTan", "[", "y0", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"check", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", "x"}], "]"}], "==", 
+          RowBox[{"x", " ", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"solution", "^", "2"}]}], ")"}]}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"Element", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y0"}], "}"}], ",", "Reals"}], "]"}]}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"plot", "=", 
+       RowBox[{"Plot", "[", 
+        RowBox[{"solution", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "1.7"}], ",", "1.7"}], "}"}], ",", 
+         RowBox[{"PlotRange", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+         RowBox[{"GridLines", "->", "Automatic"}], ",", 
+         RowBox[{"PlotLabel", "->", "\"\<Separable IVP Solution\>\""}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.1: Separable Equations\>\
+\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{"x", " ", 
+               RowBox[{"(", 
+                RowBox[{"1", "+", 
+                 RowBox[{
+                  RowBox[{"y", "[", "x", "]"}], "^", "2"}]}], ")"}]}]}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial condition: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "==", "y0"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification: \>\"", ",", "check"}], "}"}], "]"}], ",",
+          "plot"}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y0", ",", "0", ",", "\"\<Initial value y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "0.75"}], ",", "0.75", ",", "0.25"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.99747138745372*^9, 3.99747138745372*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"2e604c52-6edf-264e-b656-598b29b247e6"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`y0$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`y0$$], 0, "Initial value y(0)"}, -0.75, 0.75, 0.25, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    514.6171875, {119.63729059639755`, 125.36922419014755`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`y0$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`solution$, $CellContext`check$, \
+$CellContext`plot$}, $CellContext`solution$ = 
+         Tan[$CellContext`x^2/2 + 
+           ArcTan[$CellContext`y0$$]]; $CellContext`check$ = 
+         FullSimplify[
+          D[$CellContext`solution$, $CellContext`x] == $CellContext`x (
+             1 + $CellContext`solution$^2), Assumptions -> 
+           Element[{$CellContext`x, $CellContext`y0$$}, 
+             Reals]]; $CellContext`plot$ = 
+         Plot[$CellContext`solution$, {$CellContext`x, -1.7, 1.7}, 
+           PlotRange -> {-10, 10}, AxesLabel -> {"x", "y"}, GridLines -> 
+           Automatic, PlotLabel -> "Separable IVP Solution"]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.1: Separable Equations", 18, Bold], 
+           Row[{"Differential equation: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`y][$CellContext`x] == $CellContext`x (
+                1 + $CellContext`y[$CellContext`x]^2)]}], 
+           Row[{"Initial condition: ", 
+             TraditionalForm[$CellContext`y[0] == $CellContext`y0$$]}], 
+           Row[{"Solution: ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+           
+           Row[{"Verification: ", $CellContext`check$}], \
+$CellContext`plot$}]], 
+      "Specifications" :> {{{$CellContext`y0$$, 0, 
+          "Initial value y(0)"}, -0.75, 0.75, 0.25}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      557.2171874999999, {162.49813044014755`, 168.23006403389755`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997471390517788*^9},
+ CellLabel->"Out[24]=",ExpressionUUID->"38a767de-84ce-be4b-9044-90003f2cce12"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"bfdab1a8-0a37-524b-9b09-6b65cc69998a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 3604, 95, 180, "Input",ExpressionUUID->"2e604c52-6edf-264e-b656-598b29b247e6"],
+Cell[4183, 119, 3212, 65, 347, "Output",ExpressionUUID->"38a767de-84ce-be4b-9044-90003f2cce12"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

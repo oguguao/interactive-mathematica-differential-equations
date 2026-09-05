@@ -1,0 +1,272 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10885,        262]
+NotebookOptionsPosition[     10401,        245]
+NotebookOutlinePosition[     10797,        261]
+CellTagsIndexPosition[     10754,        258]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "responseTransform", ",", "responseFunction", ",", "inverseResult", ",",
+        "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"responseTransform", "=", 
+       RowBox[{"impulseStrength", "*", 
+        RowBox[{
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "impulseTime"}], " ", "s"}], "]"}], "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"s", "^", "2"}], "+", 
+           RowBox[{"naturalFrequency", "^", "2"}]}], ")"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"responseFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"impulseStrength", "/", "naturalFrequency"}], "*", 
+        RowBox[{"UnitStep", "[", 
+         RowBox[{"t", "-", "impulseTime"}], "]"}], "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"naturalFrequency", "*", 
+          RowBox[{"(", 
+           RowBox[{"t", "-", "impulseTime"}], ")"}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"inverseResult", "=", 
+       RowBox[{"InverseLaplaceTransform", "[", 
+        RowBox[{"responseTransform", ",", "s", ",", "t"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"inverseResult", "==", 
+          RowBox[{"responseFunction", "[", "t", "]"}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{
+           RowBox[{"t", ">=", "0"}], "&&", 
+           RowBox[{"impulseTime", ">", "0"}], "&&", 
+           RowBox[{"naturalFrequency", ">", "0"}], "&&", 
+           RowBox[{"t", "!=", "impulseTime"}]}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.6: Dirac Delta and \
+Impulse Inputs\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Impulse time:   \>\"", ",", "impulseTime"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Impulse strength:   \>\"", ",", "impulseStrength"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Natural frequency:   \>\"", ",", "naturalFrequency"}],
+            "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transform-domain response:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "responseTransform", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Time-domain response:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"responseFunction", "[", "t", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Inverse-transform check:   \>\"", ",", 
+            "verification"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"responseFunction", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "12"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<y(t)\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", "impulseTime", "}"}], ",", "Automatic"}], "}"}]}], 
+           ",", 
+           RowBox[{"Exclusions", "->", 
+            RowBox[{"{", "impulseTime", "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Oscillator Response to a Delayed Impulse\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"impulseTime", ",", "Pi", ",", "\"\<Impulse time\>\""}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<1\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2\>\""}], ",", 
+       RowBox[{"Pi", "->", "\"\<Pi\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<4\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"impulseStrength", ",", "1", ",", "\"\<Impulse strength\>\""}], 
+      "}"}], ",", "0.5", ",", "4", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "naturalFrequency", ",", "1", ",", "\"\<Natural frequency\>\""}], "}"}],
+      ",", "0.5", ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974797371347656`*^9, 3.9974797371347656`*^9}},
+ CellLabel->
+  "In[142]:=",ExpressionUUID->"0ad5bc98-5ad4-b14c-9bc2-dbe58b19f4f0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`impulseStrength$$ = 
+    1, $CellContext`impulseTime$$ = Pi, $CellContext`naturalFrequency$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`impulseTime$$], Pi, "Impulse time"}, {
+      1 -> "1", 2 -> "2", Pi -> "Pi", 4 -> "4"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`impulseStrength$$], 1, "Impulse strength"}, 0.5, 4, 
+      0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`naturalFrequency$$], 1, "Natural frequency"}, 0.5, 3,
+       0.5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    623.478515625, {125.69776563613448`, 131.42969922988448`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`impulseStrength$$ = 
+        1, $CellContext`impulseTime$$ = Pi, $CellContext`naturalFrequency$$ = 
+        1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`responseTransform$, \
+$CellContext`responseFunction$, $CellContext`inverseResult$, \
+$CellContext`verification$}, $CellContext`responseTransform$ = \
+$CellContext`impulseStrength$$ (
+           Exp[(-$CellContext`impulseTime$$) \
+$CellContext`s]/($CellContext`s^2 + $CellContext`naturalFrequency$$^2)); \
+$CellContext`responseFunction$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := \
+($CellContext`impulseStrength$$/$CellContext`naturalFrequency$$) 
+          UnitStep[$CellContext`t$ - $CellContext`impulseTime$$] 
+          Sin[$CellContext`naturalFrequency$$ ($CellContext`t$ - \
+$CellContext`impulseTime$$)]; $CellContext`inverseResult$ = 
+         InverseLaplaceTransform[$CellContext`responseTransform$, \
+$CellContext`s, $CellContext`t]; $CellContext`verification$ = 
+         FullSimplify[$CellContext`inverseResult$ == \
+$CellContext`responseFunction$[$CellContext`t], Assumptions -> 
+           And[$CellContext`t >= 0, $CellContext`impulseTime$$ > 
+             0, $CellContext`naturalFrequency$$ > 
+             0, $CellContext`t != $CellContext`impulseTime$$]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.6: Dirac Delta and Impulse Inputs", 
+            18, Bold], 
+           Row[{"Impulse time:   ", $CellContext`impulseTime$$}], 
+           Row[{"Impulse strength:   ", $CellContext`impulseStrength$$}], 
+           Row[{"Natural frequency:   ", $CellContext`naturalFrequency$$}], 
+           Row[{"Transform-domain response:   ", 
+             TraditionalForm[$CellContext`responseTransform$]}], 
+           Row[{"Time-domain response:   ", 
+             TraditionalForm[
+              $CellContext`responseFunction$[$CellContext`t]]}], 
+           Row[{"Inverse-transform check:   ", $CellContext`verification$}], 
+           Plot[
+            $CellContext`responseFunction$[$CellContext`t], {$CellContext`t, 
+             0, 12}, PlotRange -> All, AxesLabel -> {"t", "y(t)"}, 
+            GridLines -> {{$CellContext`impulseTime$$}, Automatic}, 
+            Exclusions -> {$CellContext`impulseTime$$}, PlotLabel -> 
+            "Oscillator Response to a Delayed Impulse"]}]], 
+      "Specifications" :> {{{$CellContext`impulseTime$$, Pi, 
+          "Impulse time"}, {
+         1 -> "1", 2 -> "2", Pi -> "Pi", 4 -> 
+          "4"}}, {{$CellContext`impulseStrength$$, 1, "Impulse strength"}, 
+         0.5, 4, 0.5}, {{$CellContext`naturalFrequency$$, 1, 
+          "Natural frequency"}, 0.5, 3, 0.5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      666.0785156249999, {196.1439570423845, 201.8758906361345}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974797380072994`*^9},
+ CellLabel->
+  "Out[143]=",ExpressionUUID->"35ebd8d9-9487-0c47-b507-9563de5dd57f"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2881622a-9800-c141-a8ea-b6473896e4df"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5079, 130, 294, "Input",ExpressionUUID->"0ad5bc98-5ad4-b14c-9bc2-dbe58b19f4f0"],
+Cell[5658, 154, 4727, 88, 415, "Output",ExpressionUUID->"35ebd8d9-9487-0c47-b507-9563de5dd57f"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

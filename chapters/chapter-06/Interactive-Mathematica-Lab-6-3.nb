@@ -1,0 +1,302 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11921,        292]
+NotebookOptionsPosition[     11437,        275]
+NotebookOutlinePosition[     11833,        291]
+CellTagsIndexPosition[     11790,        288]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "slopeFunction", ",", "exactSolution", ",", "numberOfSteps", ",", 
+       "modifiedEulerStep", ",", "modifiedPoints", ",", "errorTable", ",", 
+       "finalError"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"slopeFunction", "[", 
+        RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+       RowBox[{"y", "-", 
+        RowBox[{"x", "^", "2"}], "+", "1"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"exactSolution", "[", "x_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "1"}], ")"}], "^", "2"}], "-", 
+        RowBox[{"0.5", " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"numberOfSteps", "=", 
+       RowBox[{"Round", "[", 
+        RowBox[{"2", "/", "stepSize"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"modifiedEulerStep", "[", 
+        RowBox[{"{", 
+         RowBox[{"currentX_", ",", "currentY_"}], "}"}], "]"}], ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"beginningSlope", ",", "predictor", ",", "endpointSlope"}], 
+          "}"}], ",", 
+         RowBox[{
+          RowBox[{"beginningSlope", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{"currentX", ",", "currentY"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"predictor", "=", 
+           RowBox[{"currentY", "+", 
+            RowBox[{"stepSize", " ", "beginningSlope"}]}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"endpointSlope", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{
+             RowBox[{"currentX", "+", "stepSize"}], ",", "predictor"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"currentX", "+", "stepSize"}], ",", 
+            RowBox[{"currentY", "+", 
+             RowBox[{
+              RowBox[{"stepSize", "/", "2"}], " ", 
+              RowBox[{"(", 
+               RowBox[{"beginningSlope", "+", "endpointSlope"}], ")"}]}]}]}], 
+           "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"modifiedPoints", "=", 
+       RowBox[{"NestList", "[", 
+        RowBox[{"modifiedEulerStep", ",", 
+         RowBox[{"{", 
+          RowBox[{"0.", ",", "0.5"}], "}"}], ",", "numberOfSteps"}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"errorTable", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ",", 
+            RowBox[{"exactSolution", "[", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Abs", "[", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "-", 
+              RowBox[{"exactSolution", "[", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "]"}]}], "}"}], 
+          "&"}], ")"}], "/@", "modifiedPoints"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"finalError", "=", 
+       RowBox[{
+        RowBox[{"Last", "[", "errorTable", "]"}], "[", 
+        RowBox[{"[", "4", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 6.3: Modified Euler's \
+Method\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Step size h: \>\"", ",", "stepSize"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Final absolute error: \>\"", ",", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "finalError", "]"}], ",", "5"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"Prepend", "[", 
+            RowBox[{
+             RowBox[{"N", "[", 
+              RowBox[{"errorTable", ",", "8"}], "]"}], ",", 
+             RowBox[{"{", 
+              
+              RowBox[{"\"\<x\>\"", ",", "\"\<Modified Euler\>\"", 
+               ",", "\"\<Exact\>\"", ",", "\"\<Error\>\""}], "}"}]}], "]"}], ",", 
+           RowBox[{"Frame", "->", "All"}]}], "]"}], ",", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"ListLinePlot", "[", 
+            RowBox[{"modifiedPoints", ",", 
+             RowBox[{"PlotMarkers", "->", "Automatic"}]}], "]"}], ",", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"exactSolution", "[", "x", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "2"}], "}"}]}], "]"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Modified Euler and Exact Solution\>\""}]}],
+           "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"stepSize", ",", "0.2", ",", "\"\<Step size h\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.5", "->", "\"\<0.5\>\""}], ",", 
+       RowBox[{"0.25", "->", "\"\<0.25\>\""}], ",", 
+       RowBox[{"0.2", "->", "\"\<0.2\>\""}], ",", 
+       RowBox[{"0.1", "->", "\"\<0.1\>\""}], ",", 
+       RowBox[{"0.05", "->", "\"\<0.05\>\""}]}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.997478679035572*^9, 3.997478679035572*^9}},
+ CellLabel->
+  "In[118]:=",ExpressionUUID->"25ffe269-001b-b742-baf6-60412564a7c1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`stepSize$$ = 0.2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`stepSize$$], 0.2, "Step size h"}, {
+      0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> 
+       "0.05"}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    554.203125, {204.61051543191235`, 210.34244902566235`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`stepSize$$ = 0.2}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`slopeFunction$, $CellContext`exactSolution$, \
+$CellContext`numberOfSteps$, $CellContext`modifiedEulerStep$, \
+$CellContext`modifiedPoints$, $CellContext`errorTable$, \
+$CellContext`finalError$}, $CellContext`slopeFunction$[
+           Pattern[$CellContext`x, 
+            Blank[]], 
+           Pattern[$CellContext`y, 
+            Blank[]]] := $CellContext`y - $CellContext`x^2 + 
+          1; $CellContext`exactSolution$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := ($CellContext`x + 1)^2 - 0.5 
+          Exp[$CellContext`x]; $CellContext`numberOfSteps$ = 
+         Round[2/$CellContext`stepSize$$]; $CellContext`modifiedEulerStep$[{
+            Pattern[$CellContext`currentX$, 
+             Blank[]], 
+            Pattern[$CellContext`currentY$, 
+             Blank[]]}] := 
+         Module[{$CellContext`beginningSlope$, $CellContext`predictor$, \
+$CellContext`endpointSlope$}, $CellContext`beginningSlope$ = \
+$CellContext`slopeFunction$[$CellContext`currentX$, $CellContext`currentY$]; \
+$CellContext`predictor$ = $CellContext`currentY$ + $CellContext`stepSize$$ \
+$CellContext`beginningSlope$; $CellContext`endpointSlope$ = \
+$CellContext`slopeFunction$[$CellContext`currentX$ + $CellContext`stepSize$$, \
+$CellContext`predictor$]; {$CellContext`currentX$ + $CellContext`stepSize$$, \
+$CellContext`currentY$ + ($CellContext`stepSize$$/
+               2) ($CellContext`beginningSlope$ + \
+$CellContext`endpointSlope$)}]; $CellContext`modifiedPoints$ = 
+         NestList[$CellContext`modifiedEulerStep$, {0., 
+           0.5}, $CellContext`numberOfSteps$]; $CellContext`errorTable$ = Map[{
+            Part[#, 1], 
+            Part[#, 2], 
+            $CellContext`exactSolution$[
+             Part[#, 1]], 
+            Abs[Part[#, 2] - $CellContext`exactSolution$[
+              
+              Part[#, 1]]]}& , $CellContext`modifiedPoints$]; \
+$CellContext`finalError$ = Part[
+           Last[$CellContext`errorTable$], 4]; Column[{
+           Style[
+           "Interactive Mathematica Lab 6.3: Modified Euler's Method", 18, 
+            Bold], 
+           Row[{"Step size h: ", $CellContext`stepSize$$}], 
+           Row[{"Final absolute error: ", 
+             ScientificForm[
+              N[$CellContext`finalError$], 5]}], 
+           Grid[
+            Prepend[
+             N[$CellContext`errorTable$, 8], {
+             "x", "Modified Euler", "Exact", "Error"}], Frame -> All], 
+           Show[
+            
+            ListLinePlot[$CellContext`modifiedPoints$, PlotMarkers -> 
+             Automatic], 
+            Plot[
+             $CellContext`exactSolution$[$CellContext`x], {$CellContext`x, 0, 
+              2}], AxesLabel -> {"x", "y"}, PlotLabel -> 
+            "Modified Euler and Exact Solution"]}]], 
+      "Specifications" :> {{{$CellContext`stepSize$$, 0.2, "Step size h"}, {
+         0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> 
+          "0.05"}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      596.8031249999999, {247.45670683816235`, 253.18864043191235`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974786802359676`*^9},
+ CellLabel->
+  "Out[119]=",ExpressionUUID->"72148697-3c67-5448-9a8f-daf8bdfa0ce4"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"71ab930e-1319-ab42-928b-09dab6249f14"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6054, 152, 389, "Input",ExpressionUUID->"25ffe269-001b-b742-baf6-60412564a7c1"],
+Cell[6633, 176, 4788, 96, 517, "Output",ExpressionUUID->"72148697-3c67-5448-9a8f-daf8bdfa0ce4"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

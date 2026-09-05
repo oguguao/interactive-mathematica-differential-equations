@@ -1,0 +1,357 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14018,        347]
+NotebookOptionsPosition[     13533,        330]
+NotebookOutlinePosition[     13929,        346]
+CellTagsIndexPosition[     13886,        343]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "x", ",", "y", ",", "c", ",", "mFun", ",", "nFun", ",", "stageChoice"}], 
+    "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"mFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{"x", "+", 
+     RowBox[{"2", " ", "y"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"nFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", "x"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "originalExact", ",", "ratio", ",", "mu", ",", "mStar", ",", "nStar", ",",
+        "transformedExact", ",", "potentialFun", ",", "potentialCheck"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"originalExact", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"mFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "==", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"nFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"ratio", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"mFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "-", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"nFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], ")"}], "/", 
+         RowBox[{"nFun", "[", 
+          RowBox[{"x", ",", "y"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Since", " ", "ratio"}], "=", 
+         RowBox[{"1", "/", "x"}]}], ",", 
+        RowBox[{
+         RowBox[{"choose", " ", "mu"}], "=", 
+         RowBox[{
+          RowBox[{
+          "x", " ", "on", " ", "any", " ", "interval", " ", "not", " ", 
+           "containing", " ", "x"}], "=", "0."}]}]}], "*)"}], 
+      RowBox[{"mu", "=", "x"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"mStar", "=", 
+       RowBox[{"Expand", "[", 
+        RowBox[{"mu", " ", 
+         RowBox[{"mFun", "[", 
+          RowBox[{"x", ",", "y"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"nStar", "=", 
+       RowBox[{"Expand", "[", 
+        RowBox[{"mu", " ", 
+         RowBox[{"nFun", "[", 
+          RowBox[{"x", ",", "y"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"transformedExact", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{"mStar", ",", "y"}], "]"}], "==", 
+         RowBox[{"D", "[", 
+          RowBox[{"nStar", ",", "x"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"potentialFun", "=", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{"mStar", ",", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"potentialCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"potentialFun", ",", "x"}], "]"}], "==", "mStar"}], ",", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"potentialFun", ",", "y"}], "]"}], "==", "nStar"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.6: Integrating Factor \
+for a Nonexact Equation\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Switch", "[", 
+          RowBox[{"stageChoice", ",", "\"\<Original Equation\>\"", ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<M(x,y) = \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", 
+                  RowBox[{"mFun", "[", 
+                   RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<N(x,y) = \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", 
+                  RowBox[{"nFun", "[", 
+                   RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                
+                RowBox[{"\"\<Original equation exact? \>\"", ",", 
+                 "originalExact"}], "}"}], "]"}]}], "}"}], "]"}], 
+           ",", "\"\<Find Integrating Factor\>\"", ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Test ratio = \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", "ratio", "]"}]}], "}"}], 
+               "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Integrating factor: \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", "mu", "]"}]}], "}"}], "]"}], 
+              ",", 
+              RowBox[{"Style", "[", 
+               
+               RowBox[{"\"\<The integrating factor is valid on an interval \
+that does not cross x = 0.\>\"", ",", "13", ",", "Bold"}], "]"}]}], "}"}], 
+            "]"}], ",", "\"\<Transformed Equation\>\"", ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Transformed M*: \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", "mStar", "]"}]}], "}"}], 
+               "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Transformed N*: \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", "nStar", "]"}]}], "}"}], 
+               "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                
+                RowBox[{"\"\<Transformed equation exact? \>\"", ",", 
+                 "transformedExact"}], "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Potential function: \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", "potentialFun", "]"}]}], 
+                "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                
+                RowBox[{"\"\<Potential verification: \>\"", ",", 
+                 "potentialCheck"}], "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Implicit solution: \>\"", ",", 
+                 RowBox[{"TraditionalForm", "[", 
+                  RowBox[{"potentialFun", "==", "c"}], "]"}]}], "}"}], 
+               "]"}]}], "}"}], "]"}]}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "stageChoice", ",", "\"\<Original Equation\>\"", 
+       ",", "\"\<Explore:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Original Equation\>\"", 
+       ",", "\"\<Find Integrating Factor\>\"", 
+       ",", "\"\<Transformed Equation\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974719270470963`*^9, 3.9974719270470963`*^9}},
+ CellLabel->"In[47]:=",ExpressionUUID->"a71834e3-256b-6646-8b62-7b8078d277fc"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`stageChoice$$ = "Original Equation", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`stageChoice$$], "Original Equation", "Explore:"}, {
+      "Original Equation", "Find Integrating Factor", "Transformed Equation"},
+       ControlType -> SetterBar}}, Typeset`size$$ = {
+    742.236328125, {30.634960937500004`, 36.366894531250004`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`stageChoice$$ = "Original Equation"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`originalExact$, $CellContext`ratio$, \
+$CellContext`mu$, $CellContext`mStar$, $CellContext`nStar$, \
+$CellContext`transformedExact$, $CellContext`potentialFun$, \
+$CellContext`potentialCheck$}, $CellContext`originalExact$ = FullSimplify[D[
+             $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`y] == D[
+             $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`x]]; $CellContext`ratio$ = FullSimplify[(D[
+              $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`y] - D[
+             $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`x])/$CellContext`nFun[$CellContext`x, $CellContext`y]]; \
+$CellContext`mu$ = $CellContext`x; $CellContext`mStar$ = 
+         Expand[$CellContext`mu$ $CellContext`mFun[$CellContext`x, \
+$CellContext`y]]; $CellContext`nStar$ = 
+         Expand[$CellContext`mu$ $CellContext`nFun[$CellContext`x, \
+$CellContext`y]]; $CellContext`transformedExact$ = 
+         FullSimplify[
+          D[$CellContext`mStar$, $CellContext`y] == 
+           D[$CellContext`nStar$, $CellContext`x]]; \
+$CellContext`potentialFun$ = 
+         Integrate[$CellContext`mStar$, $CellContext`x]; \
+$CellContext`potentialCheck$ = 
+         FullSimplify[{
+           D[$CellContext`potentialFun$, $CellContext`x] == \
+$CellContext`mStar$, 
+            D[$CellContext`potentialFun$, $CellContext`y] == \
+$CellContext`nStar$}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.6: Integrating Factor for a \
+Nonexact Equation", 18, Bold], 
+           Switch[$CellContext`stageChoice$$, "Original Equation", 
+            Column[{
+              Row[{"M(x,y) = ", 
+                TraditionalForm[
+                 $CellContext`mFun[$CellContext`x, $CellContext`y]]}], 
+              Row[{"N(x,y) = ", 
+                TraditionalForm[
+                 $CellContext`nFun[$CellContext`x, $CellContext`y]]}], 
+              
+              Row[{"Original equation exact? ", \
+$CellContext`originalExact$}]}], "Find Integrating Factor", 
+            Column[{
+              Row[{"Test ratio = ", 
+                TraditionalForm[$CellContext`ratio$]}], 
+              Row[{"Integrating factor: ", 
+                TraditionalForm[$CellContext`mu$]}], 
+              Style[
+              "The integrating factor is valid on an interval that does not \
+cross x = 0.", 13, Bold]}], "Transformed Equation", 
+            Column[{
+              Row[{"Transformed M*: ", 
+                TraditionalForm[$CellContext`mStar$]}], 
+              Row[{"Transformed N*: ", 
+                TraditionalForm[$CellContext`nStar$]}], 
+              
+              Row[{"Transformed equation exact? ", \
+$CellContext`transformedExact$}], 
+              Row[{"Potential function: ", 
+                TraditionalForm[$CellContext`potentialFun$]}], 
+              Row[{"Potential verification: ", $CellContext`potentialCheck$}], 
+              Row[{"Implicit solution: ", 
+                
+                TraditionalForm[$CellContext`potentialFun$ == \
+$CellContext`c]}]}]]}]], 
+      "Specifications" :> {{{$CellContext`stageChoice$$, "Original Equation", 
+          "Explore:"}, {
+         "Original Equation", "Find Integrating Factor", 
+          "Transformed Equation"}, ControlType -> SetterBar}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      784.8363281249999, {73.48115234374998, 79.21308593749998}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.99747192841251*^9},
+ CellLabel->"Out[50]=",ExpressionUUID->"d99b396f-52d5-7a40-b4e7-fb5f2183eafb"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cbd616a1-241f-bd4d-87b7-80fbe5c5d713"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7737, 197, 503, "Input",ExpressionUUID->"a71834e3-256b-6646-8b62-7b8078d277fc"],
+Cell[8316, 221, 5201, 106, 169, "Output",ExpressionUUID->"d99b396f-52d5-7a40-b4e7-fb5f2183eafb"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

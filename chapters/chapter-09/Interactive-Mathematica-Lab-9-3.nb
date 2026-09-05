@@ -1,0 +1,285 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11228,        275]
+NotebookOptionsPosition[     10744,        258]
+NotebookOutlinePosition[     11140,        274]
+CellTagsIndexPosition[     11097,        271]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "seriesSolution", ",", "seriesPolynomial", ",", "numericalSolution", ",",
+        "errorAtPoint"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"seriesSolution", "=", 
+       RowBox[{"AsymptoticDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+             RowBox[{"x", " ", 
+              RowBox[{"y", "[", "x", "]"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"y", "[", "0", "]"}], "==", "initialValue"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "0", "]"}], "==", "initialSlope"}]}], 
+          "}"}], ",", 
+         RowBox[{"y", "[", "x", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "seriesOrder"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"seriesPolynomial", "=", 
+       RowBox[{"Normal", "[", "seriesSolution", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"numericalSolution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+             RowBox[{"x", " ", 
+              RowBox[{"y", "[", "x", "]"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"y", "[", "0", "]"}], "==", "initialValue"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "0", "]"}], "==", "initialSlope"}]}], 
+          "}"}], ",", "y", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"errorAtPoint", "=", 
+       RowBox[{"Abs", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"seriesPolynomial", "/.", "\[IndentingNewLine]", 
+           RowBox[{"x", "->", "comparisonPoint"}]}], ")"}], "-", 
+         RowBox[{"numericalSolution", "[", "comparisonPoint", "]"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.3: Power-Series \
+Solutions at Ordinary Points\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Requested series order: \>\"", ",", "seriesOrder"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Series polynomial: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "seriesPolynomial", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Absolute difference at x = \>\"", ",", 
+            "comparisonPoint", ",", "\"\<: \>\"", ",", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "errorAtPoint", "]"}], ",", "5"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"seriesPolynomial", ",", 
+             RowBox[{"numericalSolution", "[", "x", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Series polynomial\>\"", 
+              ",", "\"\<Numerical solution\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Local Series and Numerical Solution\>\""}]}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "seriesOrder", ",", "10", ",", "\"\<Requested series order\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "6", ",", "8", ",", "10", ",", "12", ",", "14"}], 
+      "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "1", ",", "\"\<y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialSlope", ",", "0", ",", "\"\<y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"comparisonPoint", ",", "1", ",", "\"\<Comparison point\>\""}], 
+      "}"}], ",", "0", ",", "2.5", ",", "0.25"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974808774581356`*^9, 3.997480877459381*^9}},
+ CellLabel->
+  "In[156]:=",ExpressionUUID->"84fba063-c7c2-1d45-83ff-34da49a99348"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`comparisonPoint$$ = 
+    1, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 
+    1, $CellContext`seriesOrder$$ = 10, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`seriesOrder$$], 10, "Requested series order"}, {4, 6,
+       8, 10, 12, 14}, ControlType -> PopupMenu}, {{
+       Hold[$CellContext`initialValue$$], 1, "y(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialSlope$$], 0, "y'(0)"}, -2, 2, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`comparisonPoint$$], 1, "Comparison point"}, 0, 2.5, 
+      0.25, ControlType -> Manipulator}}, Typeset`size$$ = {
+    733.2451171875, {104.94134752985222`, 110.67328112360222`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`comparisonPoint$$ = 
+        1, $CellContext`initialSlope$$ = 0, $CellContext`initialValue$$ = 
+        1, $CellContext`seriesOrder$$ = 10}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`seriesSolution$, $CellContext`seriesPolynomial$, \
+$CellContext`numericalSolution$, $CellContext`errorAtPoint$}, \
+$CellContext`seriesSolution$ = 
+         AsymptoticDSolveValue[{
+           Derivative[
+              2][$CellContext`y][$CellContext`x] + $CellContext`x \
+$CellContext`y[$CellContext`x] == 
+            0, $CellContext`y[0] == $CellContext`initialValue$$, 
+            Derivative[1][$CellContext`y][0] == $CellContext`initialSlope$$}, 
+           $CellContext`y[$CellContext`x], {$CellContext`x, 
+            0, $CellContext`seriesOrder$$}]; $CellContext`seriesPolynomial$ = 
+         Normal[$CellContext`seriesSolution$]; \
+$CellContext`numericalSolution$ = 
+         NDSolveValue[{
+           Derivative[
+              2][$CellContext`y][$CellContext`x] + $CellContext`x \
+$CellContext`y[$CellContext`x] == 
+            0, $CellContext`y[0] == $CellContext`initialValue$$, 
+            Derivative[1][$CellContext`y][
+             0] == $CellContext`initialSlope$$}, $CellContext`y, \
+{$CellContext`x, -3, 3}]; $CellContext`errorAtPoint$ = 
+         Abs[ReplaceAll[$CellContext`seriesPolynomial$, $CellContext`x -> \
+$CellContext`comparisonPoint$$] - \
+$CellContext`numericalSolution$[$CellContext`comparisonPoint$$]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 9.3: Power-Series Solutions at \
+Ordinary Points", 18, Bold], 
+           Row[{"Requested series order: ", $CellContext`seriesOrder$$}], 
+           Row[{"Series polynomial: ", 
+             TraditionalForm[$CellContext`seriesPolynomial$]}], 
+           
+           Row[{"Absolute difference at x = ", $CellContext`comparisonPoint$$,
+              ": ", 
+             ScientificForm[
+              N[$CellContext`errorAtPoint$], 5]}], 
+           Plot[{$CellContext`seriesPolynomial$, 
+             $CellContext`numericalSolution$[$CellContext`x]}, \
+{$CellContext`x, -3, 3}, PlotRange -> All, 
+            PlotLegends -> {"Series polynomial", "Numerical solution"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Local Series and Numerical Solution"]}]], 
+      "Specifications" :> {{{$CellContext`seriesOrder$$, 10, 
+          "Requested series order"}, {4, 6, 8, 10, 12, 
+         14}}, {{$CellContext`initialValue$$, 1, "y(0)"}, -2, 2, 
+         0.5}, {{$CellContext`initialSlope$$, 0, "y'(0)"}, -2, 2, 
+         0.5}, {{$CellContext`comparisonPoint$$, 1, "Comparison point"}, 0, 
+         2.5, 0.25}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      775.8451171874999, {190.89017565485221`, 196.62210924860221`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974808784674854`*^9},
+ CellLabel->
+  "Out[157]=",ExpressionUUID->"a41e5f29-e50e-1c45-8228-82662d3eb4f6"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4d7e001c-07e8-7e44-9ee7-a7f1ab2af86b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5307, 139, 294, "Input",ExpressionUUID->"84fba063-c7c2-1d45-83ff-34da49a99348"],
+Cell[5886, 163, 4842, 92, 404, "Output",ExpressionUUID->"a41e5f29-e50e-1c45-8228-82662d3eb4f6"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

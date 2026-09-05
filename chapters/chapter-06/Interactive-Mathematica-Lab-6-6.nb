@@ -1,0 +1,281 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11122,        271]
+NotebookOptionsPosition[     10638,        254]
+NotebookOutlinePosition[     11034,        270]
+CellTagsIndexPosition[     10991,        267]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "solution", ",", "angleSolution", ",", "angularVelocitySolution"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"solution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"angleState", "'"}], "[", "t", "]"}], "==", 
+            RowBox[{"angularVelocityState", "[", "t", "]"}]}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"angularVelocityState", "'"}], "[", "t", "]"}], "==", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "dampingCoefficient"}], " ", 
+              RowBox[{"angularVelocityState", "[", "t", "]"}]}], "-", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"angleState", "[", "t", "]"}], "]"}]}]}], ",", 
+           RowBox[{
+            RowBox[{"angleState", "[", "0", "]"}], "==", "initialAngle"}], ",", 
+           RowBox[{
+            RowBox[{"angularVelocityState", "[", "0", "]"}], "==", 
+            "initialAngularVelocity"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"angleState", ",", "angularVelocityState"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"angleSolution", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"solution", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "[", "t", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"angularVelocitySolution", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"solution", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "[", "t", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 6.6: Higher-Order \
+Initial-Value Problems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<First-order system: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"angleState", "'"}], "[", "t", "]"}], "==", 
+                RowBox[{"angularVelocityState", "[", "t", "]"}]}], ",", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"angularVelocityState", "'"}], "[", "t", "]"}], "==", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "dampingCoefficient"}], " ", 
+                  RowBox[{"angularVelocityState", "[", "t", "]"}]}], "-", 
+                 RowBox[{"Sin", "[", 
+                  RowBox[{"angleState", "[", "t", "]"}], "]"}]}]}]}], "}"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"GraphicsRow", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"angleSolution", "[", "t", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<t\>\"", ",", "\"\<Angle\>\""}], "}"}]}], ",", 
+              RowBox[{"GridLines", "->", "Automatic"}], ",", 
+              RowBox[{"PlotLabel", "->", "\"\<Angular Displacement\>\""}]}], 
+             "]"}], ",", 
+            RowBox[{"ParametricPlot", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"angleSolution", "[", "t", "]"}], ",", 
+                RowBox[{"angularVelocitySolution", "[", "t", "]"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Angle\>\"", ",", "\"\<Angular Velocity\>\""}], 
+                "}"}]}], ",", 
+              RowBox[{"GridLines", "->", "Automatic"}], ",", 
+              RowBox[{"PlotLabel", "->", "\"\<Phase Curve\>\""}]}], "]"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialAngle", ",", "1.2", ",", "\"\<Initial angle\>\""}], 
+      "}"}], ",", "0.2", ",", "2.5", ",", "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialAngularVelocity", ",", "0", 
+       ",", "\"\<Initial angular velocity\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"dampingCoefficient", ",", "0", ",", "\"\<Damping\>\""}], "}"}],
+      ",", "0", ",", "1", ",", "0.1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974787843374443`*^9, 3.9974787843374443`*^9}},
+ CellLabel->
+  "In[124]:=",ExpressionUUID->"acc69d3c-fb45-4c45-9678-fe8d5b5e4e0f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dampingCoefficient$$ = 
+    0, $CellContext`initialAngle$$ = 
+    1.2, $CellContext`initialAngularVelocity$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialAngle$$], 1.2, "Initial angle"}, 0.2, 2.5, 
+      0.1, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialAngularVelocity$$], 0, 
+       "Initial angular velocity"}, -2, 2, 0.25, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`dampingCoefficient$$], 0, "Damping"}, 0, 1, 0.1, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    778.95439453125, {167.0834321732269, 172.8153657669769}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dampingCoefficient$$ = 
+        0, $CellContext`initialAngle$$ = 
+        1.2, $CellContext`initialAngularVelocity$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`solution$, $CellContext`angleSolution$, \
+$CellContext`angularVelocitySolution$}, $CellContext`solution$ = 
+         NDSolveValue[{
+           Derivative[
+             1][$CellContext`angleState][$CellContext`t] == \
+$CellContext`angularVelocityState[$CellContext`t], 
+            Derivative[
+             1][$CellContext`angularVelocityState][$CellContext`t] == \
+(-$CellContext`dampingCoefficient$$) \
+$CellContext`angularVelocityState[$CellContext`t] - Sin[
+              $CellContext`angleState[$CellContext`t]], \
+$CellContext`angleState[
+             0] == $CellContext`initialAngle$$, \
+$CellContext`angularVelocityState[
+             0] == $CellContext`initialAngularVelocity$$}, \
+{$CellContext`angleState, $CellContext`angularVelocityState}, {$CellContext`t,
+             0, 30}]; $CellContext`angleSolution$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         Part[$CellContext`solution$, 
+           1][$CellContext`t$]; $CellContext`angularVelocitySolution$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := Part[$CellContext`solution$, 2][$CellContext`t$]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 6.6: Higher-Order Initial-Value \
+Problems", 18, Bold], 
+           Row[{"First-order system: ", 
+             
+             TraditionalForm[{
+              Derivative[
+                1][$CellContext`angleState][$CellContext`t] == \
+$CellContext`angularVelocityState[$CellContext`t], 
+               Derivative[
+                1][$CellContext`angularVelocityState][$CellContext`t] == \
+(-$CellContext`dampingCoefficient$$) \
+$CellContext`angularVelocityState[$CellContext`t] - Sin[
+                 $CellContext`angleState[$CellContext`t]]}]}], 
+           GraphicsRow[{
+             Plot[
+              $CellContext`angleSolution$[$CellContext`t], {$CellContext`t, 0,
+                30}, AxesLabel -> {"t", "Angle"}, GridLines -> Automatic, 
+              PlotLabel -> "Angular Displacement"], 
+             ParametricPlot[{
+               $CellContext`angleSolution$[$CellContext`t], 
+               $CellContext`angularVelocitySolution$[$CellContext`t]}, \
+{$CellContext`t, 0, 30}, AxesLabel -> {"Angle", "Angular Velocity"}, 
+              GridLines -> Automatic, PlotLabel -> "Phase Curve"]}]}]], 
+      "Specifications" :> {{{$CellContext`initialAngle$$, 1.2, 
+          "Initial angle"}, 0.2, 2.5, 
+         0.1}, {{$CellContext`initialAngularVelocity$$, 0, 
+          "Initial angular velocity"}, -2, 2, 
+         0.25}, {{$CellContext`dampingCoefficient$$, 0, "Damping"}, 0, 1, 
+         0.1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      821.55439453125, {237.54427201697692`, 243.27620561072692`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997478785255995*^9},
+ CellLabel->
+  "Out[125]=",ExpressionUUID->"e6f4eacf-bccc-2d4c-9524-0a4b33961130"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f9293780-1d76-2443-abe2-e53426b1860b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5189, 128, 332, "Input",ExpressionUUID->"acc69d3c-fb45-4c45-9678-fe8d5b5e4e0f"],
+Cell[5768, 152, 4854, 99, 497, "Output",ExpressionUUID->"e6f4eacf-bccc-2d4c-9524-0a4b33961130"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

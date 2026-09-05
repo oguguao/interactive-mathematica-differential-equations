@@ -1,0 +1,307 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12305,        297]
+NotebookOptionsPosition[     11821,        280]
+NotebookOutlinePosition[     12217,        296]
+CellTagsIndexPosition[     12174,        293]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "slopeFunction", ",", "exactSolution", ",", "numberOfSteps", ",", 
+       "rk4Step", ",", "rk4Points", ",", "finalPoint", ",", "finalError"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"slopeFunction", "[", 
+        RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+       RowBox[{"y", "-", 
+        RowBox[{"x", "^", "2"}], "+", "1"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"exactSolution", "[", "x_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "1"}], ")"}], "^", "2"}], "-", 
+        RowBox[{"0.5", " ", 
+         RowBox[{"Exp", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"numberOfSteps", "=", 
+       RowBox[{"Round", "[", 
+        RowBox[{"2", "/", "stepSize"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"rk4Step", "[", 
+        RowBox[{"{", 
+         RowBox[{"currentX_", ",", "currentY_"}], "}"}], "]"}], ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"slope1", ",", "slope2", ",", "slope3", ",", "slope4"}], 
+          "}"}], ",", 
+         RowBox[{
+          RowBox[{"slope1", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{"currentX", ",", "currentY"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope2", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{
+             RowBox[{"currentX", "+", 
+              RowBox[{"stepSize", "/", "2"}]}], ",", 
+             RowBox[{"currentY", "+", 
+              RowBox[{"stepSize", " ", 
+               RowBox[{"slope1", "/", "2"}]}]}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope3", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{
+             RowBox[{"currentX", "+", 
+              RowBox[{"stepSize", "/", "2"}]}], ",", 
+             RowBox[{"currentY", "+", 
+              RowBox[{"stepSize", " ", 
+               RowBox[{"slope2", "/", "2"}]}]}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope4", "=", 
+           RowBox[{"slopeFunction", "[", 
+            RowBox[{
+             RowBox[{"currentX", "+", "stepSize"}], ",", 
+             RowBox[{"currentY", "+", 
+              RowBox[{"stepSize", " ", "slope3"}]}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"currentX", "+", "stepSize"}], ",", 
+            RowBox[{"currentY", "+", 
+             RowBox[{
+              RowBox[{"stepSize", "/", "6"}], " ", 
+              RowBox[{"(", 
+               RowBox[{"slope1", "+", 
+                RowBox[{"2", " ", "slope2"}], "+", 
+                RowBox[{"2", " ", "slope3"}], "+", "slope4"}], ")"}]}]}]}], 
+           "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rk4Points", "=", 
+       RowBox[{"NestList", "[", 
+        RowBox[{"rk4Step", ",", 
+         RowBox[{"{", 
+          RowBox[{"0.", ",", "0.5"}], "}"}], ",", "numberOfSteps"}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"finalPoint", "=", 
+       RowBox[{"Last", "[", "rk4Points", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"finalError", "=", 
+       RowBox[{"Abs", "[", 
+        RowBox[{
+         RowBox[{"finalPoint", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "-", 
+         RowBox[{"exactSolution", "[", 
+          RowBox[{"finalPoint", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 6.4: Fourth-Order \
+Runge-Kutta Method\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Step size h: \>\"", ",", "stepSize"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Number of steps: \>\"", ",", "numberOfSteps"}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Final approximation: \>\"", ",", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"finalPoint", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", "10"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Final absolute error: \>\"", ",", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "finalError", "]"}], ",", "5"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Show", "[", 
+          RowBox[{
+           RowBox[{"ListLinePlot", "[", 
+            RowBox[{"rk4Points", ",", 
+             RowBox[{"PlotMarkers", "->", "Automatic"}]}], "]"}], ",", 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"exactSolution", "[", "x", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "0", ",", "2"}], "}"}]}], "]"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<RK4 Approximation and Exact Solution\>\""}]}], "]"}]}],
+         "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"stepSize", ",", "0.2", ",", "\"\<Step size h\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.5", "->", "\"\<0.5\>\""}], ",", 
+       RowBox[{"0.25", "->", "\"\<0.25\>\""}], ",", 
+       RowBox[{"0.2", "->", "\"\<0.2\>\""}], ",", 
+       RowBox[{"0.1", "->", "\"\<0.1\>\""}], ",", 
+       RowBox[{"0.05", "->", "\"\<0.05\>\""}]}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.997478722147833*^9, 3.997478722147833*^9}},
+ CellLabel->
+  "In[120]:=",ExpressionUUID->"8ec66492-ba5f-a74d-9899-e8d928300d7b"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`stepSize$$ = 0.2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`stepSize$$], 0.2, "Step size h"}, {
+      0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> 
+       "0.05"}, ControlType -> SetterBar}}, Typeset`size$$ = {
+    635.185546875, {112.98706565123254`, 118.71899924498254`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`stepSize$$ = 0.2}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`slopeFunction$, $CellContext`exactSolution$, \
+$CellContext`numberOfSteps$, $CellContext`rk4Step$, $CellContext`rk4Points$, \
+$CellContext`finalPoint$, $CellContext`finalError$}, \
+$CellContext`slopeFunction$[
+           Pattern[$CellContext`x, 
+            Blank[]], 
+           Pattern[$CellContext`y, 
+            Blank[]]] := $CellContext`y - $CellContext`x^2 + 
+          1; $CellContext`exactSolution$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := ($CellContext`x + 1)^2 - 0.5 
+          Exp[$CellContext`x]; $CellContext`numberOfSteps$ = 
+         Round[2/$CellContext`stepSize$$]; $CellContext`rk4Step$[{
+            Pattern[$CellContext`currentX$, 
+             Blank[]], 
+            Pattern[$CellContext`currentY$, 
+             Blank[]]}] := 
+         Module[{$CellContext`slope1$, $CellContext`slope2$, \
+$CellContext`slope3$, $CellContext`slope4$}, $CellContext`slope1$ = \
+$CellContext`slopeFunction$[$CellContext`currentX$, $CellContext`currentY$]; \
+$CellContext`slope2$ = $CellContext`slopeFunction$[$CellContext`currentX$ + \
+$CellContext`stepSize$$/
+               2, $CellContext`currentY$ + $CellContext`stepSize$$ \
+($CellContext`slope1$/
+                2)]; $CellContext`slope3$ = \
+$CellContext`slopeFunction$[$CellContext`currentX$ + $CellContext`stepSize$$/
+               2, $CellContext`currentY$ + $CellContext`stepSize$$ \
+($CellContext`slope2$/
+                2)]; $CellContext`slope4$ = \
+$CellContext`slopeFunction$[$CellContext`currentX$ + $CellContext`stepSize$$, \
+$CellContext`currentY$ + $CellContext`stepSize$$ $CellContext`slope3$]; \
+{$CellContext`currentX$ + $CellContext`stepSize$$, $CellContext`currentY$ + \
+($CellContext`stepSize$$/6) ($CellContext`slope1$ + 2 $CellContext`slope2$ + 
+               2 $CellContext`slope3$ + $CellContext`slope4$)}]; \
+$CellContext`rk4Points$ = 
+         NestList[$CellContext`rk4Step$, {0., 
+           0.5}, $CellContext`numberOfSteps$]; $CellContext`finalPoint$ = 
+         Last[$CellContext`rk4Points$]; $CellContext`finalError$ = 
+         Abs[Part[$CellContext`finalPoint$, 2] - $CellContext`exactSolution$[
+            Part[$CellContext`finalPoint$, 1]]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 6.4: Fourth-Order Runge-Kutta Method",
+             18, Bold], 
+           Row[{"Step size h: ", $CellContext`stepSize$$}], 
+           Row[{"Number of steps: ", $CellContext`numberOfSteps$}], 
+           Row[{"Final approximation: ", 
+             N[
+              Part[$CellContext`finalPoint$, 2], 10]}], 
+           Row[{"Final absolute error: ", 
+             ScientificForm[
+              N[$CellContext`finalError$], 5]}], 
+           Show[
+            ListLinePlot[$CellContext`rk4Points$, PlotMarkers -> Automatic], 
+            Plot[
+             $CellContext`exactSolution$[$CellContext`x], {$CellContext`x, 0, 
+              2}], AxesLabel -> {"x", "y"}, PlotLabel -> 
+            "RK4 Approximation and Exact Solution"]}]], 
+      "Specifications" :> {{{$CellContext`stepSize$$, 0.2, "Step size h"}, {
+         0.5 -> "0.5", 0.25 -> "0.25", 0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> 
+          "0.05"}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      677.7855468749999, {155.83325705748254`, 161.56519065123254`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974787233126926`*^9},
+ CellLabel->
+  "Out[121]=",ExpressionUUID->"5524b194-a452-1f4c-80c3-a69541d6c644"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e535f636-3b6d-b94a-83fa-a94f2cfb71b7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6217, 157, 370, "Input",ExpressionUUID->"8ec66492-ba5f-a74d-9899-e8d928300d7b"],
+Cell[6796, 181, 5009, 96, 334, "Output",ExpressionUUID->"5524b194-a452-1f4c-80c3-a69541d6c644"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

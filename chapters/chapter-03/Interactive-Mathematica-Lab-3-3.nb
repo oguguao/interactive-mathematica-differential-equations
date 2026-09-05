@@ -1,0 +1,281 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11446,        271]
+NotebookOptionsPosition[     10962,        254]
+NotebookOutlinePosition[     11358,        270]
+CellTagsIndexPosition[     11315,        267]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialTemperature", ",", "temperatureModel", ",", 
+       "temperatureAtMeasurement"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"initialTemperature", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"process", "==", "\"\<Cooling\>\""}], ",", 
+         RowBox[{"ambientTemperature", "+", "initialDifference"}], ",", 
+         RowBox[{"ambientTemperature", "-", "initialDifference"}]}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"temperatureModel", "[", "t_", "]"}], ":=", 
+       RowBox[{"ambientTemperature", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"initialTemperature", "-", "ambientTemperature"}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "coolingConstant"}], " ", "t"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"temperatureAtMeasurement", "=", 
+       RowBox[{"temperatureModel", "[", "measurementTime", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.3: Newton's Law of \
+Cooling and Heating\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Process: \>\"", ",", "process"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"temp", "'"}], "[", "t", "]"}], "==", 
+              RowBox[{
+               RowBox[{"-", "coolingConstant"}], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"temp", "[", "t", "]"}], "-", "ambientTemperature"}],
+                 ")"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial temperature: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "initialTemperature", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Ambient temperature: \>\"", ",", 
+            "ambientTemperature"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Temperature at t = \>\"", ",", "measurementTime", 
+            ",", "\"\<: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "temperatureAtMeasurement", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"temperatureModel", "[", "t", "]"}], ",", 
+             "ambientTemperature"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "40"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<T(t)\>\"", ",", "\"\<Ambient temperature\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Temperature\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Approach to Ambient Temperature\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"process", ",", "\"\<Cooling\>\"", ",", "\"\<Process\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Cooling\>\"", ",", "\"\<Heating\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "ambientTemperature", ",", "20", ",", "\"\<Ambient temperature\>\""}], 
+      "}"}], ",", "0", ",", "40", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialDifference", ",", "70", 
+       ",", "\"\<Initial temperature difference\>\""}], "}"}], ",", "10", ",",
+      "100", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"coolingConstant", ",", "0.08", ",", "\"\<Constant k\>\""}], 
+      "}"}], ",", "0.02", ",", "0.20", ",", "0.01"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"measurementTime", ",", "10", ",", "\"\<Measurement time\>\""}],
+       "}"}], ",", "1", ",", "30", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997476466663357*^9, 3.997476466663357*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"dbdb5cf9-4ba9-e641-937d-21da2857bb19"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ambientTemperature$$ = 
+    20, $CellContext`coolingConstant$$ = 
+    0.08, $CellContext`initialDifference$$ = 
+    70, $CellContext`measurementTime$$ = 10, $CellContext`process$$ = 
+    "Cooling", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`process$$], "Cooling", "Process"}, {
+      "Cooling", "Heating"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`ambientTemperature$$], 20, "Ambient temperature"}, 0,
+       40, 5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialDifference$$], 70, 
+       "Initial temperature difference"}, 10, 100, 5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`coolingConstant$$], 0.08, "Constant k"}, 0.02, 0.2, 
+      0.01, ControlType -> Manipulator}, {{
+       Hold[$CellContext`measurementTime$$], 10, "Measurement time"}, 1, 30, 
+      1, ControlType -> Manipulator}}, Typeset`size$$ = {
+    672.9609375, {108.3327430630508, 114.0646766568008}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ambientTemperature$$ = 
+        20, $CellContext`coolingConstant$$ = 
+        0.08, $CellContext`initialDifference$$ = 
+        70, $CellContext`measurementTime$$ = 10, $CellContext`process$$ = 
+        "Cooling"}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`initialTemperature$, \
+$CellContext`temperatureModel$, $CellContext`temperatureAtMeasurement$}, \
+$CellContext`initialTemperature$ = 
+         If[$CellContext`process$$ == 
+           "Cooling", $CellContext`ambientTemperature$$ + \
+$CellContext`initialDifference$$, $CellContext`ambientTemperature$$ - \
+$CellContext`initialDifference$$]; $CellContext`temperatureModel$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`ambientTemperature$$ + \
+($CellContext`initialTemperature$ - $CellContext`ambientTemperature$$) 
+           Exp[(-$CellContext`coolingConstant$$) $CellContext`t$]; \
+$CellContext`temperatureAtMeasurement$ = \
+$CellContext`temperatureModel$[$CellContext`measurementTime$$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.3: Newton's Law of Cooling and \
+Heating", 18, Bold], 
+           Row[{"Process: ", $CellContext`process$$}], 
+           Row[{"Differential equation: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`temp][$CellContext`t] == \
+(-$CellContext`coolingConstant$$) ($CellContext`temp[$CellContext`t] - \
+$CellContext`ambientTemperature$$)]}], 
+           Row[{"Initial temperature: ", 
+             NumberForm[
+              N[$CellContext`initialTemperature$], {7, 2}]}], 
+           Row[{"Ambient temperature: ", $CellContext`ambientTemperature$$}], 
+           Row[{"Temperature at t = ", $CellContext`measurementTime$$, ": ", 
+             NumberForm[
+              N[$CellContext`temperatureAtMeasurement$], {7, 2}]}], 
+           Plot[{
+             $CellContext`temperatureModel$[$CellContext`t], \
+$CellContext`ambientTemperature$$}, {$CellContext`t, 0, 40}, PlotRange -> All,
+             PlotLegends -> {"T(t)", "Ambient temperature"}, 
+            AxesLabel -> {"Time", "Temperature"}, GridLines -> Automatic, 
+            PlotLabel -> "Approach to Ambient Temperature"]}]], 
+      "Specifications" :> {{{$CellContext`process$$, "Cooling", "Process"}, {
+         "Cooling", "Heating"}, ControlType -> 
+         SetterBar}, {{$CellContext`ambientTemperature$$, 20, 
+          "Ambient temperature"}, 0, 40, 
+         5}, {{$CellContext`initialDifference$$, 70, 
+          "Initial temperature difference"}, 10, 100, 
+         5}, {{$CellContext`coolingConstant$$, 0.08, "Constant k"}, 0.02, 0.2,
+          0.01}, {{$CellContext`measurementTime$$, 10, "Measurement time"}, 1,
+          30, 1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      715.5609374999999, {206.37893446930082`, 212.11086806305082`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974764690521927`*^9},
+ CellLabel->"Out[68]=",ExpressionUUID->"e3808fa0-8269-8f4b-b85a-cf68f2761c07"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"51ab5079-d100-9645-9f9d-f8faa592d292"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5242, 131, 294, "Input",ExpressionUUID->"dbdb5cf9-4ba9-e641-937d-21da2857bb19"],
+Cell[5821, 155, 5125, 96, 435, "Output",ExpressionUUID->"e3808fa0-8269-8f4b-b85a-cf68f2761c07"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

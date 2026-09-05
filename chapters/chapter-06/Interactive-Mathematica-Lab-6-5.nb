@@ -1,0 +1,363 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14640,        353]
+NotebookOptionsPosition[     14155,        336]
+NotebookOutlinePosition[     14551,        352]
+CellTagsIndexPosition[     14508,        349]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "vectorField", ",", "numberOfSteps", ",", "eulerStep", ",", "rk4Step", ",",
+        "numericalPoints", ",", "timeDataU", ",", "timeDataV", ",", 
+       "phaseData"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"vectorField", "[", 
+        RowBox[{"{", 
+         RowBox[{"uValue_", ",", "vValue_"}], "}"}], "]"}], ":=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"uValue", "-", "vValue"}], ",", 
+         RowBox[{"uValue", "+", "vValue"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"numberOfSteps", "=", 
+       RowBox[{"Round", "[", 
+        RowBox[{"2", "/", "stepSize"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"eulerStep", "[", 
+        RowBox[{"{", 
+         RowBox[{"currentTime_", ",", "currentState_"}], "}"}], "]"}], ":=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"currentTime", "+", "stepSize"}], ",", 
+         RowBox[{"currentState", "+", 
+          RowBox[{"stepSize", " ", 
+           RowBox[{"vectorField", "[", "currentState", "]"}]}]}]}], "}"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"rk4Step", "[", 
+        RowBox[{"{", 
+         RowBox[{"currentTime_", ",", "currentState_"}], "}"}], "]"}], ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"slope1", ",", "slope2", ",", "slope3", ",", "slope4"}], 
+          "}"}], ",", 
+         RowBox[{
+          RowBox[{"slope1", "=", 
+           RowBox[{"vectorField", "[", "currentState", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope2", "=", 
+           RowBox[{"vectorField", "[", 
+            RowBox[{"currentState", "+", 
+             RowBox[{"stepSize", " ", 
+              RowBox[{"slope1", "/", "2"}]}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope3", "=", 
+           RowBox[{"vectorField", "[", 
+            RowBox[{"currentState", "+", 
+             RowBox[{"stepSize", " ", 
+              RowBox[{"slope2", "/", "2"}]}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"slope4", "=", 
+           RowBox[{"vectorField", "[", 
+            RowBox[{"currentState", "+", 
+             RowBox[{"stepSize", " ", "slope3"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"currentTime", "+", "stepSize"}], ",", 
+            RowBox[{"currentState", "+", 
+             RowBox[{
+              RowBox[{"stepSize", "/", "6"}], " ", 
+              RowBox[{"(", 
+               RowBox[{"slope1", "+", 
+                RowBox[{"2", " ", "slope2"}], "+", 
+                RowBox[{"2", " ", "slope3"}], "+", "slope4"}], ")"}]}]}]}], 
+           "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"numericalPoints", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"methodChoice", "==", "\"\<Euler\>\""}], ",", 
+         RowBox[{"NestList", "[", 
+          RowBox[{"eulerStep", ",", 
+           RowBox[{"{", 
+            RowBox[{"0.", ",", 
+             RowBox[{"{", 
+              RowBox[{"initialU", ",", "initialV"}], "}"}]}], "}"}], ",", 
+           "numberOfSteps"}], "]"}], ",", 
+         RowBox[{"NestList", "[", 
+          RowBox[{"rk4Step", ",", 
+           RowBox[{"{", 
+            RowBox[{"0.", ",", 
+             RowBox[{"{", 
+              RowBox[{"initialU", ",", "initialV"}], "}"}]}], "}"}], ",", 
+           "numberOfSteps"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"timeDataU", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "}"}], "&"}], "/@", 
+        "numericalPoints"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"timeDataV", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", 
+             RowBox[{"2", ",", "2"}], "]"}], "]"}]}], "}"}], "&"}], "/@", 
+        "numericalPoints"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"phaseData", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", "numericalPoints"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 6.5: Numerical Methods for \
+Systems\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Method: \>\"", ",", "methodChoice"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Step size: \>\"", ",", "stepSize"}], "}"}], "]"}], ",", 
+         RowBox[{"GraphicsRow", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"ListLinePlot", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"timeDataU", ",", "timeDataV"}], "}"}], ",", 
+              RowBox[{"PlotLegends", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<u(t)\>\"", ",", "\"\<v(t)\>\""}], "}"}]}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<t\>\"", ",", "\"\<Value\>\""}], "}"}]}], ",", 
+              RowBox[{"PlotLabel", "->", "\"\<Component Solutions\>\""}]}], 
+             "]"}], ",", 
+            RowBox[{"ListLinePlot", "[", 
+             RowBox[{"phaseData", ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<u\>\"", ",", "\"\<v\>\""}], "}"}]}], ",", 
+              RowBox[{"PlotLabel", "->", "\"\<Phase Curve\>\""}]}], "]"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"methodChoice", ",", "\"\<Euler\>\"", ",", "\"\<Method\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Euler\>\"", ",", "\"\<RK4\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"stepSize", ",", "0.05", ",", "\"\<Step size\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.2", "->", "\"\<0.2\>\""}], ",", 
+       RowBox[{"0.1", "->", "\"\<0.1\>\""}], ",", 
+       RowBox[{"0.05", "->", "\"\<0.05\>\""}], ",", 
+       RowBox[{"0.025", "->", "\"\<0.025\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialU", ",", "1", ",", "\"\<u(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialV", ",", "0", ",", "\"\<v(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974787574352264`*^9, 3.9974787574352264`*^9}},
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"a7cda71e-b3d1-234c-a405-66c399d401a5"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialU$$ = 1, $CellContext`initialV$$ = 
+    0, $CellContext`methodChoice$$ = "Euler", $CellContext`stepSize$$ = 0.05, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`methodChoice$$], "Euler", "Method"}, {
+      "Euler", "RK4"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`stepSize$$], 0.05, "Step size"}, {
+      0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> "0.05", 0.025 -> "0.025"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`initialU$$], 1, "u(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialV$$], 0, "v(0)"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    633.6, {161.8551848850471, 167.5871184787971}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialU$$ = 1, $CellContext`initialV$$ = 
+        0, $CellContext`methodChoice$$ = "Euler", $CellContext`stepSize$$ = 
+        0.05}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`vectorField$, $CellContext`numberOfSteps$, \
+$CellContext`eulerStep$, $CellContext`rk4Step$, \
+$CellContext`numericalPoints$, $CellContext`timeDataU$, \
+$CellContext`timeDataV$, $CellContext`phaseData$}, $CellContext`vectorField$[{
+            Pattern[$CellContext`uValue, 
+             Blank[]], 
+            Pattern[$CellContext`vValue, 
+             
+             Blank[]]}] := {$CellContext`uValue - $CellContext`vValue, \
+$CellContext`uValue + $CellContext`vValue}; $CellContext`numberOfSteps$ = 
+         Round[2/$CellContext`stepSize$$]; $CellContext`eulerStep$[{
+            Pattern[$CellContext`currentTime$, 
+             Blank[]], 
+            Pattern[$CellContext`currentState$, 
+             
+             Blank[]]}] := {$CellContext`currentTime$ + \
+$CellContext`stepSize$$, $CellContext`currentState$ + $CellContext`stepSize$$ \
+$CellContext`vectorField$[$CellContext`currentState$]}; $CellContext`rk4Step$[{
+            Pattern[$CellContext`currentTime$, 
+             Blank[]], 
+            Pattern[$CellContext`currentState$, 
+             Blank[]]}] := 
+         Module[{$CellContext`slope1$, $CellContext`slope2$, \
+$CellContext`slope3$, $CellContext`slope4$}, $CellContext`slope1$ = \
+$CellContext`vectorField$[$CellContext`currentState$]; $CellContext`slope2$ = \
+$CellContext`vectorField$[$CellContext`currentState$ + \
+$CellContext`stepSize$$ ($CellContext`slope1$/
+                2)]; $CellContext`slope3$ = \
+$CellContext`vectorField$[$CellContext`currentState$ + \
+$CellContext`stepSize$$ ($CellContext`slope2$/
+                2)]; $CellContext`slope4$ = \
+$CellContext`vectorField$[$CellContext`currentState$ + \
+$CellContext`stepSize$$ $CellContext`slope3$]; {$CellContext`currentTime$ + \
+$CellContext`stepSize$$, $CellContext`currentState$ + \
+($CellContext`stepSize$$/6) ($CellContext`slope1$ + 2 $CellContext`slope2$ + 
+               2 $CellContext`slope3$ + $CellContext`slope4$)}]; \
+$CellContext`numericalPoints$ = If[$CellContext`methodChoice$$ == "Euler", 
+           
+           NestList[$CellContext`eulerStep$, {
+            0., {$CellContext`initialU$$, $CellContext`initialV$$}}, \
+$CellContext`numberOfSteps$], 
+           
+           NestList[$CellContext`rk4Step$, {
+            0., {$CellContext`initialU$$, $CellContext`initialV$$}}, \
+$CellContext`numberOfSteps$]]; $CellContext`timeDataU$ = Map[{
+            Part[#, 1], 
+            
+            Part[#, 2, 
+             1]}& , $CellContext`numericalPoints$]; $CellContext`timeDataV$ = 
+         Map[{
+            Part[#, 1], 
+            
+            Part[#, 2, 
+             2]}& , $CellContext`numericalPoints$]; $CellContext`phaseData$ = 
+         Map[Part[#, 2]& , $CellContext`numericalPoints$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 6.5: Numerical Methods for Systems", 
+            18, Bold], 
+           Row[{"Method: ", $CellContext`methodChoice$$}], 
+           Row[{"Step size: ", $CellContext`stepSize$$}], 
+           GraphicsRow[{
+             
+             ListLinePlot[{$CellContext`timeDataU$, $CellContext`timeDataV$}, 
+              PlotLegends -> {"u(t)", "v(t)"}, AxesLabel -> {"t", "Value"}, 
+              PlotLabel -> "Component Solutions"], 
+             
+             ListLinePlot[$CellContext`phaseData$, AxesLabel -> {"u", "v"}, 
+              PlotLabel -> "Phase Curve"]}]}]], 
+      "Specifications" :> {{{$CellContext`methodChoice$$, "Euler", 
+          "Method"}, {"Euler", "RK4"}, ControlType -> 
+         SetterBar}, {{$CellContext`stepSize$$, 0.05, "Step size"}, {
+         0.2 -> "0.2", 0.1 -> "0.1", 0.05 -> "0.05", 0.025 -> 
+          "0.025"}}, {{$CellContext`initialU$$, 1, "u(0)"}, -2, 2, 
+         0.5}, {{$CellContext`initialV$$, 0, "v(0)"}, -2, 2, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      676.1999999999999, {246.08672785379713`, 251.81866144754713`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997478758617737*^9},
+ CellLabel->
+  "Out[123]=",ExpressionUUID->"38f621a6-7035-5043-88ed-cd93333b8c0f"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"279002b4-e87f-eb4d-9662-d5f853a690af"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7441, 189, 446, "Input",ExpressionUUID->"a7cda71e-b3d1-234c-a405-66c399d401a5"],
+Cell[8020, 213, 6119, 120, 514, "Output",ExpressionUUID->"38f621a6-7035-5043-88ed-cd93333b8c0f"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

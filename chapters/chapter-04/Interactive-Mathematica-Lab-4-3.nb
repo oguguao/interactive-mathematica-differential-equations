@@ -1,0 +1,244 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9486,        234]
+NotebookOptionsPosition[      9002,        217]
+NotebookOutlinePosition[      9398,        233]
+CellTagsIndexPosition[      9355,        230]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "basis1", ",", "basis2", ",", "wronskianValue", ",", "solution", ",", 
+       "operatorCheck"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"basis1", "=", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"rootValue", " ", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"basis2", "=", 
+       RowBox[{"x", " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{"rootValue", " ", "x"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"wronskianValue", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"Det", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"basis1", ",", "basis2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"basis1", ",", "x"}], "]"}], ",", 
+             RowBox[{"D", "[", 
+              RowBox[{"basis2", ",", "x"}], "]"}]}], "}"}]}], "}"}], "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{
+        RowBox[{"c1", " ", "basis1"}], "+", 
+        RowBox[{"c2", " ", "basis2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"operatorCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+          RowBox[{"2", " ", "rootValue", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"solution", ",", "x"}], "]"}]}], "+", 
+          RowBox[{
+           RowBox[{"rootValue", "^", "2"}], " ", "solution"}]}], "==", "0"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.3: Repeated Real \
+Characteristic Roots\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Repeated root:   \>\"", ",", "rootValue"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Basis functions:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{"basis1", ",", "basis2"}], "}"}], "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Wronskian:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "wronskianValue", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "operatorCheck"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<General solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "solution", "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"solution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "4"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Repeated-Root Solution\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rootValue", ",", 
+       RowBox[{"-", "1"}], ",", "\"\<Repeated root\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c1", ",", "1", ",", "\"\<c1\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c2", ",", "1", ",", "\"\<c2\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974774761844006`*^9, 3.9974774761844006`*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"4c5906b1-a5fd-a948-8019-b87a8a463a6c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c1$$ = 1, $CellContext`c2$$ = 
+    1, $CellContext`rootValue$$ = -1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rootValue$$], -1, "Repeated root"}, -3, 2, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`c1$$], 1, "c1"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`c2$$], 1, "c2"}, -2, 2, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    663.064453125, {119.19035247695575`, 124.92228607070575`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c1$$ = 1, $CellContext`c2$$ = 
+        1, $CellContext`rootValue$$ = -1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`basis1$, $CellContext`basis2$, \
+$CellContext`wronskianValue$, $CellContext`solution$, \
+$CellContext`operatorCheck$}, $CellContext`basis1$ = 
+         Exp[$CellContext`rootValue$$ $CellContext`x]; $CellContext`basis2$ = \
+$CellContext`x 
+          Exp[$CellContext`rootValue$$ $CellContext`x]; \
+$CellContext`wronskianValue$ = FullSimplify[
+           Det[{{$CellContext`basis1$, $CellContext`basis2$}, {
+              D[$CellContext`basis1$, $CellContext`x], 
+              
+              D[$CellContext`basis2$, $CellContext`x]}}]]; \
+$CellContext`solution$ = $CellContext`c1$$ $CellContext`basis1$ + \
+$CellContext`c2$$ $CellContext`basis2$; $CellContext`operatorCheck$ = 
+         FullSimplify[
+          D[$CellContext`solution$, {$CellContext`x, 2}] - 
+            2 $CellContext`rootValue$$ 
+            D[$CellContext`solution$, $CellContext`x] + \
+$CellContext`rootValue$$^2 $CellContext`solution$ == 0]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.3: Repeated Real Characteristic \
+Roots", 18, Bold], 
+           Row[{"Repeated root:   ", $CellContext`rootValue$$}], 
+           Row[{"Basis functions:   ", 
+             TraditionalForm[{$CellContext`basis1$, $CellContext`basis2$}]}], 
+           Row[{"Wronskian:   ", 
+             TraditionalForm[$CellContext`wronskianValue$]}], 
+           Row[{"Verification:   ", $CellContext`operatorCheck$}], 
+           Row[{"General solution:   ", 
+             TraditionalForm[$CellContext`solution$]}], 
+           
+           Plot[$CellContext`solution$, {$CellContext`x, 0, 4}, PlotRange -> 
+            All, AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Repeated-Root Solution"]}]], 
+      "Specifications" :> {{{$CellContext`rootValue$$, -1, 
+          "Repeated root"}, -3, 2, 0.5}, {{$CellContext`c1$$, 1, "c1"}, -2, 2,
+          0.5}, {{$CellContext`c2$$, 1, "c2"}, -2, 2, 0.5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      705.6644531249999, {189.65119232070577`, 195.38312591445577`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974774770450954`*^9},
+ CellLabel->"Out[87]=",ExpressionUUID->"a706a0f5-2bec-f341-8c89-eac29b13ad16"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"187485f6-8d66-8740-8a0d-ba9e54be2e17"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4412, 113, 237, "Input",ExpressionUUID->"4c5906b1-a5fd-a948-8019-b87a8a463a6c"],
+Cell[4991, 137, 3995, 77, 402, "Output",ExpressionUUID->"a706a0f5-2bec-f341-8c89-eac29b13ad16"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

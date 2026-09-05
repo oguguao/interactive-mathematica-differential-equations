@@ -1,0 +1,275 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10704,        265]
+NotebookOptionsPosition[     10220,        248]
+NotebookOutlinePosition[     10616,        264]
+CellTagsIndexPosition[     10573,        261]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "indicialPolynomial", ",", "indicialRoots", ",", "frobeniusSeries", ",",
+        "truncatedSolution", ",", "residual", ",", "residualSeries"}], "}"}], 
+     ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"indicialPolynomial", "[", "r_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"r", " ", 
+         RowBox[{"(", 
+          RowBox[{"r", "-", "1"}], ")"}]}], "+", "r", "-", 
+        RowBox[{"orderParameter", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"indicialRoots", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"indicialPolynomial", "[", "r", "]"}], "==", "0"}], ",", 
+         "r"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"frobeniusSeries", "=", 
+       RowBox[{"Series", "[", 
+        RowBox[{
+         RowBox[{"BesselJ", "[", 
+          RowBox[{"orderParameter", ",", "x"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "seriesOrder"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"truncatedSolution", "=", 
+       RowBox[{"Normal", "[", "frobeniusSeries", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"residual", "=", 
+       RowBox[{"Expand", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"x", "^", "2"}], " ", 
+          RowBox[{"D", "[", 
+           RowBox[{"truncatedSolution", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], "+", 
+         RowBox[{"x", " ", 
+          RowBox[{"D", "[", 
+           RowBox[{"truncatedSolution", ",", "x"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"x", "^", "2"}], "-", 
+            RowBox[{"orderParameter", "^", "2"}]}], ")"}], " ", 
+          "truncatedSolution"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"residualSeries", "=", 
+       RowBox[{"Series", "[", 
+        RowBox[{"residual", ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", 
+           RowBox[{"seriesOrder", "+", "3"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.6: Frobenius Method\>\"",
+            ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Bessel order: \>\"", ",", "orderParameter"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial polynomial: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"indicialPolynomial", "[", "r", "]"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial roots: \>\"", ",", "indicialRoots"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Regular Bessel series: \>\"", ",", 
+            "frobeniusSeries"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Residual after substitution: \>\"", ",", 
+            "residualSeries"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"BesselJ", "[", 
+              RowBox[{"orderParameter", ",", "x"}], "]"}], ",", 
+             "truncatedSolution"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "5"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<BesselJ\>\"", 
+              ",", "\"\<Truncated Frobenius series\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Exact Bessel Function and Truncated Series\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orderParameter", ",", "1", ",", "\"\<Bessel order\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0", "->", "\"\<0\>\""}], ",", 
+       RowBox[{"1", "->", "\"\<1\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"seriesOrder", ",", "9", ",", "\"\<Truncation order\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"5", ",", "7", ",", "9", ",", "11", ",", "13", ",", "15"}], 
+      "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974810334333496`*^9, 3.997481033434349*^9}},
+ CellLabel->
+  "In[162]:=",ExpressionUUID->"5a0897fe-415c-5343-9335-e33fb31dccab"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orderParameter$$ = 
+    1, $CellContext`seriesOrder$$ = 9, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`orderParameter$$], 1, "Bessel order"}, {
+      0 -> "0", 1 -> "1", 2 -> "2"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`seriesOrder$$], 9, "Truncation order"}, {5, 7, 9, 11,
+       13, 15}, ControlType -> PopupMenu}}, Typeset`size$$ = {
+    484.927734375, {123.30642357627985`, 129.03835717002983`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`orderParameter$$ = 
+        1, $CellContext`seriesOrder$$ = 9}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`indicialPolynomial$, $CellContext`indicialRoots$, \
+$CellContext`frobeniusSeries$, $CellContext`truncatedSolution$, \
+$CellContext`residual$, $CellContext`residualSeries$}, \
+$CellContext`indicialPolynomial$[
+           Pattern[$CellContext`r$, 
+            Blank[]]] := $CellContext`r$ ($CellContext`r$ - 
+            1) + $CellContext`r$ - $CellContext`orderParameter$$^2; \
+$CellContext`indicialRoots$ = 
+         Solve[$CellContext`indicialPolynomial$[$CellContext`r] == 
+           0, $CellContext`r]; $CellContext`frobeniusSeries$ = Series[
+           
+           BesselJ[$CellContext`orderParameter$$, $CellContext`x], \
+{$CellContext`x, 
+            0, $CellContext`seriesOrder$$}]; $CellContext`truncatedSolution$ = 
+         Normal[$CellContext`frobeniusSeries$]; $CellContext`residual$ = 
+         Expand[$CellContext`x^2 
+            D[$CellContext`truncatedSolution$, {$CellContext`x, 
+               2}] + $CellContext`x 
+            D[$CellContext`truncatedSolution$, $CellContext`x] + \
+($CellContext`x^2 - $CellContext`orderParameter$$^2) \
+$CellContext`truncatedSolution$]; $CellContext`residualSeries$ = 
+         Series[$CellContext`residual$, {$CellContext`x, 
+            0, $CellContext`seriesOrder$$ + 3}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 9.6: Frobenius Method", 18, Bold], 
+           Row[{"Bessel order: ", $CellContext`orderParameter$$}], 
+           Row[{"Indicial polynomial: ", 
+             TraditionalForm[
+              $CellContext`indicialPolynomial$[$CellContext`r]]}], 
+           Row[{"Indicial roots: ", $CellContext`indicialRoots$}], 
+           Row[{"Regular Bessel series: ", $CellContext`frobeniusSeries$}], 
+           
+           Row[{"Residual after substitution: ", \
+$CellContext`residualSeries$}], 
+           Plot[{
+             
+             BesselJ[$CellContext`orderParameter$$, $CellContext`x], \
+$CellContext`truncatedSolution$}, {$CellContext`x, 0, 5}, PlotRange -> All, 
+            PlotLegends -> {"BesselJ", "Truncated Frobenius series"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Exact Bessel Function and Truncated Series"]}]], 
+      "Specifications" :> {{{$CellContext`orderParameter$$, 1, 
+          "Bessel order"}, {
+         0 -> "0", 1 -> "1", 2 -> "2"}}, {{$CellContext`seriesOrder$$, 9, 
+          "Truncation order"}, {5, 7, 9, 11, 13, 15}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      527.527734375, {181.64060326377984`, 187.37253685752984`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997481034440935*^9},
+ CellLabel->
+  "Out[163]=",ExpressionUUID->"1568947e-2a43-8949-ac4d-a74ddb3c6035"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e66ca359-3387-744c-a9b6-72c7971cceac"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5195, 136, 294, "Input",ExpressionUUID->"5a0897fe-415c-5343-9335-e33fb31dccab"],
+Cell[5774, 160, 4430, 85, 386, "Output",ExpressionUUID->"1568947e-2a43-8949-ac4d-a74ddb3c6035"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

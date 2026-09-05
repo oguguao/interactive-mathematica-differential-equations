@@ -1,0 +1,541 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     22719,        531]
+NotebookOptionsPosition[     22232,        514]
+NotebookOutlinePosition[     22628,        530]
+CellTagsIndexPosition[     22585,        527]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"TabView", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<General and Particular\>\"", "->", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"general", ",", "particular"}], "}"}], ",", 
+         RowBox[{
+          RowBox[{"general", "=", 
+           RowBox[{"DSolveValue", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{"2", " ", "x", " ", 
+               RowBox[{"y", "[", "x", "]"}]}]}], ",", 
+             RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"particular", "=", 
+           RowBox[{"DSolveValue", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+                RowBox[{"2", " ", "x", " ", 
+                 RowBox[{"y", "[", "x", "]"}]}]}], ",", 
+               RowBox[{
+                RowBox[{"y", "[", "0", "]"}], "==", "y0"}]}], "}"}], ",", 
+             RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<General and Particular Solutions\>\"", ",", "18", ",",
+                "Bold"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Differential equation:   \>\"", ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+                  RowBox[{"2", " ", "x", " ", 
+                   RowBox[{"y", "[", "x", "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<General solution:   \>\"", ",", "Bold"}], "]"}],
+                 ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{"y", "[", "x", "]"}], "==", "general"}], "]"}]}], 
+               "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Initial condition:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{"y", "[", "0", "]"}], "==", "y0"}], "]"}]}], "}"}], 
+              "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Particular solution:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{"y", "[", "x", "]"}], "==", "particular"}], "]"}]}],
+                "}"}], "]"}], ",", 
+             RowBox[{"Plot", "[", 
+              RowBox[{"particular", ",", 
+               RowBox[{"{", 
+                RowBox[{"x", ",", 
+                 RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}], ",", 
+               RowBox[{"PlotRange", "->", "All"}], ",", 
+               RowBox[{"AxesLabel", "->", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+               RowBox[{
+               "PlotLabel", 
+                "->", "\"\<Particular Solution Selected by the Initial \
+Condition\>\""}]}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y0", ",", "3", ",", "\"\<Initial value y(0)\>\""}], "}"}], 
+         ",", "1", ",", "6", ",", "1"}], "}"}]}], "]"}]}], ",", 
+    RowBox[{"\"\<Equilibrium Solutions\>\"", "->", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "equilibria", "}"}], ",", 
+         RowBox[{
+          RowBox[{"equilibria", "=", 
+           RowBox[{"Solve", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"q", " ", 
+               RowBox[{"(", 
+                RowBox[{"1", "-", 
+                 RowBox[{"q", "/", "K"}]}], ")"}]}], "==", "0"}], ",", "q", ",",
+              "Reals"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Equilibrium Solution Explorer\>\"", ",", "18", ",",
+                "Bold"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Autonomous equation:   \>\"", ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"q", "'"}], "[", "t", "]"}], "==", 
+                  RowBox[{
+                   RowBox[{"q", "[", "t", "]"}], " ", 
+                   RowBox[{"(", 
+                    RowBox[{"1", "-", 
+                    RowBox[{
+                    RowBox[{"q", "[", "t", "]"}], "/", "K"}]}], ")"}]}]}], 
+                 "]"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Carrying capacity K:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", "K"}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Equilibrium solutions:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", "equilibria", "]"}]}], "}"}], 
+              "]"}], ",", 
+             RowBox[{"Plot", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "K"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"t", ",", "0", ",", "10"}], "}"}], ",", 
+               RowBox[{"PlotRange", "->", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "2"}], ",", 
+                  RowBox[{"K", "+", "2"}]}], "}"}]}], ",", 
+               RowBox[{"AxesLabel", "->", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<t\>\"", ",", "\"\<q\>\""}], "}"}]}], ",", 
+               RowBox[{
+               "PlotLabel", 
+                "->", "\"\<Constant Equilibrium Solutions\>\""}]}], "]"}]}], 
+            "}"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"K", ",", "10", ",", "\"\<Carrying capacity K\>\""}], "}"}],
+          ",", "2", ",", "20", ",", "1"}], "}"}]}], "]"}]}], ",", 
+    RowBox[{"\"\<Singular Solution\>\"", "->", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"family", ",", "singularSolution", ",", "check"}], "}"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"family", "[", "x_", "]"}], ":=", 
+           RowBox[{
+            RowBox[{"c", " ", "x"}], "+", 
+            RowBox[{"c", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"singularSolution", "[", "x_", "]"}], ":=", 
+           RowBox[{
+            RowBox[{"-", 
+             RowBox[{"x", "^", "2"}]}], "/", "4"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"check", "=", 
+           RowBox[{"FullSimplify", "[", 
+            RowBox[{
+             RowBox[{"singularSolution", "[", "x", "]"}], "==", 
+             RowBox[{
+              RowBox[{"x", " ", 
+               RowBox[{"D", "[", 
+                RowBox[{
+                 RowBox[{"singularSolution", "[", "x", "]"}], ",", "x"}], 
+                "]"}]}], "+", 
+              RowBox[{
+               RowBox[{"D", "[", 
+                RowBox[{
+                 RowBox[{"singularSolution", "[", "x", "]"}], ",", "x"}], 
+                "]"}], "^", "2"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Singular Solution Explorer\>\"", ",", "18", ",", 
+               "Bold"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Clairaut equation:   \>\"", ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{"y", "[", "x", "]"}], "==", 
+                  RowBox[{
+                   RowBox[{"x", " ", 
+                    RowBox[{
+                    RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"y", "'"}], "[", "x", "]"}], "^", "2"}]}]}], 
+                 "]"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Selected family member:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{"y", "==", 
+                  RowBox[{"family", "[", "x", "]"}]}], "]"}]}], "}"}], "]"}], 
+             ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Singular solution:   \>\"", ",", "Bold"}], 
+                 "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{"y", "==", 
+                  RowBox[{"singularSolution", "[", "x", "]"}]}], "]"}]}], 
+               "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 
+                 RowBox[{"\"\<Verification of singular solution:   \>\"", ",",
+                   "Bold"}], "]"}], ",", "check"}], "}"}], "]"}], ",", 
+             RowBox[{"Plot", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"family", "[", "x", "]"}], ",", 
+                 RowBox[{"singularSolution", "[", "x", "]"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"x", ",", 
+                 RowBox[{"-", "8"}], ",", "8"}], "}"}], ",", 
+               RowBox[{"PlotRange", "->", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "12"}], ",", "22"}], "}"}]}], ",", 
+               RowBox[{"PlotLegends", "->", 
+                RowBox[{"{", 
+                 
+                 RowBox[{"\"\<Selected family member\>\"", 
+                  ",", "\"\<Singular envelope\>\""}], "}"}]}], ",", 
+               RowBox[{"AxesLabel", "->", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+               RowBox[{
+               "PlotLabel", 
+                "->", "\"\<Solution Family and Singular Envelope\>\""}]}], 
+              "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"c", ",", "1", ",", "\"\<Family parameter c\>\""}], "}"}], ",", 
+         RowBox[{"-", "3"}], ",", "3", ",", "0.25"}], "}"}]}], "]"}]}]}], 
+   "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974698514867*^9, 3.9974698514867*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"ffa8ee92-241f-484a-b960-c426f6bfa692"],
+
+Cell[BoxData[
+ TabViewBox[{{1,"\<\"General and Particular\"\>"->
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`y0$$ = 3, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[$CellContext`y0$$], 3, "Initial value y(0)"}, 1, 6, 1, 
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+     316.6875, {117.15568113401575`, 122.88761472776575`}}, Typeset`update$$ =
+      0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+     Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`y0$$ = 3}, 
+       "ControllerVariables" :> {}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$, 
+         Typeset`keyframeActionsQ$$, Typeset`keyframeList$$}, "Body" :> 
+       Module[{$CellContext`general$, $CellContext`particular$}, \
+$CellContext`general$ = 
+          DSolveValue[
+           Derivative[1][$CellContext`y][$CellContext`x] == 
+            2 $CellContext`x $CellContext`y[$CellContext`x], 
+            $CellContext`y[$CellContext`x], $CellContext`x]; \
+$CellContext`particular$ = 
+          DSolveValue[{
+            Derivative[1][$CellContext`y][$CellContext`x] == 
+             2 $CellContext`x $CellContext`y[$CellContext`x], $CellContext`y[
+              0] == $CellContext`y0$$}, 
+            $CellContext`y[$CellContext`x], $CellContext`x]; Column[{
+            Style["General and Particular Solutions", 18, Bold], 
+            Row[{"Differential equation:   ", 
+              TraditionalForm[
+              Derivative[1][$CellContext`y][$CellContext`x] == 
+               2 $CellContext`x $CellContext`y[$CellContext`x]]}], 
+            Row[{
+              Style["General solution:   ", Bold], 
+              
+              TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`general$]}], 
+            Row[{
+              Style["Initial condition:   ", Bold], 
+              TraditionalForm[$CellContext`y[0] == $CellContext`y0$$]}], 
+            Row[{
+              Style["Particular solution:   ", Bold], 
+              
+              TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`particular$]}], 
+            
+            Plot[$CellContext`particular$, {$CellContext`x, -1.5, 1.5}, 
+             PlotRange -> All, AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "Particular Solution Selected by the Initial Condition"]}]], 
+       "Specifications" :> {{{$CellContext`y0$$, 3, "Initial value y(0)"}, 1, 
+          6, 1}}, "Options" :> {}, "DefaultOptions" :> {}],
+      ImageSizeCache->{359.2875, {160.01652097776577`, 165.74845457151577`}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}, {2,"\<\"Equilibrium Solutions\"\>"->
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{K$$ = 10, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[K$$], 10, "Carrying capacity K"}, 2, 20, 1, ControlType -> 
+       Manipulator}}, Typeset`size$$ = {
+     310.6073154296875, {104.44459337917986`, 110.17652697292986`}}, 
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+     Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {K$$ = 10}, "ControllerVariables" :> {},
+        "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$, 
+         Typeset`keyframeActionsQ$$, Typeset`keyframeList$$}, "Body" :> 
+       Module[{$CellContext`equilibria$}, $CellContext`equilibria$ = 
+          Solve[$CellContext`q (1 - $CellContext`q/K$$) == 0, $CellContext`q, 
+            Reals]; Column[{
+            Style["Equilibrium Solution Explorer", 18, Bold], 
+            Row[{"Autonomous equation:   ", 
+              TraditionalForm[
+              Derivative[
+                1][$CellContext`q][$CellContext`t] == \
+$CellContext`q[$CellContext`t] (1 - $CellContext`q[$CellContext`t]/K$$)]}], 
+            Row[{
+              Style["Carrying capacity K:   ", Bold], K$$}], 
+            Row[{
+              Style["Equilibrium solutions:   ", Bold], 
+              TraditionalForm[$CellContext`equilibria$]}], 
+            
+            Plot[{0, K$$}, {$CellContext`t, 0, 10}, 
+             PlotRange -> {-2, K$$ + 2}, AxesLabel -> {"t", "q"}, PlotLabel -> 
+             "Constant Equilibrium Solutions"]}]], 
+       "Specifications" :> {{{K$$, 10, "Carrying capacity K"}, 2, 20, 1}}, 
+       "Options" :> {}, "DefaultOptions" :> {}],
+      ImageSizeCache->{
+       353.20731542968747`, {147.30543322292985`, 153.03736681667985`}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}, {3,"\<\"Singular Solution\"\>"->
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`c$$ = 1, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[$CellContext`c$$], 1, "Family parameter c"}, -3, 3, 0.25, 
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+     361.31669921874993`, {112.98369785958748`, 118.71563145333748`}}, 
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+     Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`c$$ = 1}, 
+       "ControllerVariables" :> {}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$, 
+         Typeset`keyframeActionsQ$$, Typeset`keyframeList$$}, "Body" :> 
+       Module[{$CellContext`family$, $CellContext`singularSolution$, \
+$CellContext`check$}, $CellContext`family$[
+            Pattern[$CellContext`x$, 
+             
+             Blank[]]] := $CellContext`c$$ $CellContext`x$ + \
+$CellContext`c$$^2; $CellContext`singularSolution$[
+            Pattern[$CellContext`x, 
+             Blank[]]] := (-$CellContext`x^2)/4; $CellContext`check$ = 
+          FullSimplify[$CellContext`singularSolution$[$CellContext`x] == \
+$CellContext`x D[
+                $CellContext`singularSolution$[$CellContext`x], \
+$CellContext`x] + D[
+                $CellContext`singularSolution$[$CellContext`x], \
+$CellContext`x]^2]; Column[{
+            Style["Singular Solution Explorer", 18, Bold], 
+            Row[{"Clairaut equation:   ", 
+              
+              TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`x Derivative[1][$CellContext`y][$CellContext`x] + 
+                Derivative[1][$CellContext`y][$CellContext`x]^2]}], 
+            Row[{
+              Style["Selected family member:   ", Bold], 
+              
+              TraditionalForm[$CellContext`y == \
+$CellContext`family$[$CellContext`x]]}], 
+            Row[{
+              Style["Singular solution:   ", Bold], 
+              
+              TraditionalForm[$CellContext`y == \
+$CellContext`singularSolution$[$CellContext`x]]}], 
+            Row[{
+              Style[
+              "Verification of singular solution:   ", 
+               Bold], $CellContext`check$}], 
+            Plot[{
+              $CellContext`family$[$CellContext`x], 
+              $CellContext`singularSolution$[$CellContext`x]}, \
+{$CellContext`x, -8, 8}, PlotRange -> {-12, 22}, 
+             PlotLegends -> {"Selected family member", "Singular envelope"}, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "Solution Family and Singular Envelope"]}]], 
+       "Specifications" :> {{{$CellContext`c$$, 1, "Family parameter c"}, -3, 
+          3, 0.25}}, "Options" :> {}, "DefaultOptions" :> {}],
+      ImageSizeCache->{
+       403.91669921874995`, {155.8445377033375, 161.5764712970875}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}}, 1]], "Output",
+ CellChangeTimes->{3.9974698539325714`*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"81d78cce-3aee-2840-9fe1-5ca96561fb59"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"048e1830-f60e-384e-b1b0-2ee9697a8ede"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 11860, 291, 446, "Input",ExpressionUUID->"ffa8ee92-241f-484a-b960-c426f6bfa692"],
+Cell[12439, 315, 9777, 196, 391, "Output",ExpressionUUID->"81d78cce-3aee-2840-9fe1-5ca96561fb59"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

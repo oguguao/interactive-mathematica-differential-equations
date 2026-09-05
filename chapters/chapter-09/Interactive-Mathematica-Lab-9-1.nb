@@ -1,0 +1,248 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9711,        238]
+NotebookOptionsPosition[      9227,        221]
+NotebookOutlinePosition[      9623,        237]
+CellTagsIndexPosition[      9580,        234]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "targetFunction", ",", "taylorPolynomial", ",", "pointError", ",", 
+       "exactValue", ",", "approximateValue"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"targetFunction", "[", "x_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"Exp", "[", "x", "]"}], " ", 
+        RowBox[{"Cos", "[", "x", "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"taylorPolynomial", "=", 
+       RowBox[{"Normal", "[", 
+        RowBox[{"Series", "[", 
+         RowBox[{
+          RowBox[{"targetFunction", "[", "x", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "0", ",", "degree"}], "}"}]}], "]"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"exactValue", "=", 
+       RowBox[{"N", "[", 
+        RowBox[{"targetFunction", "[", "evaluationPoint", "]"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"approximateValue", "=", 
+       RowBox[{"N", "[", 
+        RowBox[{"taylorPolynomial", "/.", "\[IndentingNewLine]", 
+         RowBox[{"x", "->", "evaluationPoint"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"pointError", "=", 
+       RowBox[{"Abs", "[", 
+        RowBox[{"exactValue", "-", "approximateValue"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 9.1: Power-Series Review\>\
+\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Taylor polynomial degree: \>\"", ",", "degree"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Taylor polynomial: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "taylorPolynomial", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Exact value at x = \>\"", ",", "evaluationPoint", 
+            ",", "\"\<: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{"exactValue", ",", 
+              RowBox[{"{", 
+               RowBox[{"10", ",", "6"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Polynomial approximation: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{"approximateValue", ",", 
+              RowBox[{"{", 
+               RowBox[{"10", ",", "6"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Absolute error: \>\"", ",", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{"pointError", ",", "5"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"targetFunction", "[", "x", "]"}], ",", 
+             "taylorPolynomial"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Exp[x] Cos[x]\>\"", 
+              ",", "\"\<Taylor polynomial\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<Value\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Taylor Approximation About x = 0\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"degree", ",", "4", ",", "\"\<Polynomial degree\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "4", ",", "6", ",", "8", ",", "10", ",", "12"}], 
+      "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "evaluationPoint", ",", "1", ",", "\"\<Error evaluation point\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "1.5"}], ",", "1.5", ",", "0.25"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.997480792071207*^9, 3.997480792071207*^9}},
+ CellLabel->
+  "In[152]:=",ExpressionUUID->"65f2dbed-e7e3-8f4f-b8d1-52ab0d734b43"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`degree$$ = 
+    4, $CellContext`evaluationPoint$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`degree$$], 4, "Polynomial degree"}, {2, 4, 6, 8, 10, 
+      12}, ControlType -> PopupMenu}, {{
+       Hold[$CellContext`evaluationPoint$$], 1, 
+       "Error evaluation point"}, -1.5, 1.5, 0.25, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    515.5224609375, {119.96730100262984`, 125.69923459637984`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`degree$$ = 
+        4, $CellContext`evaluationPoint$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`targetFunction$, $CellContext`taylorPolynomial$, \
+$CellContext`pointError$, $CellContext`exactValue$, \
+$CellContext`approximateValue$}, $CellContext`targetFunction$[
+           Pattern[$CellContext`x, 
+            Blank[]]] := 
+         Exp[$CellContext`x] 
+          Cos[$CellContext`x]; $CellContext`taylorPolynomial$ = Normal[
+           Series[
+            $CellContext`targetFunction$[$CellContext`x], {$CellContext`x, 
+             0, $CellContext`degree$$}]]; $CellContext`exactValue$ = N[
+           $CellContext`targetFunction$[$CellContext`evaluationPoint$$]]; \
+$CellContext`approximateValue$ = N[
+           
+           ReplaceAll[$CellContext`taylorPolynomial$, $CellContext`x -> \
+$CellContext`evaluationPoint$$]]; $CellContext`pointError$ = 
+         Abs[$CellContext`exactValue$ - $CellContext`approximateValue$]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 9.1: Power-Series Review", 18, Bold], 
+           Row[{"Taylor polynomial degree: ", $CellContext`degree$$}], 
+           Row[{"Taylor polynomial: ", 
+             TraditionalForm[$CellContext`taylorPolynomial$]}], 
+           Row[{"Exact value at x = ", $CellContext`evaluationPoint$$, ": ", 
+             NumberForm[$CellContext`exactValue$, {10, 6}]}], 
+           Row[{"Polynomial approximation: ", 
+             NumberForm[$CellContext`approximateValue$, {10, 6}]}], 
+           Row[{"Absolute error: ", 
+             ScientificForm[$CellContext`pointError$, 5]}], 
+           Plot[{
+             $CellContext`targetFunction$[$CellContext`x], \
+$CellContext`taylorPolynomial$}, {$CellContext`x, -2, 2}, PlotRange -> All, 
+            PlotLegends -> {"Exp[x] Cos[x]", "Taylor polynomial"}, 
+            AxesLabel -> {"x", "Value"}, GridLines -> Automatic, PlotLabel -> 
+            "Taylor Approximation About x = 0"]}]], 
+      "Specifications" :> {{{$CellContext`degree$$, 4, "Polynomial degree"}, {
+         2, 4, 6, 8, 10, 
+         12}}, {{$CellContext`evaluationPoint$$, 1, 
+          "Error evaluation point"}, -1.5, 1.5, 0.25}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      558.1224609374999, {178.31612912762984`, 184.04806272137984`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974807933218613`*^9},
+ CellLabel->
+  "Out[153]=",ExpressionUUID->"75a2604f-1cf5-5b42-99d5-2fe7939301ac"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c83b34de-d223-7b45-b45c-ba8524e83a14"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4549, 115, 294, "Input",ExpressionUUID->"65f2dbed-e7e3-8f4f-b8d1-52ab0d734b43"],
+Cell[5128, 139, 4083, 79, 379, "Output",ExpressionUUID->"75a2604f-1cf5-5b42-99d5-2fe7939301ac"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

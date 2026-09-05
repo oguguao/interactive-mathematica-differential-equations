@@ -1,0 +1,363 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     15210,        353]
+NotebookOptionsPosition[     14725,        336]
+NotebookOutlinePosition[     15121,        352]
+CellTagsIndexPosition[     15078,        349]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "timeConstant", ",", "firstFunction", ",", "secondFunction", ",", 
+       "steadyValue", ",", "firstLabel", ",", "secondLabel", ",", 
+       "firstUnits", ",", "secondUnits"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"circuitType", "==", "\"\<RC\>\""}], ",", 
+        RowBox[{
+         RowBox[{"timeConstant", "=", 
+          RowBox[{"resistance", "*", "capacitance"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"firstFunction", "[", "t_", "]"}], ":=", 
+          RowBox[{"capacitance", "*", "voltage", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{"Exp", "[", 
+              RowBox[{
+               RowBox[{"-", "t"}], "/", "timeConstant"}], "]"}]}], ")"}]}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"secondFunction", "[", "t_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"voltage", "/", "resistance"}], ")"}], " ", 
+           RowBox[{"Exp", "[", 
+            RowBox[{
+             RowBox[{"-", "t"}], "/", "timeConstant"}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"steadyValue", "=", 
+          RowBox[{"capacitance", "*", "voltage"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"firstLabel", "=", "\"\<Charge q(t)\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"secondLabel", "=", "\"\<Current i(t)\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"firstUnits", "=", "\"\<Coulombs\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"secondUnits", "=", "\"\<Amperes\>\""}]}], ",", 
+        RowBox[{
+         RowBox[{"timeConstant", "=", 
+          RowBox[{"inductance", "/", "resistance"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"firstFunction", "[", "t_", "]"}], ":=", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"voltage", "/", "resistance"}], ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{"Exp", "[", 
+              RowBox[{
+               RowBox[{"-", "t"}], "/", "timeConstant"}], "]"}]}], ")"}]}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"secondFunction", "[", "t_", "]"}], ":=", 
+          RowBox[{"voltage", "*", 
+           RowBox[{"Exp", "[", 
+            RowBox[{
+             RowBox[{"-", "t"}], "/", "timeConstant"}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"steadyValue", "=", 
+          RowBox[{"voltage", "/", "resistance"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"firstLabel", "=", "\"\<Current i(t)\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"secondLabel", "=", "\"\<Inductor voltage\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"firstUnits", "=", "\"\<Amperes\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"secondUnits", "=", "\"\<Volts\>\""}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.7: First-Order \
+Electrical Circuits\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Circuit type: \>\"", ",", "circuitType"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Time constant: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "timeConstant", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"8", ",", "4"}], "}"}]}], "]"}], 
+            ",", "\"\< seconds\>\""}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Steady-state primary value: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "steadyValue", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10", ",", "5"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"firstFunction", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"0.01", ",", 
+               RowBox[{"6", " ", "timeConstant"}]}], "]"}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "firstUnits"}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", "timeConstant", "}"}], ",", "Automatic"}], "}"}]}],
+            ",", 
+           RowBox[{"PlotLabel", "->", "firstLabel"}]}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"secondFunction", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"0.01", ",", 
+               RowBox[{"6", " ", "timeConstant"}]}], "]"}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "secondUnits"}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", "timeConstant", "}"}], ",", "Automatic"}], "}"}]}],
+            ",", 
+           RowBox[{"PlotLabel", "->", "secondLabel"}]}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"circuitType", ",", "\"\<RC\>\"", ",", "\"\<Circuit type\>\""}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<RC\>\"", ",", "\"\<RL\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"voltage", ",", "12", ",", "\"\<Voltage E0\>\""}], "}"}], ",", 
+     "5", ",", "30", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"resistance", ",", "1000", ",", "\"\<Resistance R\>\""}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"100", "->", "\"\<100 ohms\>\""}], ",", 
+       RowBox[{"500", "->", "\"\<500 ohms\>\""}], ",", 
+       RowBox[{"1000", "->", "\"\<1000 ohms\>\""}], ",", 
+       RowBox[{"2000", "->", "\"\<2000 ohms\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"capacitance", ",", "0.001", ",", "\"\<Capacitance C\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.0005", "->", "\"\<0.0005 F\>\""}], ",", 
+       RowBox[{"0.001", "->", "\"\<0.001 F\>\""}], ",", 
+       RowBox[{"0.002", "->", "\"\<0.002 F\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"inductance", ",", "4", ",", "\"\<Inductance L\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<1 H\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2 H\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<4 H\>\""}], ",", 
+       RowBox[{"8", "->", "\"\<8 H\>\""}]}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.9974766012376785`*^9, 3.997476601238678*^9}},
+ CellLabel->"In[75]:=",ExpressionUUID->"6437c193-9e7e-cb4a-9b7c-ebc8b8917624"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`capacitance$$ = 
+    0.001, $CellContext`circuitType$$ = "RC", $CellContext`inductance$$ = 
+    4, $CellContext`resistance$$ = 1000, $CellContext`voltage$$ = 12, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`circuitType$$], "RC", "Circuit type"}, {"RC", "RL"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`voltage$$], 12, "Voltage E0"}, 5, 30, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`resistance$$], 1000, "Resistance R"}, {
+      100 -> "100 ohms", 500 -> "500 ohms", 1000 -> "1000 ohms", 2000 -> 
+       "2000 ohms"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`capacitance$$], 0.001, "Capacitance C"}, {
+      0.0005 -> "0.0005 F", 0.001 -> "0.001 F", 0.002 -> "0.002 F"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`inductance$$], 4, "Inductance L"}, {
+      1 -> "1 H", 2 -> "2 H", 4 -> "4 H", 8 -> "8 H"}, ControlType -> 
+      SetterBar}}, Typeset`size$$ = {
+    634.2802734375, {153.46847281375247`, 159.20040640750247`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`capacitance$$ = 
+        0.001, $CellContext`circuitType$$ = "RC", $CellContext`inductance$$ = 
+        4, $CellContext`resistance$$ = 1000, $CellContext`voltage$$ = 12}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`timeConstant$, $CellContext`firstFunction$, \
+$CellContext`secondFunction$, $CellContext`steadyValue$, \
+$CellContext`firstLabel$, $CellContext`secondLabel$, \
+$CellContext`firstUnits$, $CellContext`secondUnits$}, 
+        If[$CellContext`circuitType$$ == 
+          "RC", $CellContext`timeConstant$ = $CellContext`resistance$$ \
+$CellContext`capacitance$$; $CellContext`firstFunction$[
+             Pattern[$CellContext`t$, 
+              Blank[]]] := $CellContext`capacitance$$ $CellContext`voltage$$ (
+             1 - Exp[(-$CellContext`t$)/$CellContext`timeConstant$]); \
+$CellContext`secondFunction$[
+             Pattern[$CellContext`t$, 
+              Blank[]]] := ($CellContext`voltage$$/$CellContext`resistance$$) 
+            Exp[(-$CellContext`t$)/$CellContext`timeConstant$]; \
+$CellContext`steadyValue$ = $CellContext`capacitance$$ $CellContext`voltage$$; \
+$CellContext`firstLabel$ = "Charge q(t)"; $CellContext`secondLabel$ = 
+           "Current i(t)"; $CellContext`firstUnits$ = 
+           "Coulombs"; $CellContext`secondUnits$ = 
+           "Amperes", $CellContext`timeConstant$ = \
+$CellContext`inductance$$/$CellContext`resistance$$; \
+$CellContext`firstFunction$[
+             Pattern[$CellContext`t$, 
+              
+              Blank[]]] := ($CellContext`voltage$$/$CellContext`resistance$$) \
+(1 - Exp[(-$CellContext`t$)/$CellContext`timeConstant$]); \
+$CellContext`secondFunction$[
+             Pattern[$CellContext`t$, 
+              Blank[]]] := $CellContext`voltage$$ 
+            Exp[(-$CellContext`t$)/$CellContext`timeConstant$]; \
+$CellContext`steadyValue$ = $CellContext`voltage$$/$CellContext`resistance$$; \
+$CellContext`firstLabel$ = "Current i(t)"; $CellContext`secondLabel$ = 
+           "Inductor voltage"; $CellContext`firstUnits$ = 
+           "Amperes"; $CellContext`secondUnits$ = "Volts"]; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.7: First-Order Electrical Circuits",
+             18, Bold], 
+           Row[{"Circuit type: ", $CellContext`circuitType$$}], 
+           Row[{"Time constant: ", 
+             NumberForm[
+              N[$CellContext`timeConstant$], {8, 4}], " seconds"}], 
+           Row[{"Steady-state primary value: ", 
+             NumberForm[
+              N[$CellContext`steadyValue$], {10, 5}]}], 
+           Plot[
+            $CellContext`firstFunction$[$CellContext`t], {$CellContext`t, 0, 
+             Max[0.01, 6 $CellContext`timeConstant$]}, PlotRange -> All, 
+            AxesLabel -> {"Time", $CellContext`firstUnits$}, 
+            GridLines -> {{$CellContext`timeConstant$}, Automatic}, 
+            PlotLabel -> $CellContext`firstLabel$], 
+           Plot[
+            $CellContext`secondFunction$[$CellContext`t], {$CellContext`t, 0, 
+             Max[0.01, 6 $CellContext`timeConstant$]}, PlotRange -> All, 
+            AxesLabel -> {"Time", $CellContext`secondUnits$}, 
+            GridLines -> {{$CellContext`timeConstant$}, Automatic}, 
+            PlotLabel -> $CellContext`secondLabel$]}]], 
+      "Specifications" :> {{{$CellContext`circuitType$$, "RC", 
+          "Circuit type"}, {"RC", "RL"}, ControlType -> 
+         SetterBar}, {{$CellContext`voltage$$, 12, "Voltage E0"}, 5, 30, 
+         1}, {{$CellContext`resistance$$, 1000, "Resistance R"}, {
+         100 -> "100 ohms", 500 -> "500 ohms", 1000 -> "1000 ohms", 2000 -> 
+          "2000 ohms"}}, {{$CellContext`capacitance$$, 0.001, 
+          "Capacitance C"}, {
+         0.0005 -> "0.0005 F", 0.001 -> "0.001 F", 0.002 -> 
+          "0.002 F"}}, {{$CellContext`inductance$$, 4, "Inductance L"}, {
+         1 -> "1 H", 2 -> "2 H", 4 -> "4 H", 8 -> "8 H"}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      676.8802734374999, {251.4707189075025, 257.2026525012525}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997476602916645*^9},
+ CellLabel->"Out[76]=",ExpressionUUID->"3d1f655e-5628-5844-a296-aef6ecb877e1"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"16cf31b1-f531-4544-8de5-5d6cfe24c45b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7768, 193, 560, "Input",ExpressionUUID->"6437c193-9e7e-cb4a-9b7c-ebc8b8917624"],
+Cell[8347, 217, 6362, 116, 525, "Output",ExpressionUUID->"3d1f655e-5628-5844-a296-aef6ecb877e1"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

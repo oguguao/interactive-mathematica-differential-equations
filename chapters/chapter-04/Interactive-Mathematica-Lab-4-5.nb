@@ -1,0 +1,232 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      8898,        222]
+NotebookOptionsPosition[      8414,        205]
+NotebookOutlinePosition[      8810,        221]
+CellTagsIndexPosition[      8767,        218]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"solution", ",", "amplitude", ",", "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"solution", "=", 
+       RowBox[{
+        RowBox[{"initialValue", " ", 
+         RowBox[{"Cos", "[", "x", "]"}]}], "+", 
+        RowBox[{"initialSlope", " ", 
+         RowBox[{"Sin", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"amplitude", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"initialValue", "^", "2"}], "+", 
+         RowBox[{"initialSlope", "^", "2"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"solution", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "+", "solution"}], "==",
+            "0"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"solution", "/.", " ", 
+             RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialValue"}], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"solution", ",", "x"}], "]"}], "/.", 
+             "\[IndentingNewLine]", 
+             RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialSlope"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.5: Initial-Value \
+Problems for Homogeneous Equations\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+               RowBox[{"y", "[", "x", "]"}]}], "==", "0"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Amplitude:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "amplitude", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"solution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", 
+             RowBox[{"4", " ", "Pi"}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Solution Selected by the Initial Conditions\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "2", ",", "\"\<y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialSlope", ",", 
+       RowBox[{"-", "1"}], ",", "\"\<y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974775367803097`*^9, 3.9974775367803097`*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"a0ecbc4e-b9a8-3f40-89a0-3cd56fa72de6"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialSlope$$ = -1, \
+$CellContext`initialValue$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialValue$$], 2, "y(0)"}, -3, 3, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`initialSlope$$], -1, "y'(0)"}, -3, 3, 0.5, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    802.5205078125, {108.23827582397432`, 113.97020941772432`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialSlope$$ = -1, \
+$CellContext`initialValue$$ = 2}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`solution$, $CellContext`amplitude$, \
+$CellContext`verification$}, $CellContext`solution$ = \
+$CellContext`initialValue$$ Cos[$CellContext`x] + $CellContext`initialSlope$$ 
+           Sin[$CellContext`x]; $CellContext`amplitude$ = 
+         Sqrt[$CellContext`initialValue$$^2 + $CellContext`initialSlope$$^2]; \
+$CellContext`verification$ = 
+         FullSimplify[{
+           D[$CellContext`solution$, {$CellContext`x, 
+                2}] + $CellContext`solution$ == 0, 
+            ReplaceAll[$CellContext`solution$, $CellContext`x -> 
+              0] == $CellContext`initialValue$$, ReplaceAll[
+              D[$CellContext`solution$, $CellContext`x], $CellContext`x -> 
+              0] == $CellContext`initialSlope$$}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.5: Initial-Value Problems for \
+Homogeneous Equations", 18, Bold], 
+           Row[{"Differential equation:   ", 
+             TraditionalForm[
+             Derivative[
+                2][$CellContext`y][$CellContext`x] + \
+$CellContext`y[$CellContext`x] == 0]}], 
+           Row[{"Solution:   ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+           Row[{"Amplitude:   ", 
+             TraditionalForm[$CellContext`amplitude$]}], 
+           Row[{"Verification:   ", $CellContext`verification$}], 
+           
+           Plot[$CellContext`solution$, {$CellContext`x, 0, 4 Pi}, PlotRange -> 
+            All, AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Solution Selected by the Initial Conditions"]}]], 
+      "Specifications" :> {{{$CellContext`initialValue$$, 2, "y(0)"}, -3, 3, 
+         0.5}, {{$CellContext`initialSlope$$, -1, "y'(0)"}, -3, 3, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      845.1205078124999, {164.89911566772432`, 170.63104926147432`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974775381849403`*^9},
+ CellLabel->"Out[91]=",ExpressionUUID->"0dc102fe-b08d-0f42-b363-9349ddd36fff"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8f1f991c-cff1-e94d-9b54-c0698f526d72"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4089, 105, 237, "Input",ExpressionUUID->"a0ecbc4e-b9a8-3f40-89a0-3cd56fa72de6"],
+Cell[4668, 129, 3730, 73, 352, "Output",ExpressionUUID->"0dc102fe-b08d-0f42-b363-9349ddd36fff"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

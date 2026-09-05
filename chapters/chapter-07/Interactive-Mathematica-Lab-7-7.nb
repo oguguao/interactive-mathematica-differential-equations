@@ -1,0 +1,251 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10228,        241]
+NotebookOptionsPosition[      9744,        224]
+NotebookOutlinePosition[     10140,        240]
+CellTagsIndexPosition[     10097,        237]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "transferFunction", ",", "inputTransform", ",", "responseTransform", ",",
+        "timeResponse", ",", "steadyStateValue"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"transferFunction", "=", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"s", "^", "2"}], "+", 
+          RowBox[{"dampingCoefficient", " ", "s"}], "+", 
+          "stiffnessCoefficient"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"inputTransform", "=", 
+       RowBox[{"forcingMagnitude", "*", 
+        RowBox[{
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "delayTime"}], " ", "s"}], "]"}], "/", "s"}]}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"responseTransform", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"transferFunction", "*", "inputTransform"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"timeResponse", "=", 
+       RowBox[{"InverseLaplaceTransform", "[", 
+        RowBox[{"responseTransform", ",", "s", ",", "t"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"steadyStateValue", "=", 
+       RowBox[{"forcingMagnitude", "/", "stiffnessCoefficient"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.7: Applications of \
+Laplace Transforms\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transfer function H(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transferFunction", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Input transform G(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "inputTransform", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Response transform Y(s):   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "responseTransform", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Predicted steady-state value:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "steadyStateValue", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"timeResponse", ",", "steadyStateValue"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Response\>\"", ",", "\"\<Steady-state value\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<Response\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", "delayTime", "}"}], ",", "Automatic"}], "}"}]}], ",", 
+           RowBox[{"Exclusions", "->", 
+            RowBox[{"{", "delayTime", "}"}]}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Delayed Forced Response\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"delayTime", ",", "1", ",", "\"\<Delay time\>\""}], "}"}], ",", 
+     "0.5", ",", "4", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"forcingMagnitude", ",", "10", ",", "\"\<Step magnitude\>\""}], 
+      "}"}], ",", "2", ",", "20", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dampingCoefficient", ",", "2", ",", "\"\<Damping coefficient\>\""}], 
+      "}"}], ",", "0.5", ",", "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "stiffnessCoefficient", ",", "5", 
+       ",", "\"\<Restoring coefficient\>\""}], "}"}], ",", "1", ",", "10", ",",
+      "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974797646889133`*^9, 3.9974797646889133`*^9}},
+ CellLabel->
+  "In[144]:=",ExpressionUUID->"2109f862-1d80-f542-8a7a-483a521acdaf"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dampingCoefficient$$ = 
+    2, $CellContext`delayTime$$ = 1, $CellContext`forcingMagnitude$$ = 
+    10, $CellContext`stiffnessCoefficient$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`delayTime$$], 1, "Delay time"}, 0.5, 4, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`forcingMagnitude$$], 10, "Step magnitude"}, 2, 20, 2,
+       ControlType -> Manipulator}, {{
+       Hold[$CellContext`dampingCoefficient$$], 2, "Damping coefficient"}, 
+      0.5, 5, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`stiffnessCoefficient$$], 5, "Restoring coefficient"},
+       1, 10, 1, ControlType -> Manipulator}}, Typeset`size$$ = {
+    663.064453125, {123.13628512364843`, 128.86821871739843`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dampingCoefficient$$ = 
+        2, $CellContext`delayTime$$ = 1, $CellContext`forcingMagnitude$$ = 
+        10, $CellContext`stiffnessCoefficient$$ = 5}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`transferFunction$, $CellContext`inputTransform$, \
+$CellContext`responseTransform$, $CellContext`timeResponse$, \
+$CellContext`steadyStateValue$}, $CellContext`transferFunction$ = 
+         1/($CellContext`s^2 + $CellContext`dampingCoefficient$$ \
+$CellContext`s + $CellContext`stiffnessCoefficient$$); \
+$CellContext`inputTransform$ = $CellContext`forcingMagnitude$$ (
+           Exp[(-$CellContext`delayTime$$) $CellContext`s]/$CellContext`s); \
+$CellContext`responseTransform$ = 
+         FullSimplify[$CellContext`transferFunction$ \
+$CellContext`inputTransform$]; $CellContext`timeResponse$ = 
+         InverseLaplaceTransform[$CellContext`responseTransform$, \
+$CellContext`s, $CellContext`t]; $CellContext`steadyStateValue$ = \
+$CellContext`forcingMagnitude$$/$CellContext`stiffnessCoefficient$$; Column[{
+           Style[
+           "Interactive Mathematica Lab 7.7: Applications of Laplace \
+Transforms", 18, Bold], 
+           Row[{"Transfer function H(s):   ", 
+             TraditionalForm[$CellContext`transferFunction$]}], 
+           Row[{"Input transform G(s):   ", 
+             TraditionalForm[$CellContext`inputTransform$]}], 
+           Row[{"Response transform Y(s):   ", 
+             TraditionalForm[$CellContext`responseTransform$]}], 
+           Row[{"Predicted steady-state value:   ", 
+             TraditionalForm[$CellContext`steadyStateValue$]}], 
+           
+           Plot[{$CellContext`timeResponse$, $CellContext`steadyStateValue$}, \
+{$CellContext`t, 0, 15}, PlotRange -> All, 
+            PlotLegends -> {"Response", "Steady-state value"}, 
+            AxesLabel -> {"t", "Response"}, 
+            GridLines -> {{$CellContext`delayTime$$}, Automatic}, 
+            Exclusions -> {$CellContext`delayTime$$}, PlotLabel -> 
+            "Delayed Forced Response"]}]], 
+      "Specifications" :> {{{$CellContext`delayTime$$, 1, "Delay time"}, 0.5, 
+         4, 0.5}, {{$CellContext`forcingMagnitude$$, 10, "Step magnitude"}, 2,
+          20, 2}, {{$CellContext`dampingCoefficient$$, 2, 
+          "Damping coefficient"}, 0.5, 5, 
+         0.5}, {{$CellContext`stiffnessCoefficient$$, 5, 
+          "Restoring coefficient"}, 1, 10, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      705.6644531249999, {207.39712496739844`, 213.12905856114844`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974797654773045`*^9},
+ CellLabel->
+  "Out[145]=",ExpressionUUID->"8a01d163-b66a-1542-bf41-5002071536aa"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9c12eed2-9e12-c443-baa1-6591a8c7e0c2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4533, 112, 313, "Input",ExpressionUUID->"2109f862-1d80-f542-8a7a-483a521acdaf"],
+Cell[5112, 136, 4616, 85, 437, "Output",ExpressionUUID->"8a01d163-b66a-1542-bf41-5002071536aa"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,227 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      8587,        217]
+NotebookOptionsPosition[      8103,        200]
+NotebookOutlinePosition[      8499,        216]
+CellTagsIndexPosition[      8456,        213]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "mu", ",", "integrand", ",", "generalSolution", ",", "identity", ",", 
+       "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"mu", "=", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"p", " ", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"integrand", "=", 
+       RowBox[{"Expand", "[", 
+        RowBox[{"mu", " ", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"generalSolution", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Integrate", "[", 
+             RowBox[{"integrand", ",", "x"}], "]"}], "+", 
+            RowBox[{"C", "[", "1", "]"}]}], ")"}], "/", "mu"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"p", ">", "0"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"identity", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"mu", " ", 
+            RowBox[{"y", "[", "x", "]"}]}], ",", "x"}], "]"}], "==", 
+         RowBox[{"mu", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+            RowBox[{"p", " ", 
+             RowBox[{"y", "[", "x", "]"}]}]}], ")"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"generalSolution", ",", "x"}], "]"}], "+", 
+           RowBox[{"p", " ", "generalSolution"}]}], "==", "x"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"p", ">", "0"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.3: Integrating-Factor \
+Builder\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Standard form: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+               RowBox[{"p", " ", 
+                RowBox[{"y", "[", "x", "]"}]}]}], "==", "x"}], "]"}]}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<P(x): \>\"", ",", "p"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Integrating factor: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "mu", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Product-rule identity: \>\"", ",", "identity"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<General solution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "generalSolution"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification: \>\"", ",", "verification"}], "}"}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", "2", ",", "\"\<Coefficient p\>\""}], "}"}], ",", "1", 
+     ",", "4", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.99747147633856*^9, 3.99747147633856*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"5d695232-4bb4-154b-b7aa-646bac4bca2c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`p$$], 2, "Coefficient p"}, 1, 4, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    584.7978515625, {60.8934033203125, 66.6253369140625}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`p$$ = 2}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`mu$, $CellContext`integrand$, \
+$CellContext`generalSolution$, $CellContext`identity$, \
+$CellContext`verification$}, $CellContext`mu$ = 
+         Exp[$CellContext`p$$ $CellContext`x]; $CellContext`integrand$ = 
+         Expand[$CellContext`mu$ $CellContext`x]; \
+$CellContext`generalSolution$ = 
+         FullSimplify[(Integrate[$CellContext`integrand$, $CellContext`x] + 
+            C[1])/$CellContext`mu$, 
+           Assumptions -> $CellContext`p$$ > 0]; $CellContext`identity$ = 
+         FullSimplify[
+          D[$CellContext`mu$ $CellContext`y[$CellContext`x], $CellContext`x] == \
+$CellContext`mu$ (
+             Derivative[
+              1][$CellContext`y][$CellContext`x] + $CellContext`p$$ \
+$CellContext`y[$CellContext`x])]; $CellContext`verification$ = 
+         FullSimplify[
+          D[$CellContext`generalSolution$, $CellContext`x] + $CellContext`p$$ \
+$CellContext`generalSolution$ == $CellContext`x, 
+           Assumptions -> $CellContext`p$$ > 0]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.3: Integrating-Factor Builder", 18, 
+            Bold], 
+           Row[{"Standard form: ", 
+             TraditionalForm[
+             Derivative[
+                1][$CellContext`y][$CellContext`x] + $CellContext`p$$ \
+$CellContext`y[$CellContext`x] == $CellContext`x]}], 
+           Row[{"P(x): ", $CellContext`p$$}], 
+           Row[{"Integrating factor: ", 
+             TraditionalForm[$CellContext`mu$]}], 
+           Row[{"Product-rule identity: ", $CellContext`identity$}], 
+           Row[{"General solution: ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`generalSolution$]}], 
+           Row[{"Verification: ", $CellContext`verification$}]}]], 
+      "Specifications" :> {{{$CellContext`p$$, 2, "Coefficient p"}, 1, 4, 1}},
+       "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      627.3978515624999, {103.7542431640625, 109.4861767578125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997471478833168*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"21e9f18f-41da-8a44-9268-e33a92142ed4"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9cfe5207-c17d-4b4e-b101-f76cfcee1a5e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 3922, 101, 218, "Input",ExpressionUUID->"5d695232-4bb4-154b-b7aa-646bac4bca2c"],
+Cell[4501, 125, 3586, 72, 230, "Output",ExpressionUUID->"21e9f18f-41da-8a44-9268-e33a92142ed4"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

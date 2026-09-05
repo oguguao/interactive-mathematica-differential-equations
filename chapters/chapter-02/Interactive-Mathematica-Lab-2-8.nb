@@ -1,0 +1,273 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10628,        263]
+NotebookOptionsPosition[     10144,        246]
+NotebookOutlinePosition[     10540,        262]
+CellTagsIndexPosition[     10497,        259]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"x", ",", "y", ",", "v", ",", "c", ",", "domainChoice"}], "]"}], 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "solution", ",", "assumption", ",", "xMin", ",", "xMax", ",", 
+       "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"domainChoice", "==", "\"\<x > 0\>\""}], ",", 
+        RowBox[{
+         RowBox[{"solution", "=", 
+          RowBox[{"x", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Log", "[", "x", "]"}], "+", "c"}], ")"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"assumption", "=", 
+          RowBox[{"x", ">", "0"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"xMin", "=", "0.2"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"xMax", "=", "5"}]}], ",", 
+        RowBox[{
+         RowBox[{"solution", "=", 
+          RowBox[{"x", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Log", "[", 
+              RowBox[{"-", "x"}], "]"}], "+", "c"}], ")"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"assumption", "=", 
+          RowBox[{"x", "<", "0"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"xMin", "=", 
+          RowBox[{"-", "5"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"xMax", "=", 
+          RowBox[{"-", "0.2"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", "x"}], "]"}], "==", 
+          RowBox[{"1", "+", 
+           RowBox[{"solution", "/", "x"}]}]}], ",", 
+         RowBox[{"Assumptions", "->", "assumption"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.8: Homogeneous \
+First-Order Equations\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{"1", "+", 
+               RowBox[{
+                RowBox[{"y", "[", "x", "]"}], "/", "x"}]}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Homogeneous substitution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", 
+              RowBox[{"x", " ", 
+               RowBox[{"v", "[", "x", "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Then: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{
+               RowBox[{"v", "[", "x", "]"}], "+", 
+               RowBox[{"x", " ", 
+                RowBox[{
+                 RowBox[{"v", "'"}], "[", "x", "]"}]}]}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification: \>\"", ",", "verification"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<The solution interval cannot cross x = 0.\>\"", ",", 
+           "13", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"solution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "xMin", ",", "xMax"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Homogeneous First-Order Solution Family\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "domainChoice", ",", "\"\<x > 0\>\"", 
+       ",", "\"\<Choose an interval:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<x > 0\>\"", ",", "\"\<x < 0\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "0", ",", "\"\<Constant C\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997472009890644*^9, 3.997472009890644*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"05d006cf-3321-e74f-bf4d-535caaa575cd"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 0, $CellContext`domainChoice$$ = 
+    "x > 0", Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`domainChoice$$], "x > 0", "Choose an interval:"}, {
+      "x > 0", "x < 0"}, ControlType -> SetterBar}, {{
+       Hold[$CellContext`c$$], 0, "Constant C"}, -3, 3, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    654.0732421875, {130.19021622141867`, 135.92214981516867`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 0, $CellContext`domainChoice$$ = 
+        "x > 0"}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`solution$, $CellContext`assumption$, \
+$CellContext`xMin$, $CellContext`xMax$, $CellContext`verification$}, 
+        If[$CellContext`domainChoice$$ == 
+          "x > 0", $CellContext`solution$ = $CellContext`x (
+             Log[$CellContext`x] + $CellContext`c$$); \
+$CellContext`assumption$ = $CellContext`x > 0; $CellContext`xMin$ = 
+           0.2; $CellContext`xMax$ = 
+           5, $CellContext`solution$ = $CellContext`x (
+             Log[-$CellContext`x] + $CellContext`c$$); \
+$CellContext`assumption$ = $CellContext`x < 
+            0; $CellContext`xMin$ = -5; $CellContext`xMax$ = -0.2]; \
+$CellContext`verification$ = 
+         FullSimplify[
+          D[$CellContext`solution$, $CellContext`x] == 
+           1 + $CellContext`solution$/$CellContext`x, 
+           Assumptions -> $CellContext`assumption$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.8: Homogeneous First-Order \
+Equations", 18, Bold], 
+           Row[{"Differential equation: ", 
+             TraditionalForm[
+             Derivative[1][$CellContext`y][$CellContext`x] == 
+              1 + $CellContext`y[$CellContext`x]/$CellContext`x]}], 
+           Row[{"Homogeneous substitution: ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == $CellContext`x \
+$CellContext`v[$CellContext`x]]}], 
+           Row[{"Then: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`y][$CellContext`x] == \
+$CellContext`v[$CellContext`x] + $CellContext`x 
+                Derivative[1][$CellContext`v][$CellContext`x]]}], 
+           Row[{"Solution: ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+           Row[{"Verification: ", $CellContext`verification$}], 
+           Style["The solution interval cannot cross x = 0.", 13, Bold], 
+           
+           Plot[$CellContext`solution$, {$CellContext`x, $CellContext`xMin$, \
+$CellContext`xMax$}, PlotRange -> All, AxesLabel -> {"x", "y"}, GridLines -> 
+            Automatic, PlotLabel -> 
+            "Homogeneous First-Order Solution Family"]}]], 
+      "Specifications" :> {{{$CellContext`domainChoice$$, "x > 0", 
+          "Choose an interval:"}, {"x > 0", "x < 0"}, ControlType -> 
+         SetterBar}, {{$CellContext`c$$, 0, "Constant C"}, -3, 3, 0.5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      696.6732421874999, {186.83640762766868`, 192.56834122141868`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974720113675423`*^9},
+ CellLabel->"Out[54]=",ExpressionUUID->"9ef2ba51-c47d-8042-9971-c8c0eeb1677e"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c94d40b1-f830-024b-98bc-b6fa21ac519b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5222, 134, 332, "Input",ExpressionUUID->"05d006cf-3321-e74f-bf4d-535caaa575cd"],
+Cell[5801, 158, 4327, 85, 396, "Output",ExpressionUUID->"9ef2ba51-c47d-8042-9971-c8c0eeb1677e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

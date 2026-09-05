@@ -1,0 +1,264 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10183,        254]
+NotebookOptionsPosition[      9699,        237]
+NotebookOutlinePosition[     10095,        253]
+CellTagsIndexPosition[     10052,        250]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "basis1", ",", "basis2", ",", "wronskianValue", ",", "combination", ",",
+        "checks"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"basis1", "=", 
+       RowBox[{"Exp", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"basis2", "=", 
+       RowBox[{"Exp", "[", 
+        RowBox[{"-", "x"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"wronskianValue", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"Det", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"basis1", ",", "basis2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"basis1", ",", "x"}], "]"}], ",", 
+             RowBox[{"D", "[", 
+              RowBox[{"basis2", ",", "x"}], "]"}]}], "}"}]}], "}"}], "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"combination", "=", 
+       RowBox[{
+        RowBox[{"c1", " ", "basis1"}], "+", 
+        RowBox[{"c2", " ", "basis2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"checks", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"basis1", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", "basis1"}], "==",
+            "0"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"basis2", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", "basis2"}], "==",
+            "0"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"D", "[", 
+             RowBox[{"combination", ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", "combination"}], 
+           "==", "0"}]}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.1: Linearity, Wronskian, \
+and Superposition\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+               RowBox[{"y", "[", "x", "]"}]}], "==", "0"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Basis functions:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"{", 
+              RowBox[{"basis1", ",", "basis2"}], "}"}], "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Wronskian:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "wronskianValue", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification:   \>\"", ",", "checks"}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Linear combination:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "combination", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"basis1", ",", "basis2", ",", "combination"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Exp[x]\>\"", ",", "\"\<Exp[-x]\>\"", 
+              ",", "\"\<c1 Exp[x] + c2 Exp[-x]\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", 
+            "->", "\"\<Fundamental Solutions and Superposition\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c1", ",", "1", ",", "\"\<c1\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c2", ",", "1", ",", "\"\<c2\>\""}], "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974771490683384`*^9, 3.9974771490683384`*^9}},
+ CellLabel->"In[81]:=",ExpressionUUID->"584cf248-41e2-c04a-83f8-4608171e9f2f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c1$$ = 1, $CellContext`c2$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c1$$], 1, "c1"}, -3, 3, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`c2$$], 1, "c2"}, -3, 3, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    712.546875, {120.06369361915672`, 125.79562721290672`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c1$$ = 1, $CellContext`c2$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`basis1$, $CellContext`basis2$, \
+$CellContext`wronskianValue$, $CellContext`combination$, \
+$CellContext`checks$}, $CellContext`basis1$ = 
+         Exp[$CellContext`x]; $CellContext`basis2$ = 
+         Exp[-$CellContext`x]; $CellContext`wronskianValue$ = FullSimplify[
+           Det[{{$CellContext`basis1$, $CellContext`basis2$}, {
+              D[$CellContext`basis1$, $CellContext`x], 
+              
+              D[$CellContext`basis2$, $CellContext`x]}}]]; \
+$CellContext`combination$ = $CellContext`c1$$ $CellContext`basis1$ + \
+$CellContext`c2$$ $CellContext`basis2$; $CellContext`checks$ = 
+         FullSimplify[{
+           D[$CellContext`basis1$, {$CellContext`x, 
+                2}] - $CellContext`basis1$ == 0, 
+            D[$CellContext`basis2$, {$CellContext`x, 
+                2}] - $CellContext`basis2$ == 0, 
+            D[$CellContext`combination$, {$CellContext`x, 
+                2}] - $CellContext`combination$ == 0}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.1: Linearity, Wronskian, and \
+Superposition", 18, Bold], 
+           Row[{"Differential equation:   ", 
+             TraditionalForm[
+             Derivative[
+                2][$CellContext`y][$CellContext`x] - \
+$CellContext`y[$CellContext`x] == 0]}], 
+           Row[{"Basis functions:   ", 
+             TraditionalForm[{$CellContext`basis1$, $CellContext`basis2$}]}], 
+           Row[{"Wronskian:   ", 
+             TraditionalForm[$CellContext`wronskianValue$]}], 
+           Row[{"Verification:   ", $CellContext`checks$}], 
+           Row[{"Linear combination:   ", 
+             TraditionalForm[$CellContext`combination$]}], 
+           
+           Plot[{$CellContext`basis1$, $CellContext`basis2$, \
+$CellContext`combination$}, {$CellContext`x, -2, 2}, PlotRange -> All, 
+            PlotLegends -> {"Exp[x]", "Exp[-x]", "c1 Exp[x] + c2 Exp[-x]"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Fundamental Solutions and Superposition"]}]], 
+      "Specifications" :> {{{$CellContext`c1$$, 1, "c1"}, -3, 3, 
+         0.5}, {{$CellContext`c2$$, 1, "c2"}, -3, 3, 0.5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      755.1468749999999, {176.72453346290672`, 182.45646705665672`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974771502876797`*^9},
+ CellLabel->"Out[82]=",ExpressionUUID->"ce2a29d9-50db-bf40-ab79-698993e97297"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a5d7d36c-e8f5-204e-b839-7137a7408073"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5056, 131, 275, "Input",ExpressionUUID->"584cf248-41e2-c04a-83f8-4608171e9f2f"],
+Cell[5635, 155, 4048, 79, 376, "Output",ExpressionUUID->"ce2a29d9-50db-bf40-ab79-698993e97297"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,290 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11329,        280]
+NotebookOptionsPosition[     10845,        263]
+NotebookOutlinePosition[     11241,        279]
+CellTagsIndexPosition[     11198,        276]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"x", ",", "y", ",", "u", ",", "initialValue"}], "]"}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "uSolution", ",", "ySolution", ",", "equationCheck", ",", 
+       "initialCheck", ",", "leftEndpoint", ",", "rightEndpoint"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"uSolution", "=", 
+       RowBox[{"Tan", "[", 
+        RowBox[{"x", "+", 
+         RowBox[{"ArcTan", "[", "initialValue", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ySolution", "=", 
+       RowBox[{"uSolution", "-", "x"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"equationCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"ySolution", ",", "x"}], "]"}], "==", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"x", "+", "ySolution"}], ")"}], "^", "2"}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"Element", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", "initialValue"}], "}"}], ",", "Reals"}], 
+           "]"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"initialCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"ySolution", "/.", " ", 
+            RowBox[{"x", "->", "0"}]}], ")"}], "==", "initialValue"}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"Element", "[", 
+           RowBox[{"initialValue", ",", "Reals"}], "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"leftEndpoint", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "Pi"}], "/", "2"}], "-", 
+        RowBox[{"ArcTan", "[", "initialValue", "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"rightEndpoint", "=", 
+       RowBox[{
+        RowBox[{"Pi", "/", "2"}], "-", 
+        RowBox[{"ArcTan", "[", "initialValue", "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.9: Substitution and \
+Transformation Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Original equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"x", "+", 
+                 RowBox[{"y", "[", "x", "]"}]}], ")"}], "^", "2"}]}], "]"}]}],
+            "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Substitution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"u", "[", "x", "]"}], "==", 
+              RowBox[{"x", "+", 
+               RowBox[{"y", "[", "x", "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Since u' = 1 + y', the transformed equation is: \>\"",
+             ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"u", "'"}], "[", "x", "]"}], "==", 
+              RowBox[{"1", "+", 
+               RowBox[{
+                RowBox[{"u", "[", "x", "]"}], "^", "2"}]}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<u(x) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "uSolution", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<y(x) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "ySolution", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Equation verification: \>\"", ",", "equationCheck"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Initial-condition verification: \>\"", ",", 
+            "initialCheck"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Largest interval containing x = 0: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"leftEndpoint", "<", "x", "<", "rightEndpoint"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"ySolution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"leftEndpoint", "+", "0.05"}], ",", 
+             RowBox[{"rightEndpoint", "-", "0.05"}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Transformed IVP Solution\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialValue", ",", "0", ",", "\"\<Initial value y(0)\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "0.25"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997472046562748*^9, 3.997472046562748*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"a6996e19-1996-1b4e-85de-4d9e74985cdd"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialValue$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialValue$$], 0, "Initial value y(0)"}, -1, 1, 
+      0.25, ControlType -> Manipulator}}, Typeset`size$$ = {
+    722.443359375, {148.39590418782444`, 154.12783778157444`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`initialValue$$ = 0}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`uSolution$, $CellContext`ySolution$, \
+$CellContext`equationCheck$, $CellContext`initialCheck$, \
+$CellContext`leftEndpoint$, $CellContext`rightEndpoint$}, \
+$CellContext`uSolution$ = 
+         Tan[$CellContext`x + 
+           ArcTan[$CellContext`initialValue$$]]; $CellContext`ySolution$ = \
+$CellContext`uSolution$ - $CellContext`x; $CellContext`equationCheck$ = 
+         FullSimplify[
+          D[$CellContext`ySolution$, $CellContext`x] == ($CellContext`x + \
+$CellContext`ySolution$)^2, Assumptions -> 
+           Element[{$CellContext`x, $CellContext`initialValue$$}, 
+             Reals]]; $CellContext`initialCheck$ = 
+         FullSimplify[
+          ReplaceAll[$CellContext`ySolution$, $CellContext`x -> 
+             0] == $CellContext`initialValue$$, Assumptions -> 
+           Element[$CellContext`initialValue$$, 
+             Reals]]; $CellContext`leftEndpoint$ = (-Pi)/2 - 
+          ArcTan[$CellContext`initialValue$$]; $CellContext`rightEndpoint$ = 
+         Pi/2 - ArcTan[$CellContext`initialValue$$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.9: Substitution and Transformation \
+Explorer", 18, Bold], 
+           Row[{"Original equation: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`y][$CellContext`x] == ($CellContext`x + \
+$CellContext`y[$CellContext`x])^2]}], 
+           Row[{"Substitution: ", 
+             
+             TraditionalForm[$CellContext`u[$CellContext`x] == $CellContext`x + \
+$CellContext`y[$CellContext`x]]}], 
+           Row[{"Since u' = 1 + y', the transformed equation is: ", 
+             TraditionalForm[
+             Derivative[1][$CellContext`u][$CellContext`x] == 
+              1 + $CellContext`u[$CellContext`x]^2]}], 
+           Row[{"u(x) = ", 
+             TraditionalForm[$CellContext`uSolution$]}], 
+           Row[{"y(x) = ", 
+             TraditionalForm[$CellContext`ySolution$]}], 
+           Row[{"Equation verification: ", $CellContext`equationCheck$}], 
+           
+           Row[{"Initial-condition verification: ", \
+$CellContext`initialCheck$}], 
+           Row[{"Largest interval containing x = 0: ", 
+             
+             TraditionalForm[$CellContext`leftEndpoint$ < $CellContext`x < \
+$CellContext`rightEndpoint$]}], 
+           
+           Plot[$CellContext`ySolution$, {$CellContext`x, \
+$CellContext`leftEndpoint$ + 0.05, $CellContext`rightEndpoint$ - 0.05}, 
+            PlotRange -> {-10, 10}, AxesLabel -> {"x", "y"}, GridLines -> 
+            Automatic, PlotLabel -> "Transformed IVP Solution"]}]], 
+      "Specifications" :> {{{$CellContext`initialValue$$, 0, 
+          "Initial value y(0)"}, -1, 1, 0.25}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      765.0433593749999, {191.25674403157444`, 196.98867762532444`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997472047863573*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"6ce8cb52-56d7-a647-a026-ea277b361a89"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7420a3c2-9369-d34e-bf0b-bfb3d1829e64"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5770, 147, 313, "Input",ExpressionUUID->"a6996e19-1996-1b4e-85de-4d9e74985cdd"],
+Cell[6349, 171, 4480, 89, 405, "Output",ExpressionUUID->"6ce8cb52-56d7-a647-a026-ea277b361a89"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

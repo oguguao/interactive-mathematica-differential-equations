@@ -1,0 +1,287 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11253,        277]
+NotebookOptionsPosition[     10769,        260]
+NotebookOutlinePosition[     11165,        276]
+CellTagsIndexPosition[     11122,        273]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "nonlinearSolution", ",", "linearSolution", ",", "approximatePeriod", ",",
+        "maximumDifference"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"nonlinearSolution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"theta", "''"}], "[", "t", "]"}], "+", 
+             RowBox[{
+              RowBox[{"gravity", "/", "length"}], " ", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"theta", "[", "t", "]"}], "]"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"theta", "[", "0", "]"}], "==", "initialAngle"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"theta", "'"}], "[", "0", "]"}], "==", "0"}]}], "}"}], ",",
+          "theta", ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "15"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"linearSolution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"linearAngle", "''"}], "[", "t", "]"}], "+", 
+             RowBox[{
+              RowBox[{"gravity", "/", "length"}], " ", 
+              RowBox[{"linearAngle", "[", "t", "]"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"linearAngle", "[", "0", "]"}], "==", "initialAngle"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"linearAngle", "'"}], "[", "0", "]"}], "==", "0"}]}], 
+          "}"}], ",", "linearAngle", ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "15"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"approximatePeriod", "=", 
+       RowBox[{"2", " ", "Pi", " ", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"length", "/", "gravity"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"maximumDifference", "=", 
+       RowBox[{"Max", "[", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"nonlinearSolution", "[", "t", "]"}], "-", 
+            RowBox[{"linearSolution", "[", "t", "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "15", ",", "0.05"}], "}"}]}], "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.6: Pendulum Motion and \
+Linearization\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Initial angle: \>\"", ",", "initialAngle", 
+            ",", "\"\< radians\>\""}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Small-angle period: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "approximatePeriod", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Maximum model difference: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "maximumDifference", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"8", ",", "5"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"nonlinearSolution", "[", "t", "]"}], ",", 
+             RowBox[{"linearSolution", "[", "t", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Exact nonlinear model\>\"", 
+              ",", "\"\<Small-angle model\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Angle\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Exact and Linearized Pendulum\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialAngle", ",", "0.2", ",", "\"\<Initial angle (radians)\>\""}], 
+      "}"}], ",", "0.1", ",", "1.4", ",", "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"length", ",", "1", ",", "\"\<Pendulum length\>\""}], "}"}], ",",
+      "0.5", ",", "3", ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"gravity", ",", "9.81", ",", "\"\<Gravity\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9.81", "->", "\"\<9.81 m/s^2\>\""}], "}"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.9974782206325665`*^9, 3.9974782206325665`*^9}},
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"a105ed57-bc5b-f747-81d4-74a4e70a876f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`gravity$$ = 
+    9.81, $CellContext`initialAngle$$ = 0.2, $CellContext`length$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialAngle$$], 0.2, "Initial angle (radians)"}, 
+      0.1, 1.4, 0.1, ControlType -> Manipulator}, {{
+       Hold[$CellContext`length$$], 1, "Pendulum length"}, 0.5, 3, 0.25, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`gravity$$], 9.81, "Gravity"}, {9.81 -> "9.81 m/s^2"},
+       ControlType -> PopupMenu}}, Typeset`size$$ = {
+    653.16796875, {88.99076999792406, 94.72270359167406}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`gravity$$ = 
+        9.81, $CellContext`initialAngle$$ = 0.2, $CellContext`length$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`nonlinearSolution$, $CellContext`linearSolution$, \
+$CellContext`approximatePeriod$, $CellContext`maximumDifference$}, \
+$CellContext`nonlinearSolution$ = 
+         NDSolveValue[{
+           Derivative[
+              2][$CellContext`theta][$CellContext`t] + \
+($CellContext`gravity$$/$CellContext`length$$) Sin[
+                $CellContext`theta[$CellContext`t]] == 
+            0, $CellContext`theta[0] == $CellContext`initialAngle$$, 
+            Derivative[1][$CellContext`theta][0] == 
+            0}, $CellContext`theta, {$CellContext`t, 0, 
+            15}]; $CellContext`linearSolution$ = 
+         NDSolveValue[{
+           Derivative[
+              2][$CellContext`linearAngle][$CellContext`t] + \
+($CellContext`gravity$$/$CellContext`length$$) \
+$CellContext`linearAngle[$CellContext`t] == 
+            0, $CellContext`linearAngle[0] == $CellContext`initialAngle$$, 
+            Derivative[1][$CellContext`linearAngle][0] == 
+            0}, $CellContext`linearAngle, {$CellContext`t, 0, 
+            15}]; $CellContext`approximatePeriod$ = 
+         2 Pi Sqrt[$CellContext`length$$/$CellContext`gravity$$]; \
+$CellContext`maximumDifference$ = Max[
+           Table[
+            
+            Abs[$CellContext`nonlinearSolution$[$CellContext`t] - \
+$CellContext`linearSolution$[$CellContext`t]], {$CellContext`t, 0, 15, 
+             0.05}]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 5.6: Pendulum Motion and \
+Linearization", 18, Bold], 
+           Row[{"Initial angle: ", $CellContext`initialAngle$$, " radians"}], 
+           Row[{"Small-angle period: ", 
+             NumberForm[
+              N[$CellContext`approximatePeriod$], {7, 3}]}], 
+           Row[{"Maximum model difference: ", 
+             NumberForm[
+              N[$CellContext`maximumDifference$], {8, 5}]}], 
+           Plot[{
+             $CellContext`nonlinearSolution$[$CellContext`t], 
+             $CellContext`linearSolution$[$CellContext`t]}, {$CellContext`t, 
+             0, 15}, PlotRange -> All, 
+            PlotLegends -> {"Exact nonlinear model", "Small-angle model"}, 
+            AxesLabel -> {"Time", "Angle"}, GridLines -> Automatic, PlotLabel -> 
+            "Exact and Linearized Pendulum"]}]], 
+      "Specifications" :> {{{$CellContext`initialAngle$$, 0.2, 
+          "Initial angle (radians)"}, 0.1, 1.4, 
+         0.1}, {{$CellContext`length$$, 1, "Pendulum length"}, 0.5, 3, 
+         0.25}, {{$CellContext`gravity$$, 9.81, "Gravity"}, {
+         9.81 -> "9.81 m/s^2"}}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      695.7679687499999, {161.13959812292407`, 166.87153171667407`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997478221802067*^9},
+ CellLabel->
+  "Out[111]=",ExpressionUUID->"e1b64ca2-04f2-8d4f-a066-a9aa8022a02e"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"11fbe08c-0e06-c24e-957a-afd8bebca1a0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5486, 141, 294, "Input",ExpressionUUID->"a105ed57-bc5b-f747-81d4-74a4e70a876f"],
+Cell[6065, 165, 4688, 92, 345, "Output",ExpressionUUID->"e1b64ca2-04f2-8d4f-a066-a9aa8022a02e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

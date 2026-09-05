@@ -1,0 +1,304 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12351,        294]
+NotebookOptionsPosition[     11867,        277]
+NotebookOutlinePosition[     12263,        293]
+CellTagsIndexPosition[     12220,        290]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "coefficientA", ",", "coefficientB", ",", "indicialPolynomial", ",", 
+       "indicialRoots", ",", "candidate", ",", "equationResidual", ",", 
+       "classification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"Switch", "[", 
+       RowBox[{"caseChoice", ",", "\"\<Distinct\>\"", ",", 
+        RowBox[{
+         RowBox[{"coefficientA", "=", 
+          RowBox[{"-", "1"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"coefficientB", "=", 
+          RowBox[{"-", "3"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"candidate", "=", 
+          RowBox[{
+           RowBox[{"x", "^", "3"}], "+", 
+           RowBox[{"x", "^", 
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}]}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+         "classification", "=", "\"\<Distinct real indicial roots\>\""}]}], 
+        ",", "\"\<Repeated\>\"", ",", 
+        RowBox[{
+         RowBox[{"coefficientA", "=", 
+          RowBox[{"-", "3"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"coefficientB", "=", "4"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"candidate", "=", 
+          RowBox[{
+           RowBox[{"x", "^", "2"}], " ", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"Log", "[", "x", "]"}]}], ")"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "classification", "=", "\"\<Repeated real indicial root\>\""}]}], 
+        ",", "\"\<Complex\>\"", ",", 
+        RowBox[{
+         RowBox[{"coefficientA", "=", "1"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"coefficientB", "=", "4"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"candidate", "=", 
+          RowBox[{
+           RowBox[{"Cos", "[", 
+            RowBox[{"2", " ", 
+             RowBox[{"Log", "[", "x", "]"}]}], "]"}], "+", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"2", " ", 
+             RowBox[{"Log", "[", "x", "]"}]}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "classification", 
+          "=", "\"\<Complex conjugate indicial roots\>\""}]}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"indicialPolynomial", "=", 
+       RowBox[{"Expand", "[", 
+        RowBox[{
+         RowBox[{"m", " ", 
+          RowBox[{"(", 
+           RowBox[{"m", "-", "1"}], ")"}]}], "+", 
+         RowBox[{"coefficientA", " ", "m"}], "+", "coefficientB"}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"indicialRoots", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{"indicialPolynomial", "==", "0"}], ",", "m"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"equationResidual", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"x", "^", "2"}], " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"candidate", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}], "+", 
+          RowBox[{"coefficientA", " ", "x", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"candidate", ",", "x"}], "]"}]}], "+", 
+          RowBox[{"coefficientB", " ", "candidate"}]}], ",", 
+         RowBox[{"Assumptions", "->", 
+          RowBox[{"x", ">", "0"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 4.9: Cauchy-Euler Root \
+Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Classification:   \>\"", ",", "classification"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"x", "^", "2"}], " ", 
+                RowBox[{
+                 RowBox[{"y", "''"}], "[", "x", "]"}]}], "+", 
+               RowBox[{"coefficientA", " ", "x", " ", 
+                RowBox[{
+                 RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+               RowBox[{"coefficientB", " ", 
+                RowBox[{"y", "[", "x", "]"}]}]}], "==", "0"}], "]"}]}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial polynomial:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "indicialPolynomial", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Indicial roots:   \>\"", ",", "indicialRoots"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Representative solution:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "candidate", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Residual:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "equationResidual", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"candidate", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0.2", ",", "5"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "classification"}]}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "caseChoice", ",", "\"\<Repeated\>\"", 
+       ",", "\"\<Indicial-root type\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Distinct\>\"", ",", "\"\<Repeated\>\"", 
+       ",", "\"\<Complex\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997477666235903*^9, 3.997477666235903*^9}},
+ CellLabel->"In[98]:=",ExpressionUUID->"efd05afb-9555-9a4b-b422-29e489eb6bdd"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`caseChoice$$ = "Repeated", Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`caseChoice$$], "Repeated", "Indicial-root type"}, {
+      "Distinct", "Repeated", "Complex"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {
+    584.7978515625, {130.05087998717545`, 135.78281358092545`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`caseChoice$$ = "Repeated"},
+       "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`coefficientA$, $CellContext`coefficientB$, \
+$CellContext`indicialPolynomial$, $CellContext`indicialRoots$, \
+$CellContext`candidate$, $CellContext`equationResidual$, \
+$CellContext`classification$}, 
+        Switch[$CellContext`caseChoice$$, 
+          "Distinct", $CellContext`coefficientA$ = -1; \
+$CellContext`coefficientB$ = -3; $CellContext`candidate$ = $CellContext`x^3 + \
+$CellContext`x^(-1); $CellContext`classification$ = 
+           "Distinct real indicial roots", 
+          "Repeated", $CellContext`coefficientA$ = -3; \
+$CellContext`coefficientB$ = 
+           4; $CellContext`candidate$ = $CellContext`x^2 (1 + 
+             Log[$CellContext`x]); $CellContext`classification$ = 
+           "Repeated real indicial root", 
+          "Complex", $CellContext`coefficientA$ = 
+           1; $CellContext`coefficientB$ = 4; $CellContext`candidate$ = 
+           Cos[2 Log[$CellContext`x]] + 
+            Sin[2 Log[$CellContext`x]]; $CellContext`classification$ = 
+           "Complex conjugate indicial roots"]; \
+$CellContext`indicialPolynomial$ = 
+         Expand[$CellContext`m ($CellContext`m - 
+             1) + $CellContext`coefficientA$ $CellContext`m + \
+$CellContext`coefficientB$]; $CellContext`indicialRoots$ = 
+         Solve[$CellContext`indicialPolynomial$ == 
+           0, $CellContext`m]; $CellContext`equationResidual$ = 
+         FullSimplify[$CellContext`x^2 
+            D[$CellContext`candidate$, {$CellContext`x, 
+               2}] + $CellContext`coefficientA$ $CellContext`x 
+            D[$CellContext`candidate$, $CellContext`x] + \
+$CellContext`coefficientB$ $CellContext`candidate$, 
+           Assumptions -> $CellContext`x > 0]; Column[{
+           Style[
+           "Interactive Mathematica Lab 4.9: Cauchy-Euler Root Explorer", 18, 
+            Bold], 
+           Row[{"Classification:   ", $CellContext`classification$}], 
+           Row[{"Differential equation:   ", 
+             
+             TraditionalForm[$CellContext`x^2 
+                Derivative[
+                 2][$CellContext`y][$CellContext`x] + \
+$CellContext`coefficientA$ $CellContext`x 
+                Derivative[
+                 1][$CellContext`y][$CellContext`x] + \
+$CellContext`coefficientB$ $CellContext`y[$CellContext`x] == 0]}], 
+           Row[{"Indicial polynomial:   ", 
+             TraditionalForm[$CellContext`indicialPolynomial$]}], 
+           Row[{"Indicial roots:   ", $CellContext`indicialRoots$}], 
+           Row[{"Representative solution:   ", 
+             TraditionalForm[$CellContext`candidate$]}], 
+           Row[{"Residual:   ", 
+             TraditionalForm[$CellContext`equationResidual$]}], 
+           
+           Plot[$CellContext`candidate$, {$CellContext`x, 0.2, 5}, PlotRange -> 
+            All, AxesLabel -> {"x", "y"}, GridLines -> Automatic, 
+            PlotLabel -> $CellContext`classification$]}]], 
+      "Specifications" :> {{{$CellContext`caseChoice$$, "Repeated", 
+          "Indicial-root type"}, {"Distinct", "Repeated", "Complex"}, 
+         ControlType -> SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      627.3978515624999, {172.89707139342545`, 178.62900498717545`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974776677840424`*^9},
+ CellLabel->"Out[99]=",ExpressionUUID->"b0ead9b8-222e-8845-a16d-3251197c0a88"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"eba09f7c-31fd-c542-b30b-be6fdeaa4f02"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6377, 157, 427, "Input",ExpressionUUID->"efd05afb-9555-9a4b-b422-29e489eb6bdd"],
+Cell[6956, 181, 4895, 93, 368, "Output",ExpressionUUID->"b0ead9b8-222e-8845-a16d-3251197c0a88"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

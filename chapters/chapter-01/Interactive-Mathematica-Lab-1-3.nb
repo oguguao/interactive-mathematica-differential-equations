@@ -1,0 +1,309 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11838,        301]
+NotebookOptionsPosition[     10969,        280]
+NotebookOutlinePosition[     11365,        296]
+CellTagsIndexPosition[     11322,        293]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"examples", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+          RowBox[{"4", " ", 
+           RowBox[{"y", "[", "x", "]"}]}]}], "==", "7"}], ",", "1", ",", "1", 
+        ",", "\"\<The highest derivative is y'(x), and it occurs to the first \
+power.\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+          RowBox[{"3", " ", 
+           RowBox[{
+            RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+          RowBox[{"5", " ", 
+           RowBox[{"y", "[", "x", "]"}]}]}], "==", "0"}], ",", "2", ",", "1", 
+        ",", "\"\<The highest derivative is y''(x), and it occurs to the \
+first power.\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"y", "''"}], "[", "x", "]"}], ")"}], "^", "3"}], "+", 
+          RowBox[{"y", "[", "x", "]"}]}], "==", "x"}], ",", "2", ",", "3", 
+        ",", "\"\<The highest derivative is y''(x), and it is raised to the \
+third power.\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"y", "'''"}], "[", "x", "]"}], ")"}], "^", "2"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "x", "]"}], ")"}], "^", "5"}]}], "==", 
+         "x"}], ",", "3", ",", "2", 
+        ",", "\"\<The third derivative is the highest derivative. Its \
+exponent is 2.\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"y", "''''"}], "[", "x", "]"}], "-", 
+          RowBox[{"2", " ", 
+           RowBox[{
+            RowBox[{"y", "''"}], "[", "x", "]"}]}], "+", 
+          RowBox[{"y", "[", "x", "]"}]}], "==", "x"}], ",", "4", ",", "1", 
+        ",", "\"\<The fourth derivative is the highest derivative and occurs \
+to the first power.\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"y", "''"}], "[", "x", "]"}], "]"}], "+", 
+          RowBox[{"y", "[", "x", "]"}]}], "==", "0"}], ",", "2", 
+        ",", "\"\<Not defined\>\"", 
+        ",", "\"\<The second derivative occurs inside a sine function, so the \
+equation is not polynomial in its derivatives.\>\""}], "}"}]}], "}"}]}], 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Interactive Mathematica Lab 1.3: Order and Degree \
+Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Differential Equation\>\"", ",", "14", ",", "Bold"}], 
+       "]"}], ",", 
+      RowBox[{"TraditionalForm", "[", 
+       RowBox[{"examples", "[", 
+        RowBox[{"[", 
+         RowBox[{"choice", ",", "1"}], "]"}], "]"}], "]"}], ",", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Order:   \>\"", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"examples", "[", 
+          RowBox[{"[", 
+           RowBox[{"choice", ",", "2"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Degree:   \>\"", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"examples", "[", 
+          RowBox[{"[", 
+           RowBox[{"choice", ",", "3"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Explanation\>\"", ",", "14", ",", "Bold"}], "]"}], ",", 
+      RowBox[{"examples", "[", 
+       RowBox[{"[", 
+        RowBox[{"choice", ",", "4"}], "]"}], "]"}], ",", 
+      RowBox[{"Spacer", "[", "10", "]"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"examples", "[", 
+          RowBox[{"[", 
+           RowBox[{"choice", ",", "3"}], "]"}], "]"}], 
+         "===", "\"\<Not defined\>\""}], ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<The degree is NOT defined.\>\"", ",", "14", ",", 
+          "Bold"}], "]"}], ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<The degree is defined for this equation.\>\"", ",", 
+          "14", ",", "Bold"}], "]"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"choice", ",", "1", ",", "\"\<Choose an equation:\>\""}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<Example 1\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<Example 2\>\""}], ",", 
+       RowBox[{"3", "->", "\"\<Example 3\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<Example 4\>\""}], ",", 
+       RowBox[{"5", "->", "\"\<Example 5\>\""}], ",", 
+       RowBox[{"6", "->", "\"\<Example 6\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974694638896065`*^9, 3.9974694638896065`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"cb7a2e7f-5561-2348-ad5e-bef79629b597"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`choice$$ = 6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`choice$$], 1, "Choose an equation:"}, {
+      1 -> "Example 1", 2 -> "Example 2", 3 -> "Example 3", 4 -> "Example 4", 
+       5 -> "Example 5", 6 -> "Example 6"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {573.99609375, {74.26533203125, 79.997265625}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`choice$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> Column[{
+         Style[
+         "Interactive Mathematica Lab 1.3: Order and Degree Explorer", 18, 
+          Bold], 
+         Style["Differential Equation", 14, Bold], 
+         TraditionalForm[
+          Part[$CellContext`examples, $CellContext`choice$$, 1]], 
+         Row[{
+           Style["Order:   ", Bold], 
+           Part[$CellContext`examples, $CellContext`choice$$, 2]}], 
+         Row[{
+           Style["Degree:   ", Bold], 
+           Part[$CellContext`examples, $CellContext`choice$$, 3]}], 
+         Style["Explanation", 14, Bold], 
+         Part[$CellContext`examples, $CellContext`choice$$, 4], 
+         Spacer[10], 
+         If[
+         Part[$CellContext`examples, $CellContext`choice$$, 3] === 
+          "Not defined", 
+          Style["The degree is NOT defined.", 14, Bold], 
+          Style["The degree is defined for this equation.", 14, Bold]]}], 
+      "Specifications" :> {{{$CellContext`choice$$, 1, 
+          "Choose an equation:"}, {
+         1 -> "Example 1", 2 -> "Example 2", 3 -> "Example 3", 4 -> 
+          "Example 4", 5 -> "Example 5", 6 -> "Example 6"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{616.5960937499999, {117.1115234375, 122.84345703125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974694663613224`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"7f9cc7d6-5d25-d94e-abd8-c6a958836b98"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"6\\\", \\\",\\\", \\\"1\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]\\) is longer than depth of object.\"", 2, 10, 1, 
+   33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997469523977188*^9},
+ CellLabel->"",ExpressionUUID->"1307e3de-8378-5d47-b7f8-1a0e526121e0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"6\\\", \\\",\\\", \\\"2\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]\\) is longer than depth of object.\"", 2, 10, 2, 
+   33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9974695240146637`*^9},
+ CellLabel->"",ExpressionUUID->"522ecaf4-41e7-3045-9799-d80d67d083f9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part", "partd", 
+   "\"Part specification \\!\\(\\*RowBox[{\\\"examples\\\", \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"6\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]\\) is longer than depth of object.\"", 2, 10, 3, 
+   33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.997469524022665*^9},
+ CellLabel->"",ExpressionUUID->"b54d9206-6aa2-0a4e-ba34-ce85a66e04d9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
+\\\"partd\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"", 2, 10, 4, 33564231846375923345, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9974695240304184`*^9},
+ CellLabel->"",ExpressionUUID->"d48f0f7d-7240-0c4e-aa3d-4a544d3f43c8"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c03714bc-a28a-f84f-8097-f73dd3219f1d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5549, 147, 332, "Input",ExpressionUUID->"cb7a2e7f-5561-2348-ad5e-bef79629b597"],
+Cell[6128, 171, 2974, 59, 256, "Output",ExpressionUUID->"7f9cc7d6-5d25-d94e-abd8-c6a958836b98"],
+Cell[9105, 232, 469, 10, 26, "Message",ExpressionUUID->"1307e3de-8378-5d47-b7f8-1a0e526121e0"],
+Cell[9577, 244, 471, 10, 26, "Message",ExpressionUUID->"522ecaf4-41e7-3045-9799-d80d67d083f9"],
+Cell[10051, 256, 469, 10, 26, "Message",ExpressionUUID->"b54d9206-6aa2-0a4e-ba34-ce85a66e04d9"],
+Cell[10523, 268, 430, 9, 26, "Message",ExpressionUUID->"d48f0f7d-7240-0c4e-aa3d-4a544d3f43c8"]
+}, Open  ]]
+}
+]
+*)
+

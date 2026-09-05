@@ -1,0 +1,339 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13884,        329]
+NotebookOptionsPosition[     13399,        312]
+NotebookOutlinePosition[     13795,        328]
+CellTagsIndexPosition[     13752,        325]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "criticalDamping", ",", "dampingRatio", ",", "discriminant", ",", 
+       "classification", ",", "characteristicRoots", ",", "solution", ",", 
+       "velocity", ",", "energy"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"criticalDamping", "=", 
+       RowBox[{"2", " ", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"mass", " ", "springConstant"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"dampingRatio", "=", 
+       RowBox[{"dampingCoefficient", "/", "criticalDamping"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"discriminant", "=", 
+       RowBox[{
+        RowBox[{"dampingCoefficient", "^", "2"}], "-", 
+        RowBox[{"4", " ", "mass", " ", "springConstant"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{"discriminant", "<", "0"}], ",", "\"\<Underdamped\>\"", ",", 
+         RowBox[{
+          RowBox[{"Chop", "[", "discriminant", "]"}], "==", "0"}], 
+         ",", "\"\<Critically damped\>\"", ",", 
+         RowBox[{"discriminant", ">", "0"}], ",", "\"\<Overdamped\>\""}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"characteristicRoots", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"mass", " ", 
+            RowBox[{"r", "^", "2"}]}], "+", 
+           RowBox[{"dampingCoefficient", " ", "r"}], "+", "springConstant"}], 
+          "==", "0"}], ",", "r"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{"NDSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"mass", " ", 
+              RowBox[{
+               RowBox[{"x", "''"}], "[", "t", "]"}]}], "+", 
+             RowBox[{"dampingCoefficient", " ", 
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "t", "]"}]}], "+", 
+             RowBox[{"springConstant", " ", 
+              RowBox[{"x", "[", "t", "]"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"x", "[", "0", "]"}], "==", "initialDisplacement"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"x", "'"}], "[", "0", "]"}], "==", "initialVelocity"}]}],
+           "}"}], ",", "x", ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "15"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"velocity", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"solution", "'"}], "[", "t", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"energy", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"1", "/", "2"}], " ", "mass", " ", 
+         RowBox[{
+          RowBox[{"velocity", "[", "t", "]"}], "^", "2"}]}], "+", 
+        RowBox[{
+         RowBox[{"1", "/", "2"}], " ", "springConstant", " ", 
+         RowBox[{
+          RowBox[{"solution", "[", "t", "]"}], "^", "2"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.3: Free Damped \
+Motion\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Classification: \>\"", ",", "classification"}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Characteristic roots: \>\"", ",", 
+            "characteristicRoots"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Critical damping coefficient: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "criticalDamping", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"7", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Damping ratio: \>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "dampingRatio", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"6", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"solution", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Displacement\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "classification"}]}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"energy", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Energy\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Mechanical Energy\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mass", ",", "1", ",", "\"\<Mass m\>\""}], "}"}], ",", "0.5", ",",
+      "4", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"springConstant", ",", "5", ",", "\"\<Spring constant k\>\""}], 
+      "}"}], ",", "1", ",", "15", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dampingCoefficient", ",", "4", ",", "\"\<Damping coefficient c\>\""}], 
+      "}"}], ",", "0.5", ",", "10", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialDisplacement", ",", "1", ",", "\"\<Initial displacement\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialVelocity", ",", "0", ",", "\"\<Initial velocity\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974781302837353`*^9, 3.9974781302837353`*^9}},
+ CellLabel->
+  "In[104]:=",ExpressionUUID->"a823ba01-1888-8546-a329-8a071cd26e1e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dampingCoefficient$$ = 
+    4, $CellContext`initialDisplacement$$ = 
+    1, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+    1, $CellContext`springConstant$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`mass$$], 1, "Mass m"}, 0.5, 4, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`springConstant$$], 5, "Spring constant k"}, 1, 15, 1,
+       ControlType -> Manipulator}, {{
+       Hold[$CellContext`dampingCoefficient$$], 4, "Damping coefficient c"}, 
+      0.5, 10, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialDisplacement$$], 1, 
+       "Initial displacement"}, -2, 2, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialVelocity$$], 0, "Initial velocity"}, -3, 3, 
+      0.5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    504.720703125, {164.95167950521852`, 170.68361309896852`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dampingCoefficient$$ = 
+        4, $CellContext`initialDisplacement$$ = 
+        1, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+        1, $CellContext`springConstant$$ = 5}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`criticalDamping$, $CellContext`dampingRatio$, \
+$CellContext`discriminant$, $CellContext`classification$, \
+$CellContext`characteristicRoots$, $CellContext`solution$, \
+$CellContext`velocity$, $CellContext`energy$}, $CellContext`criticalDamping$ = 
+         2 Sqrt[$CellContext`mass$$ $CellContext`springConstant$$]; \
+$CellContext`dampingRatio$ = \
+$CellContext`dampingCoefficient$$/$CellContext`criticalDamping$; \
+$CellContext`discriminant$ = $CellContext`dampingCoefficient$$^2 - 
+          4 $CellContext`mass$$ $CellContext`springConstant$$; \
+$CellContext`classification$ = 
+         Which[$CellContext`discriminant$ < 0, "Underdamped", 
+           Chop[$CellContext`discriminant$] == 0, 
+           "Critically damped", $CellContext`discriminant$ > 0, 
+           "Overdamped"]; $CellContext`characteristicRoots$ = 
+         Solve[$CellContext`mass$$ $CellContext`r^2 + \
+$CellContext`dampingCoefficient$$ $CellContext`r + \
+$CellContext`springConstant$$ == 0, $CellContext`r]; $CellContext`solution$ = 
+         NDSolveValue[{$CellContext`mass$$ 
+              Derivative[
+               2][$CellContext`x][$CellContext`t] + \
+$CellContext`dampingCoefficient$$ 
+              Derivative[
+               1][$CellContext`x][$CellContext`t] + \
+$CellContext`springConstant$$ $CellContext`x[$CellContext`t] == 
+            0, $CellContext`x[0] == $CellContext`initialDisplacement$$, 
+            Derivative[1][$CellContext`x][
+             0] == $CellContext`initialVelocity$$}, $CellContext`x, \
+{$CellContext`t, 0, 15}]; $CellContext`velocity$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := 
+         Derivative[
+          1][$CellContext`solution$][$CellContext`t$]; $CellContext`energy$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := (1/
+            2) $CellContext`mass$$ $CellContext`velocity$[$CellContext`t$]^2 + \
+(1/2) $CellContext`springConstant$$ $CellContext`solution$[$CellContext`t$]^2; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 5.3: Free Damped Motion", 18, Bold], 
+           Row[{"Classification: ", $CellContext`classification$}], 
+           Row[{"Characteristic roots: ", $CellContext`characteristicRoots$}], 
+           Row[{"Critical damping coefficient: ", 
+             NumberForm[
+              N[$CellContext`criticalDamping$], {7, 3}]}], 
+           Row[{"Damping ratio: ", 
+             NumberForm[
+              N[$CellContext`dampingRatio$], {6, 3}]}], 
+           Plot[
+            $CellContext`solution$[$CellContext`t], {$CellContext`t, 0, 15}, 
+            PlotRange -> All, AxesLabel -> {"Time", "Displacement"}, 
+            GridLines -> Automatic, 
+            PlotLabel -> $CellContext`classification$], 
+           Plot[
+            $CellContext`energy$[$CellContext`t], {$CellContext`t, 0, 15}, 
+            PlotRange -> All, AxesLabel -> {"Time", "Energy"}, GridLines -> 
+            Automatic, PlotLabel -> "Mechanical Energy"]}]], 
+      "Specifications" :> {{{$CellContext`mass$$, 1, "Mass m"}, 0.5, 4, 
+         0.5}, {{$CellContext`springConstant$$, 5, "Spring constant k"}, 1, 
+         15, 1}, {{$CellContext`dampingCoefficient$$, 4, 
+          "Damping coefficient c"}, 0.5, 10, 
+         0.5}, {{$CellContext`initialDisplacement$$, 1, 
+          "Initial displacement"}, -2, 2, 
+         0.5}, {{$CellContext`initialVelocity$$, 0, "Initial velocity"}, -3, 
+         3, 0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      547.3207031249999, {263.01251934896857`, 268.74445294271857`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997478131621069*^9},
+ CellLabel->
+  "Out[105]=",ExpressionUUID->"3ebb793e-56c0-6a4d-9568-13c1ef279f77"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"70332ce7-57e3-1541-b952-13dada9bd263"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6792, 172, 389, "Input",ExpressionUUID->"a823ba01-1888-8546-a329-8a071cd26e1e"],
+Cell[7371, 196, 6012, 113, 548, "Output",ExpressionUUID->"3ebb793e-56c0-6a4d-9568-13c1ef279f77"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,321 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13080,        311]
+NotebookOptionsPosition[     12595,        294]
+NotebookOutlinePosition[     12991,        310]
+CellTagsIndexPosition[     12948,        307]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "naturalFrequency", ",", "coefficient1", ",", "coefficient2", ",", 
+       "amplitude", ",", "period", ",", "ordinaryFrequency", ",", 
+       "displacement", ",", "velocity", ",", "energy", ",", 
+       "simplifiedEnergy"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"naturalFrequency", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{"springConstant", "/", "mass"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"coefficient1", "=", "initialDisplacement"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"coefficient2", "=", 
+       RowBox[{"initialVelocity", "/", "naturalFrequency"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"amplitude", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"coefficient1", "^", "2"}], "+", 
+         RowBox[{"coefficient2", "^", "2"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"period", "=", 
+       RowBox[{"2", " ", 
+        RowBox[{"Pi", "/", "naturalFrequency"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ordinaryFrequency", "=", 
+       RowBox[{"1", "/", "period"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"displacement", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"coefficient1", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"naturalFrequency", " ", "t"}], "]"}]}], "+", 
+        RowBox[{"coefficient2", " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"naturalFrequency", " ", "t"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"velocity", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "coefficient1"}], " ", "naturalFrequency", " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"naturalFrequency", " ", "t"}], "]"}]}], "+", 
+        RowBox[{"coefficient2", " ", "naturalFrequency", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"naturalFrequency", " ", "t"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"energy", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"1", "/", "2"}], " ", "mass", " ", 
+         RowBox[{
+          RowBox[{"velocity", "[", "t", "]"}], "^", "2"}]}], "+", 
+        RowBox[{
+         RowBox[{"1", "/", "2"}], " ", "springConstant", " ", 
+         RowBox[{
+          RowBox[{"displacement", "[", "t", "]"}], "^", "2"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"simplifiedEnergy", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"energy", "[", "t", "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.2: Free Undamped \
+Motion\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Natural angular frequency: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "naturalFrequency", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Amplitude: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "amplitude", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Period: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "period", "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Ordinary frequency: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "ordinaryFrequency", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Total mechanical energy: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "simplifiedEnergy", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"displacement", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", 
+             RowBox[{"4", " ", "period"}]}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Displacement\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Free Undamped Motion\>\""}]}], 
+          "]"}], ",", 
+         RowBox[{"ParametricPlot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"displacement", "[", "t", "]"}], ",", 
+             RowBox[{"velocity", "[", "t", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", 
+             RowBox[{"4", " ", "period"}]}], "}"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Displacement\>\"", ",", "\"\<Velocity\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Undamped Phase Curve\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mass", ",", "1", ",", "\"\<Mass m\>\""}], "}"}], ",", "0.5", ",",
+      "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"springConstant", ",", "9", ",", "\"\<Spring constant k\>\""}], 
+      "}"}], ",", "1", ",", "20", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialDisplacement", ",", "2", ",", "\"\<Initial displacement\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "3"}], ",", "3", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialVelocity", ",", "0", ",", "\"\<Initial velocity\>\""}], 
+      "}"}], ",", 
+     RowBox[{"-", "4"}], ",", "4", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997478101937042*^9, 3.997478101937042*^9}},
+ CellLabel->
+  "In[102]:=",ExpressionUUID->"1fbc733a-6b98-664f-a7ec-32ac413f1a1d"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialDisplacement$$ = 
+    2, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+    1, $CellContext`springConstant$$ = 9, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`mass$$], 1, "Mass m"}, 0.5, 5, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`springConstant$$], 9, "Spring constant k"}, 1, 20, 1,
+       ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialDisplacement$$], 2, 
+       "Initial displacement"}, -3, 3, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialVelocity$$], 0, "Initial velocity"}, -4, 4, 
+      0.5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    524.513671875, {222.7082137706156, 228.4401473643656}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialDisplacement$$ = 
+        2, $CellContext`initialVelocity$$ = 0, $CellContext`mass$$ = 
+        1, $CellContext`springConstant$$ = 9}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`naturalFrequency$, $CellContext`coefficient1$, \
+$CellContext`coefficient2$, $CellContext`amplitude$, $CellContext`period$, \
+$CellContext`ordinaryFrequency$, $CellContext`displacement$, \
+$CellContext`velocity$, $CellContext`energy$, \
+$CellContext`simplifiedEnergy$}, $CellContext`naturalFrequency$ = 
+         Sqrt[$CellContext`springConstant$$/$CellContext`mass$$]; \
+$CellContext`coefficient1$ = $CellContext`initialDisplacement$$; \
+$CellContext`coefficient2$ = \
+$CellContext`initialVelocity$$/$CellContext`naturalFrequency$; \
+$CellContext`amplitude$ = 
+         Sqrt[$CellContext`coefficient1$^2 + $CellContext`coefficient2$^2]; \
+$CellContext`period$ = 
+         2 (Pi/$CellContext`naturalFrequency$); \
+$CellContext`ordinaryFrequency$ = 
+         1/$CellContext`period$; $CellContext`displacement$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`coefficient1$ 
+           Cos[$CellContext`naturalFrequency$ $CellContext`t$] + \
+$CellContext`coefficient2$ 
+           Sin[$CellContext`naturalFrequency$ $CellContext`t$]; \
+$CellContext`velocity$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := (-$CellContext`coefficient1$) \
+$CellContext`naturalFrequency$ 
+           Sin[$CellContext`naturalFrequency$ $CellContext`t$] + \
+$CellContext`coefficient2$ $CellContext`naturalFrequency$ 
+           Cos[$CellContext`naturalFrequency$ $CellContext`t$]; \
+$CellContext`energy$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := (1/
+            2) $CellContext`mass$$ $CellContext`velocity$[$CellContext`t$]^2 + \
+(1/2) $CellContext`springConstant$$ \
+$CellContext`displacement$[$CellContext`t$]^2; $CellContext`simplifiedEnergy$ = 
+         FullSimplify[
+           $CellContext`energy$[$CellContext`t]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 5.2: Free Undamped Motion", 18, Bold], 
+           Row[{"Natural angular frequency: ", 
+             TraditionalForm[$CellContext`naturalFrequency$]}], 
+           Row[{"Amplitude: ", 
+             TraditionalForm[$CellContext`amplitude$]}], 
+           Row[{"Period: ", 
+             TraditionalForm[$CellContext`period$]}], 
+           Row[{"Ordinary frequency: ", 
+             TraditionalForm[$CellContext`ordinaryFrequency$]}], 
+           Row[{"Total mechanical energy: ", 
+             TraditionalForm[$CellContext`simplifiedEnergy$]}], 
+           Plot[
+            $CellContext`displacement$[$CellContext`t], {$CellContext`t, 0, 
+             4 $CellContext`period$}, PlotRange -> All, 
+            AxesLabel -> {"Time", "Displacement"}, GridLines -> Automatic, 
+            PlotLabel -> "Free Undamped Motion"], 
+           ParametricPlot[{
+             $CellContext`displacement$[$CellContext`t], 
+             $CellContext`velocity$[$CellContext`t]}, {$CellContext`t, 0, 
+             4 $CellContext`period$}, 
+            AxesLabel -> {"Displacement", "Velocity"}, PlotLabel -> 
+            "Undamped Phase Curve"]}]], 
+      "Specifications" :> {{{$CellContext`mass$$, 1, "Mass m"}, 0.5, 5, 
+         0.5}, {{$CellContext`springConstant$$, 9, "Spring constant k"}, 1, 
+         20, 1}, {{$CellContext`initialDisplacement$$, 2, 
+          "Initial displacement"}, -3, 3, 
+         0.5}, {{$CellContext`initialVelocity$$, 0, "Initial velocity"}, -4, 
+         4, 0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      567.1136718749999, {306.96905361436563`, 312.70098720811563`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974781034993553`*^9},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"6c004368-4d9e-de40-9986-df581b6c7687"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ee55d9d8-6874-0940-b104-f28ee48f253b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6284, 157, 427, "Input",ExpressionUUID->"1fbc733a-6b98-664f-a7ec-32ac413f1a1d"],
+Cell[6863, 181, 5716, 110, 636, "Output",ExpressionUUID->"6c004368-4d9e-de40-9986-df581b6c7687"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

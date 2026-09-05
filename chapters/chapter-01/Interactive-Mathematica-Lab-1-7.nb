@@ -1,0 +1,269 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10218,        259]
+NotebookOptionsPosition[      9734,        242]
+NotebookOutlinePosition[     10130,        258]
+CellTagsIndexPosition[     10087,        255]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "relation", ",", "branches", ",", "derivativeRule", ",", "implicitPlot",
+        ",", "explicitPlot"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"relation", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "^", "2"}], "+", 
+         RowBox[{"y", "^", "2"}]}], "==", "c"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"branches", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{"relation", ",", "y", ",", "Reals"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"derivativeRule", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"x", "^", "2"}], "+", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "^", "2"}]}], "==", "c"}], ",", 
+           "x"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"y", "'"}], "[", "x", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"implicitPlot", "=", 
+       RowBox[{"ContourPlot", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"x", "^", "2"}], "+", 
+           RowBox[{"y", "^", "2"}]}], "==", "c"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{
+            RowBox[{"-", 
+             RowBox[{"Sqrt", "[", "c", "]"}]}], "-", "1"}], ",", 
+           RowBox[{
+            RowBox[{"Sqrt", "[", "c", "]"}], "+", "1"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", 
+           RowBox[{
+            RowBox[{"-", 
+             RowBox[{"Sqrt", "[", "c", "]"}]}], "-", "1"}], ",", 
+           RowBox[{
+            RowBox[{"Sqrt", "[", "c", "]"}], "+", "1"}]}], "}"}], ",", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+         RowBox[{"PlotLabel", "->", "\"\<Implicit Solution\>\""}]}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"explicitPlot", "=", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Sqrt", "[", 
+            RowBox[{"c", "-", 
+             RowBox[{"x", "^", "2"}]}], "]"}], ",", 
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{"c", "-", 
+              RowBox[{"x", "^", "2"}]}], "]"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", 
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "c", "]"}]}], ",", 
+           RowBox[{"Sqrt", "[", "c", "]"}]}], "}"}], ",", 
+         RowBox[{"PlotRange", "->", "All"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+         RowBox[{"PlotLabel", "->", "\"\<Two Explicit Branches\>\""}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 1.7: Explicit and Implicit \
+Solutions\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Implicit relation:   \>\"", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", "relation", "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Explicit branches:   \>\"", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", "branches", "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Implicit derivative:   \>\"", ",", "Bold"}], "]"}], 
+            ",", 
+            RowBox[{"TraditionalForm", "[", "derivativeRule", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Real domain of the branches:   \>\"", ",", "Bold"}],
+              "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"Sqrt", "[", "c", "]"}]}], "<=", "x", "<=", 
+              RowBox[{"Sqrt", "[", "c", "]"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"GraphicsRow", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"implicitPlot", ",", "explicitPlot"}], "}"}], ",", 
+           RowBox[{"ImageSize", "->", "Large"}]}], "]"}]}], "}"}], "]"}]}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "4", ",", "\"\<Constant c\>\""}], "}"}], ",", "1", ",",
+      "16", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997469804202467*^9, 3.997469804202467*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"13cffd9d-67ee-b44f-8e6a-0dcf66df1950"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 4, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 4, "Constant c"}, 1, 16, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    633.375, {205.82481282552084`, 211.55674641927084`}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`c$$ = 4}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`relation$, $CellContext`branches$, \
+$CellContext`derivativeRule$, $CellContext`implicitPlot$, \
+$CellContext`explicitPlot$}, $CellContext`relation$ = $CellContext`x^2 + \
+$CellContext`y^2 == $CellContext`c$$; $CellContext`branches$ = 
+         Solve[$CellContext`relation$, $CellContext`y, 
+           Reals]; $CellContext`derivativeRule$ = Solve[
+           
+           D[$CellContext`x^2 + $CellContext`y[$CellContext`x]^2 == \
+$CellContext`c$$, $CellContext`x], 
+           Derivative[
+           1][$CellContext`y][$CellContext`x]]; $CellContext`implicitPlot$ = 
+         ContourPlot[$CellContext`x^2 + $CellContext`y^2 == $CellContext`c$$, \
+{$CellContext`x, -Sqrt[$CellContext`c$$] - 1, Sqrt[$CellContext`c$$] + 
+            1}, {$CellContext`y, -Sqrt[$CellContext`c$$] - 1, 
+            Sqrt[$CellContext`c$$] + 1}, FrameLabel -> {"x", "y"}, PlotLabel -> 
+           "Implicit Solution"]; $CellContext`explicitPlot$ = Plot[{
+            Sqrt[$CellContext`c$$ - $CellContext`x^2], -
+            Sqrt[$CellContext`c$$ - $CellContext`x^2]}, {$CellContext`x, -
+            Sqrt[$CellContext`c$$], 
+            Sqrt[$CellContext`c$$]}, PlotRange -> All, 
+           AxesLabel -> {"x", "y"}, PlotLabel -> "Two Explicit Branches"]; 
+        Column[{
+           Style[
+           "Interactive Mathematica Lab 1.7: Explicit and Implicit Solutions",
+             18, Bold], 
+           Row[{
+             Style["Implicit relation:   ", Bold], 
+             TraditionalForm[$CellContext`relation$]}], 
+           Row[{
+             Style["Explicit branches:   ", Bold], 
+             TraditionalForm[$CellContext`branches$]}], 
+           Row[{
+             Style["Implicit derivative:   ", Bold], 
+             TraditionalForm[$CellContext`derivativeRule$]}], 
+           Row[{
+             Style["Real domain of the branches:   ", Bold], 
+             
+             TraditionalForm[-Sqrt[$CellContext`c$$] <= $CellContext`x <= 
+              Sqrt[$CellContext`c$$]]}], 
+           
+           GraphicsRow[{$CellContext`implicitPlot$, \
+$CellContext`explicitPlot$}, ImageSize -> Large]}]], 
+      "Specifications" :> {{{$CellContext`c$$, 4, "Constant c"}, 1, 16, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      675.9749999999999, {248.68565266927084`, 254.41758626302084`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974698061973495`*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"62a744e0-a5db-184b-bd01-45dcaffa7647"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"81e59f38-e845-614b-a3b8-1fb7b91ab553"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5207, 137, 294, "Input",ExpressionUUID->"13cffd9d-67ee-b44f-8e6a-0dcf66df1950"],
+Cell[5786, 161, 3932, 78, 520, "Output",ExpressionUUID->"62a744e0-a5db-184b-bd01-45dcaffa7647"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,290 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11497,        280]
+NotebookOptionsPosition[     11013,        263]
+NotebookOutlinePosition[     11409,        279]
+CellTagsIndexPosition[     11366,        276]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "equation", ",", "classification", ",", "solution", ",", "forcing", ",",
+        "verification"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"forcing", "=", 
+       RowBox[{"A", " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{"3", " ", "x"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"equation", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+         RowBox[{"3", " ", 
+          RowBox[{
+           RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+         RowBox[{"2", " ", 
+          RowBox[{"y", "[", "x", "]"}]}]}], "==", "forcing"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"A", "==", "0"}], ",", "\"\<Homogeneous Linear Equation\>\"",
+          ",", "\"\<Nonhomogeneous Linear Equation\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"solution", "=", 
+       RowBox[{"DSolveValue", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"equation", ",", 
+           RowBox[{
+            RowBox[{"y", "[", "0", "]"}], "==", "y0"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"y", "'"}], "[", "0", "]"}], "==", "v0"}]}], "}"}], ",", 
+         RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"verification", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "2"}], "}"}]}], "]"}], "-", 
+          RowBox[{"3", " ", 
+           RowBox[{"D", "[", 
+            RowBox[{"solution", ",", "x"}], "]"}]}], "+", 
+          RowBox[{"2", " ", "solution"}]}], "==", "forcing"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 1.5: Forcing-Function \
+Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Differential Equation\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", 
+         RowBox[{"TraditionalForm", "[", "equation", "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Forcing amplitude A:   \>\"", ",", "Bold"}], "]"}], 
+            ",", "A"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Forcing function:   \>\"", ",", "Bold"}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", "forcing", "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"classification", ",", "14", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Spacer", "[", "8", "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Initial Conditions\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "==", "y0"}], "]"}], 
+            ",", "\"\<     \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "==", "v0"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Spacer", "[", "8", "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Solution\>\"", ",", "14", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"TraditionalForm", "[", 
+          RowBox[{
+           RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Verification:   \>\"", ",", "Bold"}], "]"}], ",", 
+            "verification"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{"solution", ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "2"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"A", "==", "0"}], ",", "\"\<Homogeneous Response\>\"", 
+              ",", "\"\<Response With External Forcing\>\""}], "]"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}]}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"A", ",", "0", ",", "\"\<Forcing amplitude A\>\""}], "}"}], ",",
+      "0", ",", "3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y0", ",", "1", ",", "\"\<Initial value y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v0", ",", "0", ",", "\"\<Initial slope y'(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997469606602907*^9, 3.997469606602907*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"8ac27349-e324-334d-9deb-d573f394d939"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`A$$ = 0, $CellContext`v0$$ = 
+    0, $CellContext`y0$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`A$$], 0, "Forcing amplitude A"}, 0, 3, 1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`y0$$], 1, "Initial value y(0)"}, -2, 2, 1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`v0$$], 0, "Initial slope y'(0)"}, -2, 2, 1, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    574.9013671875, {174.04057504445234`, 179.77250863820234`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`A$$ = 0, $CellContext`v0$$ = 
+        0, $CellContext`y0$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`equation$, $CellContext`classification$, \
+$CellContext`solution$, $CellContext`forcing$, $CellContext`verification$}, \
+$CellContext`forcing$ = $CellContext`A$$ 
+          Exp[3 $CellContext`x]; $CellContext`equation$ = 
+         Derivative[2][$CellContext`y][$CellContext`x] - 3 
+           Derivative[1][$CellContext`y][$CellContext`x] + 
+           2 $CellContext`y[$CellContext`x] == $CellContext`forcing$; \
+$CellContext`classification$ = 
+         If[$CellContext`A$$ == 0, "Homogeneous Linear Equation", 
+           "Nonhomogeneous Linear Equation"]; $CellContext`solution$ = 
+         DSolveValue[{$CellContext`equation$, $CellContext`y[
+             0] == $CellContext`y0$$, 
+            Derivative[1][$CellContext`y][0] == $CellContext`v0$$}, 
+           $CellContext`y[$CellContext`x], $CellContext`x]; \
+$CellContext`verification$ = 
+         FullSimplify[
+          D[$CellContext`solution$, {$CellContext`x, 2}] - 3 
+            D[$CellContext`solution$, $CellContext`x] + 
+            2 $CellContext`solution$ == $CellContext`forcing$]; Column[{
+           Style[
+           "Interactive Mathematica Lab 1.5: Forcing-Function Explorer", 18, 
+            Bold], 
+           Style["Differential Equation", 14, Bold], 
+           TraditionalForm[$CellContext`equation$], 
+           Row[{
+             Style["Forcing amplitude A:   ", Bold], $CellContext`A$$}], 
+           Row[{
+             Style["Forcing function:   ", Bold], 
+             TraditionalForm[$CellContext`forcing$]}], 
+           Style[$CellContext`classification$, 14, Bold], 
+           Spacer[8], 
+           Style["Initial Conditions", 14, Bold], 
+           Row[{
+             TraditionalForm[$CellContext`y[0] == $CellContext`y0$$], "     ", 
+             TraditionalForm[
+             Derivative[1][$CellContext`y][0] == $CellContext`v0$$]}], 
+           Spacer[8], 
+           Style["Solution", 14, Bold], 
+           
+           TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$], 
+           Row[{
+             Style["Verification:   ", Bold], $CellContext`verification$}], 
+           
+           Plot[$CellContext`solution$, {$CellContext`x, 0, 2}, PlotRange -> 
+            All, AxesLabel -> {"x", "y"}, PlotLabel -> 
+            If[$CellContext`A$$ == 0, "Homogeneous Response", 
+              "Response With External Forcing"], GridLines -> Automatic]}]], 
+      "Specifications" :> {{{$CellContext`A$$, 0, "Forcing amplitude A"}, 0, 
+         3, 1}, {{$CellContext`y0$$, 1, "Initial value y(0)"}, -2, 2, 
+         1}, {{$CellContext`v0$$, 0, "Initial slope y'(0)"}, -2, 2, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      617.5013671874999, {244.50141488820236`, 250.23334848195236`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974696091616135`*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"dd98bbf8-13e7-414a-8691-369ceaae97e1"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7762518b-b372-dd4c-95eb-5ddab2647a2d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5716, 144, 294, "Input",ExpressionUUID->"8ac27349-e324-334d-9deb-d573f394d939"],
+Cell[6295, 168, 4702, 92, 511, "Output",ExpressionUUID->"dd98bbf8-13e7-414a-8691-369ceaae97e1"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

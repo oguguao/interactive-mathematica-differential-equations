@@ -1,0 +1,245 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9820,        235]
+NotebookOptionsPosition[      9336,        218]
+NotebookOutlinePosition[      9732,        234]
+CellTagsIndexPosition[      9689,        231]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"equilibriumAmount", ",", "solution", ",", "initialRate"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"equilibriumAmount", "=", 
+       RowBox[{"inputRate", "/", "lossConstant"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"solution", "[", "t_", "]"}], ":=", 
+       RowBox[{"equilibriumAmount", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"initialAmount", "-", "equilibriumAmount"}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "lossConstant"}], " ", "t"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"initialRate", "=", 
+       RowBox[{"inputRate", "-", 
+        RowBox[{"lossConstant", " ", "initialAmount"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.1: Building a \
+Differential-Equation Model\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Model: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"q", "'"}], "[", "t", "]"}], "==", 
+              RowBox[{"inputRate", "-", 
+               RowBox[{"lossConstant", " ", 
+                RowBox[{"q", "[", "t", "]"}]}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial condition: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"q", "[", "0", "]"}], "==", "initialAmount"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Equilibrium amount: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "equilibriumAmount", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial rate of change: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "initialRate", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial behavior: \>\"", ",", 
+            RowBox[{"Which", "[", 
+             RowBox[{
+              RowBox[{"initialRate", ">", "0"}], 
+              ",", "\"\<Increasing toward equilibrium\>\"", ",", 
+              RowBox[{"initialRate", "<", "0"}], 
+              ",", "\"\<Decreasing toward equilibrium\>\"", ",", "True", 
+              ",", "\"\<Already at equilibrium\>\""}], "]"}]}], "}"}], "]"}], 
+         ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"solution", "[", "t", "]"}], ",", "equilibriumAmount"}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Q(t)\>\"", ",", "\"\<Equilibrium\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<Q(t)\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Approach to Equilibrium\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"inputRate", ",", "12", ",", "\"\<Input rate R\>\""}], "}"}], ",",
+      "2", ",", "30", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"lossConstant", ",", "0.3", ",", "\"\<Loss constant k\>\""}], 
+      "}"}], ",", "0.1", ",", "1", ",", "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialAmount", ",", "5", ",", "\"\<Initial amount Q0\>\""}], 
+      "}"}], ",", "0", ",", "100", ",", "5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974763803489094`*^9, 3.9974763803489094`*^9}},
+ CellLabel->"In[63]:=",ExpressionUUID->"26a0d6bf-4adb-1e41-bcbd-89e553bd647d"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`initialAmount$$ = 
+    5, $CellContext`inputRate$$ = 12, $CellContext`lossConstant$$ = 0.3, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`inputRate$$], 12, "Input rate R"}, 2, 30, 1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`lossConstant$$], 0.3, "Loss constant k"}, 0.1, 1, 
+      0.1, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialAmount$$], 5, "Initial amount Q0"}, 0, 100, 5,
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+    703.5556640625, {119.20814625350205`, 124.94007984725205`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`initialAmount$$ = 
+        5, $CellContext`inputRate$$ = 12, $CellContext`lossConstant$$ = 0.3}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`equilibriumAmount$, $CellContext`solution$, \
+$CellContext`initialRate$}, $CellContext`equilibriumAmount$ = \
+$CellContext`inputRate$$/$CellContext`lossConstant$$; $CellContext`solution$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`equilibriumAmount$ + \
+($CellContext`initialAmount$$ - $CellContext`equilibriumAmount$) 
+           Exp[(-$CellContext`lossConstant$$) $CellContext`t$]; \
+$CellContext`initialRate$ = $CellContext`inputRate$$ - \
+$CellContext`lossConstant$$ $CellContext`initialAmount$$; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.1: Building a Differential-Equation \
+Model", 18, Bold], 
+           Row[{"Model: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`q][$CellContext`t] == $CellContext`inputRate$$ - \
+$CellContext`lossConstant$$ $CellContext`q[$CellContext`t]]}], 
+           Row[{"Initial condition: ", 
+             
+             TraditionalForm[$CellContext`q[
+               0] == $CellContext`initialAmount$$]}], 
+           Row[{"Equilibrium amount: ", 
+             TraditionalForm[$CellContext`equilibriumAmount$]}], 
+           Row[{"Initial rate of change: ", 
+             TraditionalForm[$CellContext`initialRate$]}], 
+           Row[{"Initial behavior: ", 
+             
+             Which[$CellContext`initialRate$ > 0, 
+              "Increasing toward equilibrium", $CellContext`initialRate$ < 0, 
+              "Decreasing toward equilibrium", True, 
+              "Already at equilibrium"]}], 
+           Plot[{
+             $CellContext`solution$[$CellContext`t], \
+$CellContext`equilibriumAmount$}, {$CellContext`t, 0, 20}, PlotRange -> All, 
+            PlotLegends -> {"Q(t)", "Equilibrium"}, 
+            AxesLabel -> {"t", "Q(t)"}, GridLines -> Automatic, PlotLabel -> 
+            "Approach to Equilibrium"]}]], 
+      "Specifications" :> {{{$CellContext`inputRate$$, 12, "Input rate R"}, 2,
+          30, 1}, {{$CellContext`lossConstant$$, 0.3, "Loss constant k"}, 0.1,
+          1, 0.1}, {{$CellContext`initialAmount$$, 5, "Initial amount Q0"}, 0,
+          100, 5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      746.1556640624999, {189.66898609725206`, 195.40091969100206`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997476383215439*^9},
+ CellLabel->"Out[64]=",ExpressionUUID->"d73c36e3-de8a-ef43-a0ec-6832782abe73"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"52e0318e-2b47-bb46-a044-5f7f82963927"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4420, 108, 256, "Input",ExpressionUUID->"26a0d6bf-4adb-1e41-bcbd-89e553bd647d"],
+Cell[4999, 132, 4321, 83, 402, "Output",ExpressionUUID->"d73c36e3-de8a-ef43-a0ec-6832782abe73"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

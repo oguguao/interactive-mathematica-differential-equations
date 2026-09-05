@@ -1,0 +1,309 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12877,        299]
+NotebookOptionsPosition[     12392,        282]
+NotebookOutlinePosition[     12788,        298]
+CellTagsIndexPosition[     12745,        295]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "discriminant", ",", "classification", ",", "characteristicRoots", ",", 
+       "interpretation"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"discriminant", "=", 
+       RowBox[{
+        RowBox[{"firstDerivativeCoefficient", "^", "2"}], "-", 
+        RowBox[{
+        "4", " ", "secondDerivativeCoefficient", " ", 
+         "dependentVariableCoefficient"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"classification", "=", 
+       RowBox[{"Which", "[", 
+        RowBox[{
+         RowBox[{"discriminant", "<", "0"}], 
+         ",", "\"\<Underdamped / oscillatory decay\>\"", ",", 
+         RowBox[{
+          RowBox[{"Chop", "[", "discriminant", "]"}], "==", "0"}], 
+         ",", "\"\<Critically damped\>\"", ",", 
+         RowBox[{"discriminant", ">", "0"}], ",", "\"\<Overdamped\>\""}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"characteristicRoots", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"secondDerivativeCoefficient", " ", 
+            RowBox[{"r", "^", "2"}]}], "+", 
+           RowBox[{"firstDerivativeCoefficient", " ", "r"}], "+", 
+           "dependentVariableCoefficient"}], "==", "0"}], ",", "r"}], "]"}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"interpretation", "=", 
+       RowBox[{"Switch", "[", 
+        RowBox[{"systemChoice", ",", "\"\<Spring-mass\>\"", ",", 
+         RowBox[{"Column", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Dependent variable: displacement\>\"", 
+            ",", "\"\<Second-derivative coefficient: mass\>\"", 
+            ",", "\"\<First-derivative coefficient: damping\>\"", 
+            ",", "\"\<Dependent-variable coefficient: spring stiffness\>\""}],
+            "}"}], "]"}], ",", "\"\<RLC circuit\>\"", ",", 
+         RowBox[{"Column", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Dependent variable: charge\>\"", 
+            ",", "\"\<Second-derivative coefficient: inductance\>\"", 
+            ",", "\"\<First-derivative coefficient: resistance\>\"", 
+            ",", "\"\<Dependent-variable coefficient: reciprocal \
+capacitance\>\""}], "}"}], "]"}], ",", "\"\<Linearized pendulum\>\"", ",", 
+         RowBox[{"Column", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Dependent variable: angular displacement\>\"", 
+            ",", "\"\<Second-derivative coefficient: inertia role\>\"", 
+            ",", "\"\<First-derivative coefficient: rotational damping\>\"", 
+            ",", "\"\<Dependent-variable coefficient: restoring effect\>\""}],
+            "}"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 5.7: Selecting and \
+Interpreting Second-Order Models\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Physical system: \>\"", ",", "systemChoice"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Model: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"secondDerivativeCoefficient", " ", 
+                RowBox[{
+                 RowBox[{"y", "''"}], "[", "t", "]"}]}], "+", 
+               RowBox[{"firstDerivativeCoefficient", " ", 
+                RowBox[{
+                 RowBox[{"y", "'"}], "[", "t", "]"}]}], "+", 
+               RowBox[{"dependentVariableCoefficient", " ", 
+                RowBox[{"y", "[", "t", "]"}]}]}], "==", "0"}], "]"}]}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Discriminant: \>\"", ",", "discriminant"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Classification: \>\"", ",", "classification"}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Characteristic roots: \>\"", ",", 
+            "characteristicRoots"}], "}"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Physical Interpretation\>\"", ",", "14", ",", "Bold"}],
+           "]"}], ",", "interpretation"}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "systemChoice", ",", "\"\<Spring-mass\>\"", 
+       ",", "\"\<Choose physical system\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Spring-mass\>\"", ",", "\"\<RLC circuit\>\"", 
+       ",", "\"\<Linearized pendulum\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "secondDerivativeCoefficient", ",", "1", 
+       ",", "\"\<Second-derivative coefficient\>\""}], "}"}], ",", "0.5", ",",
+      "5", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "firstDerivativeCoefficient", ",", "2", 
+       ",", "\"\<First-derivative coefficient\>\""}], "}"}], ",", "0", ",", 
+     "8", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dependentVariableCoefficient", ",", "5", 
+       ",", "\"\<Dependent-variable coefficient\>\""}], "}"}], ",", "0.5", ",",
+      "10", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.997478269107273*^9, 3.997478269107273*^9}},
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"e1fce944-3430-9342-b94e-a3a1f59d6b86"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`dependentVariableCoefficient$$ = 
+    5, $CellContext`firstDerivativeCoefficient$$ = 
+    2, $CellContext`secondDerivativeCoefficient$$ = 
+    1, $CellContext`systemChoice$$ = "Spring-mass", Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`systemChoice$$], "Spring-mass", 
+       "Choose physical system"}, {
+      "Spring-mass", "RLC circuit", "Linearized pendulum"}, ControlType -> 
+      SetterBar}, {{
+       Hold[$CellContext`secondDerivativeCoefficient$$], 1, 
+       "Second-derivative coefficient"}, 0.5, 5, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`firstDerivativeCoefficient$$], 2, 
+       "First-derivative coefficient"}, 0, 8, 0.5, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`dependentVariableCoefficient$$], 5, 
+       "Dependent-variable coefficient"}, 0.5, 10, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    782.7275390625, {90.36181640625, 96.09375}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`dependentVariableCoefficient$$ = 
+        5, $CellContext`firstDerivativeCoefficient$$ = 
+        2, $CellContext`secondDerivativeCoefficient$$ = 
+        1, $CellContext`systemChoice$$ = "Spring-mass"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`discriminant$, $CellContext`classification$, \
+$CellContext`characteristicRoots$, $CellContext`interpretation$}, \
+$CellContext`discriminant$ = $CellContext`firstDerivativeCoefficient$$^2 - 
+          4 $CellContext`secondDerivativeCoefficient$$ \
+$CellContext`dependentVariableCoefficient$$; $CellContext`classification$ = 
+         Which[$CellContext`discriminant$ < 0, 
+           "Underdamped / oscillatory decay", 
+           Chop[$CellContext`discriminant$] == 0, 
+           "Critically damped", $CellContext`discriminant$ > 0, 
+           "Overdamped"]; $CellContext`characteristicRoots$ = 
+         Solve[$CellContext`secondDerivativeCoefficient$$ $CellContext`r^2 + \
+$CellContext`firstDerivativeCoefficient$$ $CellContext`r + \
+$CellContext`dependentVariableCoefficient$$ == 
+           0, $CellContext`r]; $CellContext`interpretation$ = 
+         Switch[$CellContext`systemChoice$$, "Spring-mass", 
+           
+           Column[{"Dependent variable: displacement", 
+             "Second-derivative coefficient: mass", 
+             "First-derivative coefficient: damping", 
+             "Dependent-variable coefficient: spring stiffness"}], 
+           "RLC circuit", 
+           
+           Column[{"Dependent variable: charge", 
+             "Second-derivative coefficient: inductance", 
+             "First-derivative coefficient: resistance", 
+             "Dependent-variable coefficient: reciprocal capacitance"}], 
+           "Linearized pendulum", 
+           
+           Column[{"Dependent variable: angular displacement", 
+             "Second-derivative coefficient: inertia role", 
+             "First-derivative coefficient: rotational damping", 
+             "Dependent-variable coefficient: restoring effect"}]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 5.7: Selecting and Interpreting \
+Second-Order Models", 18, Bold], 
+           Row[{"Physical system: ", $CellContext`systemChoice$$}], 
+           Row[{"Model: ", 
+             
+             TraditionalForm[$CellContext`secondDerivativeCoefficient$$ 
+                Derivative[
+                 2][$CellContext`y][$CellContext`t] + \
+$CellContext`firstDerivativeCoefficient$$ 
+                Derivative[
+                 1][$CellContext`y][$CellContext`t] + \
+$CellContext`dependentVariableCoefficient$$ $CellContext`y[$CellContext`t] == 
+              0]}], 
+           Row[{"Discriminant: ", $CellContext`discriminant$}], 
+           Row[{"Classification: ", $CellContext`classification$}], 
+           Row[{"Characteristic roots: ", $CellContext`characteristicRoots$}], 
+           Style[
+           "Physical Interpretation", 14, 
+            Bold], $CellContext`interpretation$}]], 
+      "Specifications" :> {{{$CellContext`systemChoice$$, "Spring-mass", 
+          "Choose physical system"}, {
+         "Spring-mass", "RLC circuit", "Linearized pendulum"}, ControlType -> 
+         SetterBar}, {{$CellContext`secondDerivativeCoefficient$$, 1, 
+          "Second-derivative coefficient"}, 0.5, 5, 
+         0.5}, {{$CellContext`firstDerivativeCoefficient$$, 2, 
+          "First-derivative coefficient"}, 0, 8, 
+         0.5}, {{$CellContext`dependentVariableCoefficient$$, 5, 
+          "Dependent-variable coefficient"}, 0.5, 10, 0.5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{825.3275390624999, {174.6080078125, 180.33994140625}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974782700732174`*^9},
+ CellLabel->
+  "Out[113]=",ExpressionUUID->"66b48845-8afc-c14a-8bc7-5c6f83db97a3"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"eaec1894-b70a-194a-8b24-ed8f6a3ca7a4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5859, 141, 446, "Input",ExpressionUUID->"e1fce944-3430-9342-b94e-a3a1f59d6b86"],
+Cell[6438, 165, 5938, 114, 371, "Output",ExpressionUUID->"66b48845-8afc-c14a-8bc7-5c6f83db97a3"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

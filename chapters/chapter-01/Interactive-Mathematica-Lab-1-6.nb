@@ -1,0 +1,303 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11923,        293]
+NotebookOptionsPosition[     11439,        276]
+NotebookOutlinePosition[     11835,        292]
+CellTagsIndexPosition[     11792,        289]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "field", ",", "equation", ",", "description", ",", "equilibria"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"type", "==", "\"\<Autonomous\>\""}], ",", 
+        RowBox[{
+         RowBox[{"equation", "=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+           RowBox[{
+            RowBox[{"y", "[", "x", "]"}], " ", 
+            RowBox[{"(", 
+             RowBox[{"1", "-", 
+              RowBox[{
+               RowBox[{"y", "[", "x", "]"}], "/", "K"}]}], ")"}]}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+         "description", 
+          "=", "\"\<The slope depends only on y. The independent variable x \
+does not appear explicitly.\>\""}], ";", "\[IndentingNewLine]", 
+         RowBox[{"equilibria", "=", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "K"}], "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"field", "=", 
+          RowBox[{"StreamPlot", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"y", " ", 
+               RowBox[{"(", 
+                RowBox[{"1", "-", 
+                 RowBox[{"y", "/", "K"}]}], ")"}]}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", "8"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"y", ",", 
+              RowBox[{"-", "2"}], ",", 
+              RowBox[{"K", "+", "4"}]}], "}"}], ",", 
+            RowBox[{"StreamPoints", "->", "Fine"}], ",", 
+            RowBox[{"AxesLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+            RowBox[{"PlotLabel", "->", "\"\<Autonomous Direction Field\>\""}],
+             ",", 
+            RowBox[{"Epilog", "->", 
+             RowBox[{"{", 
+              RowBox[{"Dashed", ",", 
+               RowBox[{"Line", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"8", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+               RowBox[{"Line", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "K"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"8", ",", "K"}], "}"}]}], "}"}], "]"}]}], 
+              "}"}]}]}], "]"}]}]}], ",", 
+        RowBox[{
+         RowBox[{"equation", "=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+           RowBox[{
+            RowBox[{"y", "[", "x", "]"}], " ", 
+            RowBox[{"Cos", "[", "x", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+         "description", 
+          "=", "\"\<The slope depends explicitly on x, so the equation is \
+nonautonomous.\>\""}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+         "equilibria", 
+          "=", "\"\<Not determined by a single autonomous function \
+f(y)\>\""}], ";", "\[IndentingNewLine]", 
+         RowBox[{"field", "=", 
+          RowBox[{"StreamPlot", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"1", ",", 
+              RowBox[{"y", " ", 
+               RowBox[{"Cos", "[", "x", "]"}]}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "0", ",", "8"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"y", ",", 
+              RowBox[{"-", "6"}], ",", "6"}], "}"}], ",", 
+            RowBox[{"StreamPoints", "->", "Fine"}], ",", 
+            RowBox[{"AxesLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+            RowBox[{
+            "PlotLabel", "->", "\"\<Nonautonomous Direction Field\>\""}]}], 
+           "]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 1.6: Direction-Field \
+Explorer\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Differential Equation\>\"", ",", "14", ",", "Bold"}], 
+          "]"}], ",", 
+         RowBox[{"TraditionalForm", "[", "equation", "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Classification:   \>\"", ",", "Bold"}], "]"}], ",", 
+            "type"}], "}"}], "]"}], ",", "description", ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"type", "==", "\"\<Autonomous\>\""}], ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<Carrying capacity K:   \>\"", ",", "Bold"}], 
+                  "]"}], ",", "K"}], "}"}], "]"}], ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<Equilibrium values:   \>\"", ",", "Bold"}], 
+                  "]"}], ",", 
+                 RowBox[{"TraditionalForm", "[", "equilibria", "]"}]}], "}"}],
+                "]"}]}], "}"}], "]"}], ",", "Nothing"}], "]"}], ",", 
+         "field"}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "type", ",", "\"\<Autonomous\>\"", ",", "\"\<Equation type:\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Autonomous\>\"", ",", "\"\<Nonautonomous\>\""}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"K", ",", "10", ",", "\"\<Carrying capacity K\>\""}], "}"}], ",",
+      "2", ",", "20", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974697639539127`*^9, 3.9974697639539127`*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"4b10c647-f51c-a046-ab42-bbf4e47efa18"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{K$$ = 10, $CellContext`type$$ = "Autonomous", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`type$$], "Autonomous", "Equation type:"}, {
+      "Autonomous", "Nonautonomous"}, ControlType -> SetterBar}, {{
+       Hold[K$$], 10, "Carrying capacity K"}, 2, 20, 1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    593.2392578125, {160.04953613281248`, 165.78146972656248`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {K$$ = 10, $CellContext`type$$ = "Autonomous"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`field$, $CellContext`equation$, \
+$CellContext`description$, $CellContext`equilibria$}, 
+        If[$CellContext`type$$ == 
+          "Autonomous", $CellContext`equation$ = 
+           Derivative[
+             1][$CellContext`y][$CellContext`x] == \
+$CellContext`y[$CellContext`x] (1 - $CellContext`y[$CellContext`x]/
+              K$$); $CellContext`description$ = 
+           "The slope depends only on y. The independent variable x does not \
+appear explicitly."; $CellContext`equilibria$ = {0, K$$}; $CellContext`field$ = 
+           StreamPlot[{
+             1, $CellContext`y (1 - $CellContext`y/K$$)}, {$CellContext`x, 0, 
+              8}, {$CellContext`y, -2, K$$ + 4}, StreamPoints -> Fine, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "Autonomous Direction Field", Epilog -> {Dashed, 
+               Line[{{0, 0}, {8, 0}}], 
+               Line[{{0, K$$}, {8, K$$}}]}], $CellContext`equation$ = 
+           Derivative[
+             1][$CellContext`y][$CellContext`x] == \
+$CellContext`y[$CellContext`x] Cos[$CellContext`x]; $CellContext`description$ = 
+           "The slope depends explicitly on x, so the equation is \
+nonautonomous."; $CellContext`equilibria$ = 
+           "Not determined by a single autonomous function f(y)"; \
+$CellContext`field$ = 
+           StreamPlot[{
+             1, $CellContext`y Cos[$CellContext`x]}, {$CellContext`x, 0, 
+              8}, {$CellContext`y, -6, 6}, StreamPoints -> Fine, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "Nonautonomous Direction Field"]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 1.6: Direction-Field Explorer", 18, 
+            Bold], 
+           Style["Differential Equation", 14, Bold], 
+           TraditionalForm[$CellContext`equation$], 
+           Row[{
+             Style[
+             "Classification:   ", 
+              Bold], $CellContext`type$$}], $CellContext`description$, 
+           If[$CellContext`type$$ == "Autonomous", 
+            Column[{
+              Row[{
+                Style["Carrying capacity K:   ", Bold], K$$}], 
+              Row[{
+                Style["Equilibrium values:   ", Bold], 
+                TraditionalForm[$CellContext`equilibria$]}]}], 
+            Nothing], $CellContext`field$}]], 
+      "Specifications" :> {{{$CellContext`type$$, "Autonomous", 
+          "Equation type:"}, {"Autonomous", "Nonautonomous"}, ControlType -> 
+         SetterBar}, {{K$$, 10, "Carrying capacity K"}, 2, 20, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      635.8392578124999, {216.6957275390625, 222.4276611328125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974697661937847`*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"1279e9ad-d82c-2740-95ab-ab156d5dbafa"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1d8344c6-5b04-d248-965c-6580ac8642ff"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6402, 162, 332, "Input",ExpressionUUID->"4b10c647-f51c-a046-ab42-bbf4e47efa18"],
+Cell[6981, 186, 4442, 87, 456, "Output",ExpressionUUID->"1279e9ad-d82c-2740-95ab-ab156d5dbafa"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

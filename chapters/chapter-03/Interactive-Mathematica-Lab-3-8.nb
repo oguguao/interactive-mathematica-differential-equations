@@ -1,0 +1,289 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11386,        279]
+NotebookOptionsPosition[     10902,        262]
+NotebookOutlinePosition[     11298,        278]
+CellTagsIndexPosition[     11255,        275]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "balanceModel", ",", "initialRate", ",", "equilibriumBalance", ",", 
+       "depletionTime"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"balanceModel", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"initialBalance", "+", 
+           RowBox[{"cashFlow", "/", "interestRate"}]}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"interestRate", " ", "t"}], "]"}]}], "-", 
+        RowBox[{"cashFlow", "/", "interestRate"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"initialRate", "=", 
+       RowBox[{
+        RowBox[{"interestRate", "*", "initialBalance"}], "+", "cashFlow"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"equilibriumBalance", "=", 
+       RowBox[{
+        RowBox[{"-", "cashFlow"}], "/", "interestRate"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"depletionTime", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"cashFlow", "<", 
+          RowBox[{
+           RowBox[{"-", "interestRate"}], "*", "initialBalance"}]}], ",", 
+         RowBox[{
+          RowBox[{"Log", "[", 
+           RowBox[{"cashFlow", "/", 
+            RowBox[{"(", 
+             RowBox[{"cashFlow", "+", 
+              RowBox[{"interestRate", "*", "initialBalance"}]}], ")"}]}], 
+           "]"}], "/", "interestRate"}], ",", 
+         RowBox[{"Missing", "[", "\"\<NotApplicable\>\"", "]"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.8: Financial Models\>\"",
+            ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Differential equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"a", "'"}], "[", "t", "]"}], "==", 
+              RowBox[{
+               RowBox[{"interestRate", " ", 
+                RowBox[{"a", "[", "t", "]"}]}], "+", "cashFlow"}]}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial rate of change: $\>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "initialRate", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"12", ",", "2"}], "}"}]}], "]"}], 
+            ",", "\"\< per year\>\""}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Formal equilibrium balance: $\>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{
+              RowBox[{"N", "[", "equilibriumBalance", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"12", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Depletion time: \>\"", ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"MissingQ", "[", "depletionTime", "]"}], 
+              ",", "\"\<No positive depletion time\>\"", ",", 
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"NumberForm", "[", 
+                  RowBox[{
+                   RowBox[{"N", "[", "depletionTime", "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"7", ",", "2"}], "}"}]}], "]"}], 
+                 ",", "\"\< years\>\""}], "}"}], "]"}]}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"balanceModel", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Years\>\"", ",", "\"\<Balance\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Continuous Financial Model\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "initialBalance", ",", "100000", ",", "\"\<Initial balance\>\""}], 
+      "}"}], ",", "10000", ",", "200000", ",", "10000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"interestRate", ",", "0.05", ",", "\"\<Interest rate\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0.02", "->", "\"\<2%\>\""}], ",", 
+       RowBox[{"0.03", "->", "\"\<3%\>\""}], ",", 
+       RowBox[{"0.04", "->", "\"\<4%\>\""}], ",", 
+       RowBox[{"0.05", "->", "\"\<5%\>\""}], ",", 
+       RowBox[{"0.06", "->", "\"\<6%\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cashFlow", ",", 
+       RowBox[{"-", "8000"}], ",", "\"\<Net cash flow per year\>\""}], "}"}], 
+     ",", 
+     RowBox[{"-", "15000"}], ",", "15000", ",", "1000"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.997476630598295*^9, 3.997476630598295*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"67a3dace-c84a-af44-935f-34356e020744"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cashFlow$$ = -8000, \
+$CellContext`initialBalance$$ = 100000, $CellContext`interestRate$$ = 0.05, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`initialBalance$$], 100000, "Initial balance"}, 10000,
+       200000, 10000, ControlType -> Manipulator}, {{
+       Hold[$CellContext`interestRate$$], 0.05, "Interest rate"}, {
+      0.02 -> "2%", 0.03 -> "3%", 0.04 -> "4%", 0.05 -> "5%", 0.06 -> "6%"}, 
+      ControlType -> SetterBar}, {{
+       Hold[$CellContext`cashFlow$$], -8000, 
+       "Net cash flow per year"}, -15000, 15000, 1000, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    484.927734375, {89.50207347355155, 95.23400706730155}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`cashFlow$$ = -8000, \
+$CellContext`initialBalance$$ = 100000, $CellContext`interestRate$$ = 0.05}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`balanceModel$, $CellContext`initialRate$, \
+$CellContext`equilibriumBalance$, $CellContext`depletionTime$}, \
+$CellContext`balanceModel$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := ($CellContext`initialBalance$$ + \
+$CellContext`cashFlow$$/$CellContext`interestRate$$) 
+           Exp[$CellContext`interestRate$$ $CellContext`t$] - \
+$CellContext`cashFlow$$/$CellContext`interestRate$$; \
+$CellContext`initialRate$ = $CellContext`interestRate$$ \
+$CellContext`initialBalance$$ + $CellContext`cashFlow$$; \
+$CellContext`equilibriumBalance$ = \
+(-$CellContext`cashFlow$$)/$CellContext`interestRate$$; \
+$CellContext`depletionTime$ = 
+         If[$CellContext`cashFlow$$ < (-$CellContext`interestRate$$) \
+$CellContext`initialBalance$$, 
+           Log[$CellContext`cashFlow$$/($CellContext`cashFlow$$ + \
+$CellContext`interestRate$$ \
+$CellContext`initialBalance$$)]/$CellContext`interestRate$$, 
+           Missing["NotApplicable"]]; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.8: Financial Models", 18, Bold], 
+           Row[{"Differential equation: ", 
+             TraditionalForm[
+             Derivative[
+               1][$CellContext`a][$CellContext`t] == \
+$CellContext`interestRate$$ $CellContext`a[$CellContext`t] + \
+$CellContext`cashFlow$$]}], 
+           Row[{"Initial rate of change: $", 
+             NumberForm[
+              N[$CellContext`initialRate$], {12, 2}], " per year"}], 
+           Row[{"Formal equilibrium balance: $", 
+             NumberForm[
+              N[$CellContext`equilibriumBalance$], {12, 2}]}], 
+           Row[{"Depletion time: ", 
+             If[
+              MissingQ[$CellContext`depletionTime$], 
+              "No positive depletion time", 
+              Row[{
+                NumberForm[
+                 N[$CellContext`depletionTime$], {7, 2}], " years"}]]}], 
+           Plot[
+            $CellContext`balanceModel$[$CellContext`t], {$CellContext`t, 0, 
+             30}, PlotRange -> All, AxesLabel -> {"Years", "Balance"}, 
+            GridLines -> Automatic, PlotLabel -> 
+            "Continuous Financial Model"]}]], 
+      "Specifications" :> {{{$CellContext`initialBalance$$, 100000, 
+          "Initial balance"}, 10000, 200000, 
+         10000}, {{$CellContext`interestRate$$, 0.05, "Interest rate"}, {
+         0.02 -> "2%", 0.03 -> "3%", 0.04 -> "4%", 0.05 -> "5%", 0.06 -> 
+          "6%"}}, {{$CellContext`cashFlow$$, -8000, 
+          "Net cash flow per year"}, -15000, 15000, 1000}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      527.527734375, {159.94826487980154`, 165.68019847355154`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974766321318264`*^9},
+ CellLabel->"Out[78]=",ExpressionUUID->"cc2dce89-f9a0-a344-8284-712588e5756e"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a4cfa8a4-4b5c-714f-bb25-350c99a60a4a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5493, 139, 332, "Input",ExpressionUUID->"67a3dace-c84a-af44-935f-34356e020744"],
+Cell[6072, 163, 4814, 96, 342, "Output",ExpressionUUID->"cc2dce89-f9a0-a344-8284-712588e5756e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,255 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9642,        245]
+NotebookOptionsPosition[      9158,        228]
+NotebookOutlinePosition[      9554,        244]
+CellTagsIndexPosition[      9511,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"solution", ",", "check", ",", "transient", ",", "longTerm"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"solution", "=", 
+       RowBox[{
+        RowBox[{"x", "/", "p"}], "-", 
+        RowBox[{"1", "/", 
+         RowBox[{"p", "^", "2"}]}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"y0", "+", 
+           RowBox[{"1", "/", 
+            RowBox[{"p", "^", "2"}]}]}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "p"}], " ", "x"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"longTerm", "=", 
+       RowBox[{
+        RowBox[{"x", "/", "p"}], "-", 
+        RowBox[{"1", "/", 
+         RowBox[{"p", "^", "2"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"transient", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"y0", "+", 
+          RowBox[{"1", "/", 
+           RowBox[{"p", "^", "2"}]}]}], ")"}], " ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "p"}], " ", "x"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"check", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{"solution", ",", "x"}], "]"}], "+", 
+          RowBox[{"p", " ", "solution"}]}], "==", "x"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.2: First-Order Linear \
+Equations\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Equation: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"y", "'"}], "[", "x", "]"}], "+", 
+               RowBox[{"p", " ", 
+                RowBox[{"y", "[", "x", "]"}]}]}], "==", "x"}], "]"}]}], "}"}],
+           "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Initial condition: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "==", "y0"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Solution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transient term: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transient", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Long-term component: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "longTerm", "]"}]}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Verification: \>\"", ",", "check"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"solution", ",", "longTerm"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "6"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Full solution\>\"", 
+              ",", "\"\<Long-term component\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Transient and Long-Term Behavior\>\""}]}], 
+          "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", "2", ",", "\"\<Coefficient p\>\""}], "}"}], ",", "1", 
+     ",", "4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y0", ",", "1", ",", "\"\<Initial value y(0)\>\""}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "3", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.99747143552124*^9, 3.99747143552124*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"9d4a7d40-41f4-8b45-98f4-52bd28417d4b"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p$$ = 2, $CellContext`y0$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`p$$], 2, "Coefficient p"}, 1, 4, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`y0$$], 1, "Initial value y(0)"}, -2, 3, 1, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    604.5908203125, {137.95152244115206`, 143.68345603490206`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`p$$ = 2, $CellContext`y0$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`solution$, $CellContext`check$, \
+$CellContext`transient$, $CellContext`longTerm$}, $CellContext`solution$ = \
+$CellContext`x/$CellContext`p$$ - 
+          1/$CellContext`p$$^2 + ($CellContext`y0$$ + 1/$CellContext`p$$^2) 
+           Exp[(-$CellContext`p$$) $CellContext`x]; $CellContext`longTerm$ = \
+$CellContext`x/$CellContext`p$$ - 
+          1/$CellContext`p$$^2; $CellContext`transient$ = ($CellContext`y0$$ + 
+           1/$CellContext`p$$^2) 
+          Exp[(-$CellContext`p$$) $CellContext`x]; $CellContext`check$ = 
+         FullSimplify[
+          D[$CellContext`solution$, $CellContext`x] + $CellContext`p$$ \
+$CellContext`solution$ == $CellContext`x]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.2: First-Order Linear Equations", 
+            18, Bold], 
+           Row[{"Equation: ", 
+             TraditionalForm[
+             Derivative[
+                1][$CellContext`y][$CellContext`x] + $CellContext`p$$ \
+$CellContext`y[$CellContext`x] == $CellContext`x]}], 
+           Row[{"Initial condition: ", 
+             TraditionalForm[$CellContext`y[0] == $CellContext`y0$$]}], 
+           Row[{"Solution: ", 
+             
+             TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+           Row[{"Transient term: ", 
+             TraditionalForm[$CellContext`transient$]}], 
+           Row[{"Long-term component: ", 
+             TraditionalForm[$CellContext`longTerm$]}], 
+           Row[{"Verification: ", $CellContext`check$}], 
+           
+           Plot[{$CellContext`solution$, $CellContext`longTerm$}, \
+{$CellContext`x, 0, 6}, PlotRange -> All, 
+            PlotLegends -> {"Full solution", "Long-term component"}, 
+            AxesLabel -> {"x", "y"}, GridLines -> Automatic, PlotLabel -> 
+            "Transient and Long-Term Behavior"]}]], 
+      "Specifications" :> {{{$CellContext`p$$, 2, "Coefficient p"}, 1, 4, 
+         1}, {{$CellContext`y0$$, 1, "Initial value y(0)"}, -2, 3, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      647.1908203124999, {194.61236228490208`, 200.34429587865208`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997471437244545*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"7c88bb98-afa2-a14e-8a32-ab4f5076a1ec"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e67360ba-f68f-db40-95b4-81e9be13f59b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4655, 124, 256, "Input",ExpressionUUID->"9d4a7d40-41f4-8b45-98f4-52bd28417d4b"],
+Cell[5234, 148, 3908, 77, 411, "Output",ExpressionUUID->"7c88bb98-afa2-a14e-8a32-ab4f5076a1ec"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

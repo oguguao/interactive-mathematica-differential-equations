@@ -1,0 +1,276 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11008,        266]
+NotebookOptionsPosition[     10524,        249]
+NotebookOutlinePosition[     10920,        265]
+CellTagsIndexPosition[     10877,        262]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "equilibriumAmount", ",", "amountModel", ",", "concentrationModel", ",",
+        "rateIn"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"equilibriumAmount", "=", 
+       RowBox[{"tankVolume", "*", "incomingConcentration"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"rateIn", "=", 
+       RowBox[{"flowRate", "*", "incomingConcentration"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"amountModel", "[", "t_", "]"}], ":=", 
+       RowBox[{"equilibriumAmount", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"initialAmount", "-", "equilibriumAmount"}], ")"}], " ", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "flowRate"}], " ", 
+           RowBox[{"t", "/", "tankVolume"}]}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"concentrationModel", "[", "t_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"amountModel", "[", "t", "]"}], "/", "tankVolume"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 3.5: Mixture Problems\>\"",
+            ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Tank volume: \>\"", ",", "tankVolume"}], "}"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Rate in: \>\"", ",", "rateIn"}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Rate out: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"flowRate", "*", 
+              RowBox[{
+               RowBox[{"a", "[", "t", "]"}], "/", "tankVolume"}]}], "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Equilibrium amount: \>\"", ",", "equilibriumAmount"}],
+            "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Limiting concentration: \>\"", ",", 
+            "incomingConcentration"}], "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"amountModel", "[", "t", "]"}], ",", 
+             "equilibriumAmount"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "150"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Amount A(t)\>\"", 
+              ",", "\"\<Equilibrium amount\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Amount\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Amount of Dissolved Substance\>\""}]}], 
+          "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"concentrationModel", "[", "t", "]"}], ",", 
+             "incomingConcentration"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "150"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<Tank concentration\>\"", 
+              ",", "\"\<Incoming concentration\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time\>\"", ",", "\"\<Concentration\>\""}], "}"}]}], 
+           ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"PlotLabel", "->", "\"\<Concentration in the Tank\>\""}]}],
+           "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tankVolume", ",", "100", ",", "\"\<Tank volume\>\""}], "}"}], ",",
+      "50", ",", "300", ",", "25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"flowRate", ",", "2", ",", "\"\<Flow rate\>\""}], "}"}], ",", 
+     "1", ",", "10", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "incomingConcentration", ",", "5", 
+       ",", "\"\<Incoming concentration\>\""}], "}"}], ",", "0", ",", "10", ",",
+      "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"initialAmount", ",", "0", ",", "\"\<Initial amount\>\""}], 
+      "}"}], ",", "0", ",", "500", ",", "10"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974765262098007`*^9, 3.9974765262098007`*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"d25cd570-67b7-8844-a795-044c7191bec4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`flowRate$$ = 
+    2, $CellContext`incomingConcentration$$ = 
+    5, $CellContext`initialAmount$$ = 0, $CellContext`tankVolume$$ = 100, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`tankVolume$$], 100, "Tank volume"}, 50, 300, 25, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`flowRate$$], 2, "Flow rate"}, 1, 10, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`incomingConcentration$$], 5, 
+       "Incoming concentration"}, 0, 10, 0.5, ControlType -> Manipulator}, {{
+       Hold[$CellContext`initialAmount$$], 0, "Initial amount"}, 0, 500, 10, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    484.927734375, {174.5592531398381, 180.2911867335881}}, Typeset`update$$ =
+     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`flowRate$$ = 
+        2, $CellContext`incomingConcentration$$ = 
+        5, $CellContext`initialAmount$$ = 0, $CellContext`tankVolume$$ = 100},
+       "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`equilibriumAmount$, $CellContext`amountModel$, \
+$CellContext`concentrationModel$, $CellContext`rateIn$}, \
+$CellContext`equilibriumAmount$ = $CellContext`tankVolume$$ \
+$CellContext`incomingConcentration$$; $CellContext`rateIn$ = \
+$CellContext`flowRate$$ $CellContext`incomingConcentration$$; \
+$CellContext`amountModel$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := $CellContext`equilibriumAmount$ + \
+($CellContext`initialAmount$$ - $CellContext`equilibriumAmount$) 
+           Exp[(-$CellContext`flowRate$$) \
+($CellContext`t$/$CellContext`tankVolume$$)]; $CellContext`concentrationModel$[
+           Pattern[$CellContext`t$, 
+            
+            Blank[]]] := \
+$CellContext`amountModel$[$CellContext`t$]/$CellContext`tankVolume$$; Column[{
+           Style[
+           "Interactive Mathematica Lab 3.5: Mixture Problems", 18, Bold], 
+           Row[{"Tank volume: ", $CellContext`tankVolume$$}], 
+           Row[{"Rate in: ", $CellContext`rateIn$}], 
+           Row[{"Rate out: ", 
+             
+             TraditionalForm[$CellContext`flowRate$$ \
+($CellContext`a[$CellContext`t]/$CellContext`tankVolume$$)]}], 
+           Row[{"Equilibrium amount: ", $CellContext`equilibriumAmount$}], 
+           
+           Row[{"Limiting concentration: ", \
+$CellContext`incomingConcentration$$}], 
+           Plot[{
+             $CellContext`amountModel$[$CellContext`t], \
+$CellContext`equilibriumAmount$}, {$CellContext`t, 0, 150}, PlotRange -> All, 
+            PlotLegends -> {"Amount A(t)", "Equilibrium amount"}, 
+            AxesLabel -> {"Time", "Amount"}, GridLines -> Automatic, 
+            PlotLabel -> "Amount of Dissolved Substance"], 
+           Plot[{
+             $CellContext`concentrationModel$[$CellContext`t], \
+$CellContext`incomingConcentration$$}, {$CellContext`t, 0, 150}, PlotRange -> 
+            All, PlotLegends -> {
+             "Tank concentration", "Incoming concentration"}, 
+            AxesLabel -> {"Time", "Concentration"}, GridLines -> Automatic, 
+            PlotLabel -> "Concentration in the Tank"]}]], 
+      "Specifications" :> {{{$CellContext`tankVolume$$, 100, "Tank volume"}, 
+         50, 300, 25}, {{$CellContext`flowRate$$, 2, "Flow rate"}, 1, 10, 
+         1}, {{$CellContext`incomingConcentration$$, 5, 
+          "Incoming concentration"}, 0, 10, 
+         0.5}, {{$CellContext`initialAmount$$, 0, "Initial amount"}, 0, 500, 
+         10}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{527.527734375, {258.8200929835881, 264.5520265773381}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974765276144104`*^9},
+ CellLabel->"Out[72]=",ExpressionUUID->"06050fb2-8812-724b-bfb3-c48ecad73342"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7930975c-337c-0248-a2c8-36a98fd2e849"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5122, 131, 294, "Input",ExpressionUUID->"d25cd570-67b7-8844-a795-044c7191bec4"],
+Cell[5701, 155, 4807, 91, 540, "Output",ExpressionUUID->"06050fb2-8812-724b-bfb3-c48ecad73342"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

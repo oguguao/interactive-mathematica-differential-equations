@@ -1,0 +1,235 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9334,        225]
+NotebookOptionsPosition[      8850,        208]
+NotebookOutlinePosition[      9246,        224]
+CellTagsIndexPosition[      9203,        221]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "forcingFunction", ",", "transformForcing", ",", "responseTransform", ",",
+        "responseFunction"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"forcingFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"inputMagnitude", "*", 
+        RowBox[{"UnitStep", "[", 
+         RowBox[{"t", "-", "switchingTime"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"transformForcing", "=", 
+       RowBox[{"inputMagnitude", "*", 
+        RowBox[{
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"-", "switchingTime"}], " ", "s"}], "]"}], "/", "s"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"responseTransform", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"transformForcing", "/", 
+         RowBox[{"(", 
+          RowBox[{"s", "+", "1"}], ")"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"responseFunction", "[", "t_", "]"}], ":=", 
+       RowBox[{"inputMagnitude", "*", 
+        RowBox[{"UnitStep", "[", 
+         RowBox[{"t", "-", "switchingTime"}], "]"}], "*", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"-", 
+            RowBox[{"(", 
+             RowBox[{"t", "-", "switchingTime"}], ")"}]}], "]"}]}], ")"}]}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 7.4: Unit Steps and \
+Delayed Inputs\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Switching time:   \>\"", ",", "switchingTime"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Input magnitude:   \>\"", ",", "inputMagnitude"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Laplace transform of input:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "transformForcing", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Transform-domain response:   \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "responseTransform", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"forcingFunction", "[", "t", "]"}], ",", 
+             RowBox[{"responseFunction", "[", "t", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "10"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", "All"}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Input\>\"", ",", "\"\<Response\>\""}], "}"}]}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<t\>\"", ",", "\"\<Value\>\""}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", "switchingTime", "}"}], ",", "Automatic"}], 
+             "}"}]}], ",", 
+           RowBox[{"Exclusions", "->", 
+            RowBox[{"{", "switchingTime", "}"}]}], ",", 
+           RowBox[{
+           "PlotLabel", "->", "\"\<Delayed Input and System Response\>\""}]}],
+           "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"switchingTime", ",", "2", ",", "\"\<Switching time\>\""}], 
+      "}"}], ",", "0.5", ",", "6", ",", "0.5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"inputMagnitude", ",", "1", ",", "\"\<Input magnitude\>\""}], 
+      "}"}], ",", "0.5", ",", "5", ",", "0.5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974796591311703`*^9, 3.9974796591311703`*^9}},
+ CellLabel->
+  "In[138]:=",ExpressionUUID->"27cd44da-ef9c-f742-b8e9-0c69311a59d4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`inputMagnitude$$ = 
+    1, $CellContext`switchingTime$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`switchingTime$$], 2, "Switching time"}, 0.5, 6, 0.5, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`inputMagnitude$$], 1, "Input magnitude"}, 0.5, 5, 
+      0.5, ControlType -> Manipulator}}, Typeset`size$$ = {
+    613.58203125, {121.61673891880697`, 127.34867251255697`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`inputMagnitude$$ = 
+        1, $CellContext`switchingTime$$ = 2}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`forcingFunction$, $CellContext`transformForcing$, \
+$CellContext`responseTransform$, $CellContext`responseFunction$}, \
+$CellContext`forcingFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`inputMagnitude$$ 
+          UnitStep[$CellContext`t$ - $CellContext`switchingTime$$]; \
+$CellContext`transformForcing$ = $CellContext`inputMagnitude$$ (
+           Exp[(-$CellContext`switchingTime$$) \
+$CellContext`s]/$CellContext`s); $CellContext`responseTransform$ = 
+         FullSimplify[$CellContext`transformForcing$/($CellContext`s + 
+           1)]; $CellContext`responseFunction$[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`inputMagnitude$$ 
+          UnitStep[$CellContext`t$ - $CellContext`switchingTime$$] (1 - 
+           Exp[-($CellContext`t$ - $CellContext`switchingTime$$)]); Column[{
+           Style[
+           "Interactive Mathematica Lab 7.4: Unit Steps and Delayed Inputs", 
+            18, Bold], 
+           Row[{"Switching time:   ", $CellContext`switchingTime$$}], 
+           Row[{"Input magnitude:   ", $CellContext`inputMagnitude$$}], 
+           Row[{"Laplace transform of input:   ", 
+             TraditionalForm[$CellContext`transformForcing$]}], 
+           Row[{"Transform-domain response:   ", 
+             TraditionalForm[$CellContext`responseTransform$]}], 
+           Plot[{
+             $CellContext`forcingFunction$[$CellContext`t], 
+             $CellContext`responseFunction$[$CellContext`t]}, {$CellContext`t,
+              0, 10}, PlotRange -> All, PlotLegends -> {"Input", "Response"}, 
+            AxesLabel -> {"t", "Value"}, 
+            GridLines -> {{$CellContext`switchingTime$$}, Automatic}, 
+            Exclusions -> {$CellContext`switchingTime$$}, PlotLabel -> 
+            "Delayed Input and System Response"]}]], 
+      "Specifications" :> {{{$CellContext`switchingTime$$, 2, 
+          "Switching time"}, 0.5, 6, 
+         0.5}, {{$CellContext`inputMagnitude$$, 1, "Input magnitude"}, 0.5, 5,
+          0.5}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      656.1820312499999, {178.27757876255697`, 184.00951235630697`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9974796601394653`*^9},
+ CellLabel->
+  "Out[139]=",ExpressionUUID->"8fe016f2-1a09-2740-8de3-13ad5e33fd8e"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"72076d5a-77d4-7447-837e-7f5321ad9ae0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4213, 106, 275, "Input",ExpressionUUID->"27cd44da-ef9c-f742-b8e9-0c69311a59d4"],
+Cell[4792, 130, 4042, 75, 379, "Output",ExpressionUUID->"8fe016f2-1a09-2740-8de3-13ad5e33fd8e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,310 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12180,        300]
+NotebookOptionsPosition[     11696,        283]
+NotebookOutlinePosition[     12092,        299]
+CellTagsIndexPosition[     12049,        296]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "x", ",", "y", ",", "c", ",", "mFun", ",", "nFun", ",", "startChoice"}], 
+    "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"mFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"3", " ", 
+      RowBox[{"x", "^", "2"}], " ", "y"}], "+", 
+     RowBox[{"2", " ", "y"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"nFun", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"2", " ", "x"}], "+", 
+     RowBox[{"4", " ", 
+      RowBox[{"y", "^", "3"}]}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "exactCheck", ",", "partialPotential", ",", "missingDerivative", ",", 
+       "potentialFun", ",", "gradientCheck"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"exactCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"mFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}], "==", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"nFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"startChoice", "==", "\"\<Integrate M first\>\""}], ",", 
+        RowBox[{
+         RowBox[{"partialPotential", "=", 
+          RowBox[{"Integrate", "[", 
+           RowBox[{
+            RowBox[{"mFun", "[", 
+             RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"missingDerivative", "=", 
+          RowBox[{"FullSimplify", "[", 
+           RowBox[{
+            RowBox[{"nFun", "[", 
+             RowBox[{"x", ",", "y"}], "]"}], "-", 
+            RowBox[{"D", "[", 
+             RowBox[{"partialPotential", ",", "y"}], "]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"potentialFun", "=", 
+          RowBox[{"FullSimplify", "[", 
+           RowBox[{"partialPotential", "+", 
+            RowBox[{"Integrate", "[", 
+             RowBox[{"missingDerivative", ",", "y"}], "]"}]}], "]"}]}]}], ",", 
+        RowBox[{
+         RowBox[{"partialPotential", "=", 
+          RowBox[{"Integrate", "[", 
+           RowBox[{
+            RowBox[{"nFun", "[", 
+             RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"missingDerivative", "=", 
+          RowBox[{"FullSimplify", "[", 
+           RowBox[{
+            RowBox[{"mFun", "[", 
+             RowBox[{"x", ",", "y"}], "]"}], "-", 
+            RowBox[{"D", "[", 
+             RowBox[{"partialPotential", ",", "x"}], "]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"potentialFun", "=", 
+          RowBox[{"FullSimplify", "[", 
+           RowBox[{"partialPotential", "+", 
+            RowBox[{"Integrate", "[", 
+             RowBox[{"missingDerivative", ",", "x"}], "]"}]}], "]"}]}]}]}], 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"gradientCheck", "=", 
+       RowBox[{"FullSimplify", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"potentialFun", ",", "x"}], "]"}], "==", 
+           RowBox[{"mFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}]}], ",", 
+          RowBox[{
+           RowBox[{"D", "[", 
+            RowBox[{"potentialFun", ",", "y"}], "]"}], "==", 
+           RowBox[{"nFun", "[", 
+            RowBox[{"x", ",", "y"}], "]"}]}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Interactive Mathematica Lab 2.5: Systematic \
+Potential-Function Method\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<M(x,y) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"mFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<N(x,y) = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"nFun", "[", 
+              RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Exactness check: \>\"", ",", "exactCheck"}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Starting expression: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "partialPotential", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Missing derivative: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "missingDerivative", "]"}]}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Potential function F(x,y): \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", "potentialFun", "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Gradient verification: \>\"", ",", "gradientCheck"}], 
+           "}"}], "]"}], ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Implicit solution: \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"potentialFun", "==", "c"}], "]"}]}], "}"}], "]"}]}], 
+        "}"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "startChoice", ",", "\"\<Integrate M first\>\"", 
+       ",", "\"\<Choose a starting method:\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Integrate M first\>\"", ",", "\"\<Integrate N first\>\""}],
+       "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9974718898844013`*^9, 3.9974718898844013`*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"297d8550-3e2b-5144-b02d-4a6784a1a182"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`startChoice$$ = "Integrate M first", 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`startChoice$$], "Integrate M first", 
+       "Choose a starting method:"}, {
+      "Integrate M first", "Integrate N first"}, ControlType -> SetterBar}}, 
+    Typeset`size$$ = {683.7626953125, {81.7302001953125, 87.4621337890625}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`startChoice$$ = "Integrate M first"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`exactCheck$, $CellContext`partialPotential$, \
+$CellContext`missingDerivative$, $CellContext`potentialFun$, \
+$CellContext`gradientCheck$}, $CellContext`exactCheck$ = FullSimplify[D[
+             $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`y] == D[
+             $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`x]]; 
+        If[$CellContext`startChoice$$ == 
+          "Integrate M first", $CellContext`partialPotential$ = Integrate[
+             $CellContext`mFun[$CellContext`x, $CellContext`y], \
+$CellContext`x]; $CellContext`missingDerivative$ = 
+           FullSimplify[$CellContext`nFun[$CellContext`x, $CellContext`y] - 
+             D[$CellContext`partialPotential$, $CellContext`y]]; \
+$CellContext`potentialFun$ = 
+           FullSimplify[$CellContext`partialPotential$ + 
+             Integrate[$CellContext`missingDerivative$, $CellContext`y]], \
+$CellContext`partialPotential$ = Integrate[
+             $CellContext`nFun[$CellContext`x, $CellContext`y], \
+$CellContext`y]; $CellContext`missingDerivative$ = 
+           FullSimplify[$CellContext`mFun[$CellContext`x, $CellContext`y] - 
+             D[$CellContext`partialPotential$, $CellContext`x]]; \
+$CellContext`potentialFun$ = 
+           FullSimplify[$CellContext`partialPotential$ + 
+             Integrate[$CellContext`missingDerivative$, $CellContext`x]]]; \
+$CellContext`gradientCheck$ = 
+         FullSimplify[{
+           D[$CellContext`potentialFun$, $CellContext`x] == \
+$CellContext`mFun[$CellContext`x, $CellContext`y], 
+            D[$CellContext`potentialFun$, $CellContext`y] == \
+$CellContext`nFun[$CellContext`x, $CellContext`y]}]; Column[{
+           Style[
+           "Interactive Mathematica Lab 2.5: Systematic Potential-Function \
+Method", 18, Bold], 
+           Row[{"M(x,y) = ", 
+             TraditionalForm[
+              $CellContext`mFun[$CellContext`x, $CellContext`y]]}], 
+           Row[{"N(x,y) = ", 
+             TraditionalForm[
+              $CellContext`nFun[$CellContext`x, $CellContext`y]]}], 
+           Row[{"Exactness check: ", $CellContext`exactCheck$}], 
+           Row[{"Starting expression: ", 
+             TraditionalForm[$CellContext`partialPotential$]}], 
+           Row[{"Missing derivative: ", 
+             TraditionalForm[$CellContext`missingDerivative$]}], 
+           Row[{"Potential function F(x,y): ", 
+             TraditionalForm[$CellContext`potentialFun$]}], 
+           Row[{"Gradient verification: ", $CellContext`gradientCheck$}], 
+           Row[{"Implicit solution: ", 
+             
+             TraditionalForm[$CellContext`potentialFun$ == \
+$CellContext`c]}]}]], 
+      "Specifications" :> {{{$CellContext`startChoice$$, "Integrate M first", 
+          "Choose a starting method:"}, {
+         "Integrate M first", "Integrate N first"}, ControlType -> 
+         SetterBar}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      726.3626953124999, {124.5763916015625, 130.3083251953125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.997471891736595*^9},
+ CellLabel->"Out[46]=",ExpressionUUID->"b2bf6a67-9322-064e-9899-e53a2d6458e9"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ba54aeb1-7435-6643-a336-3981b5afd253"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6350, 165, 389, "Input",ExpressionUUID->"297d8550-3e2b-5144-b02d-4a6784a1a182"],
+Cell[6929, 189, 4751, 91, 271, "Output",ExpressionUUID->"b2bf6a67-9322-064e-9899-e53a2d6458e9"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

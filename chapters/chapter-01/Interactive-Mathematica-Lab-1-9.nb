@@ -1,0 +1,372 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     15095,        362]
+NotebookOptionsPosition[     14610,        345]
+NotebookOutlinePosition[     15006,        361]
+CellTagsIndexPosition[     14963,        358]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"TabView", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\"\<Unique IVP\>\"", "->", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "solution", ",", "verification", ",", "field", ",", "curve"}], 
+          "}"}], ",", 
+         RowBox[{
+          RowBox[{"solution", "=", 
+           RowBox[{"DSolveValue", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+                RowBox[{"x", "+", 
+                 RowBox[{"y", "[", "x", "]"}]}]}], ",", 
+               RowBox[{
+                RowBox[{"y", "[", "0", "]"}], "==", "y0"}]}], "}"}], ",", 
+             RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"verification", "=", 
+           RowBox[{"FullSimplify", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"D", "[", 
+                RowBox[{"solution", ",", "x"}], "]"}], "==", 
+               RowBox[{"x", "+", "solution"}]}], ",", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"solution", "/.", " ", 
+                 RowBox[{"x", "->", "0"}]}], ")"}], "==", "y0"}]}], "}"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"field", "=", 
+           RowBox[{"StreamPlot", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"1", ",", 
+               RowBox[{"x", "+", "y"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"y", ",", 
+               RowBox[{"-", "4"}], ",", "8"}], "}"}], ",", 
+             RowBox[{"StreamPoints", "->", "Fine"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"curve", "=", 
+           RowBox[{"Plot", "[", 
+            RowBox[{"solution", ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Unique Initial-Value Problem\>\"", ",", "18", ",", 
+               "Bold"}], "]"}], ",", 
+             RowBox[{"TraditionalForm", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+                 RowBox[{"x", "+", 
+                  RowBox[{"y", "[", "x", "]"}]}]}], ",", 
+                RowBox[{
+                 RowBox[{"y", "[", "0", "]"}], "==", "y0"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Solution:   \>\"", ",", "Bold"}], "]"}], ",", 
+                RowBox[{"TraditionalForm", "[", 
+                 RowBox[{
+                  RowBox[{"y", "[", "x", "]"}], "==", "solution"}], "]"}]}], 
+               "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Verification:   \>\"", ",", "Bold"}], "]"}], ",",
+                 "verification"}], "}"}], "]"}], ",", 
+             RowBox[{"Show", "[", 
+              RowBox[{"field", ",", "curve", ",", 
+               RowBox[{"AxesLabel", "->", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+               RowBox[{
+               "PlotLabel", 
+                "->", "\"\<One Solution Curve Through the Initial \
+Point\>\""}]}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y0", ",", "1", ",", "\"\<Initial value y(0)\>\""}], "}"}], 
+         ",", 
+         RowBox[{"-", "2"}], ",", "3", ",", "1"}], "}"}]}], "]"}]}], ",", 
+    RowBox[{"\"\<Nonunique IVP\>\"", "->", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "delayedSolution", "}"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"delayedSolution", "[", "x_", "]"}], ":=", 
+           RowBox[{"Piecewise", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"x", "<=", "a"}]}], "}"}], "}"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"x", "-", "a"}], ")"}], "^", "2"}], "/", "4"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Nonunique Initial-Value Problem\>\"", ",", "18", ",",
+                "Bold"}], "]"}], ",", 
+             RowBox[{"TraditionalForm", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+                 RowBox[{"Sqrt", "[", 
+                  RowBox[{"Abs", "[", 
+                   RowBox[{"y", "[", "x", "]"}], "]"}], "]"}]}], ",", 
+                RowBox[{
+                 RowBox[{"y", "[", "0", "]"}], "==", "0"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Waiting time a:   \>\"", ",", "Bold"}], "]"}], ",",
+                 "a"}], "}"}], "]"}], ",", 
+             RowBox[{"TextCell", "[", 
+              
+              RowBox[{"\"\<The solution remains at y = 0 until x = a, then \
+leaves the equilibrium.\>\"", ",", "\"\<Text\>\""}], "]"}], ",", 
+             RowBox[{"Plot", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", 
+                 RowBox[{"delayedSolution", "[", "x", "]"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"x", ",", "0", ",", "6"}], "}"}], ",", 
+               RowBox[{"PlotRange", "->", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "10"}], "}"}]}], ",", 
+               RowBox[{"PlotLegends", "->", 
+                RowBox[{"{", 
+                 
+                 RowBox[{"\"\<Equilibrium solution y = 0\>\"", 
+                  ",", "\"\<Delayed solution\>\""}], "}"}]}], ",", 
+               RowBox[{"AxesLabel", "->", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+               RowBox[{
+               "PlotLabel", 
+                "->", "\"\<Many Solutions Through the Same Initial \
+Point\>\""}]}], "]"}]}], "}"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"a", ",", "0", ",", "\"\<Waiting time a\>\""}], "}"}], ",", 
+         "0", ",", "4", ",", "0.25"}], "}"}]}], "]"}]}]}], "}"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.997469891092804*^9, 3.9974698910938053`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"3a2bb240-7dbc-fe4e-b5ce-6a2989b6e475"],
+
+Cell[BoxData[
+ TabViewBox[{{1,"\<\"Unique IVP\"\>"->
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`y0$$ = 1, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[$CellContext`y0$$], 1, "Initial value y(0)"}, -2, 3, 1, 
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+     278.0068359375, {126.2526623276218, 131.9845959213718}}, 
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+     Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`y0$$ = 1}, 
+       "ControllerVariables" :> {}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$, 
+         Typeset`keyframeActionsQ$$, Typeset`keyframeList$$}, "Body" :> 
+       Module[{$CellContext`solution$, $CellContext`verification$, \
+$CellContext`field$, $CellContext`curve$}, $CellContext`solution$ = 
+          DSolveValue[{
+            Derivative[
+              1][$CellContext`y][$CellContext`x] == $CellContext`x + \
+$CellContext`y[$CellContext`x], $CellContext`y[0] == $CellContext`y0$$}, 
+            $CellContext`y[$CellContext`x], $CellContext`x]; \
+$CellContext`verification$ = 
+          FullSimplify[{
+            D[$CellContext`solution$, $CellContext`x] == $CellContext`x + \
+$CellContext`solution$, 
+             ReplaceAll[$CellContext`solution$, $CellContext`x -> 
+               0] == $CellContext`y0$$}]; $CellContext`field$ = 
+          StreamPlot[{
+            1, $CellContext`x + $CellContext`y}, {$CellContext`x, -2, 
+             2}, {$CellContext`y, -4, 8}, StreamPoints -> 
+            Fine]; $CellContext`curve$ = 
+          Plot[$CellContext`solution$, {$CellContext`x, -2, 2}]; Column[{
+            Style["Unique Initial-Value Problem", 18, Bold], 
+            
+            TraditionalForm[{
+             Derivative[
+               1][$CellContext`y][$CellContext`x] == $CellContext`x + \
+$CellContext`y[$CellContext`x], $CellContext`y[0] == $CellContext`y0$$}], 
+            Row[{
+              Style["Solution:   ", Bold], 
+              
+              TraditionalForm[$CellContext`y[$CellContext`x] == \
+$CellContext`solution$]}], 
+            Row[{
+              Style["Verification:   ", Bold], $CellContext`verification$}], 
+            
+            Show[$CellContext`field$, $CellContext`curve$, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "One Solution Curve Through the Initial Point"]}]], 
+       "Specifications" :> {{{$CellContext`y0$$, 1, "Initial value y(0)"}, -2,
+           3, 1}}, "Options" :> {}, "DefaultOptions" :> {}],
+      ImageSizeCache->{320.6068359375, {169.1135021713718, 174.8454357651218}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}, {2,"\<\"Nonunique IVP\"\>"->
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`a$$ = 0, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[$CellContext`a$$], 0, "Waiting time a"}, 0, 4, 0.25, ControlType -> 
+       Manipulator}}, Typeset`size$$ = {
+     425.0815553665161, {112.28923532753107`, 118.02116892128107`}}, 
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+     Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`a$$ = 0}, 
+       "ControllerVariables" :> {}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$, 
+         Typeset`keyframeActionsQ$$, Typeset`keyframeList$$}, "Body" :> 
+       Module[{$CellContext`delayedSolution$}, $CellContext`delayedSolution$[
+            Pattern[$CellContext`x$, 
+             Blank[]]] := 
+          Piecewise[{{
+             0, $CellContext`x$ <= $CellContext`a$$}}, ($CellContext`x$ - \
+$CellContext`a$$)^2/4]; Column[{
+            Style["Nonunique Initial-Value Problem", 18, Bold], 
+            
+            TraditionalForm[{
+             Derivative[1][$CellContext`y][$CellContext`x] == Sqrt[
+                Abs[
+                 $CellContext`y[$CellContext`x]]], $CellContext`y[0] == 0}], 
+            Row[{
+              Style["Waiting time a:   ", Bold], $CellContext`a$$}], 
+            TextCell[
+            "The solution remains at y = 0 until x = a, then leaves the \
+equilibrium.", "Text"], 
+            Plot[{0, 
+              $CellContext`delayedSolution$[$CellContext`x]}, {$CellContext`x,
+               0, 6}, PlotRange -> {0, 10}, 
+             PlotLegends -> {
+              "Equilibrium solution y = 0", "Delayed solution"}, 
+             AxesLabel -> {"x", "y"}, PlotLabel -> 
+             "Many Solutions Through the Same Initial Point"]}]], 
+       "Specifications" :> {{{$CellContext`a$$, 0, "Waiting time a"}, 0, 4, 
+          0.25}}, "Options" :> {}, "DefaultOptions" :> {}],
+      ImageSizeCache->{
+       467.68155536651614`, {155.15007517128106`, 160.88200876503106`}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}}, 1]], "Output",
+ CellChangeTimes->{3.997469893163765*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"9927023b-763a-6b4d-8811-f05b30287da5"]
+}, Open  ]]
+},
+WindowSize->{1141, 700},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"15.0 for Microsoft Windows (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"908c9708-7c6e-2243-b64e-d24764b1dcf9"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7545, 189, 294, "Input",ExpressionUUID->"3a2bb240-7dbc-fe4e-b5ce-6a2989b6e475"],
+Cell[8124, 213, 6470, 129, 409, "Output",ExpressionUUID->"9927023b-763a-6b4d-8811-f05b30287da5"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
